@@ -1,4 +1,4 @@
-# Autofish LV - SF
+# HelperCMD
 **Pentru a descarca modul, apasati pe butonul <>Code, iar apoi pe Download ZIP**
 #
 
