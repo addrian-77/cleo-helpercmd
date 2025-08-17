@@ -281,15 +281,32 @@ while true
             if var_showdialog == DIALOG_HIDDEN
             then
                 //chatmsg "entered if statement" -1
-                alloc $dialog 400
-                if var_qmessage == 2
+                //alloc $dialog 400
+                //if var_qmessage == 2
+                //then
+                //    0AD3: $dialog = format "{ffff00}%s%c%c%c%c{ffffff}%s%c%c%s%c" var_question 0xD 0xA 0xD 0xA var_preview1 0xD 0xA var_preview2 0x0
+                //else
+                //    0AD3: $dialog = format "{ffff00}%s%c%c%c%c{ffffff}%s%c%c%s%c" "NO QUESTION FOUND" 0xD 0xA 0xD 0xA var_preview1 0xD 0xA var_preview2 0x0
+                //end
+                //SAMP.ShowDialog(4447, "{20B2AA}Answer question", "Review your answer", "{32CD32}Continue", "{CC5500}Cancel", 0)
+                alloc $dialog 20
+                SAMP.GetScreenResolution(28@, 29@)
+                if 29@ < 650
                 then
-                    0AD3: $dialog = format "{ffff00}%s%c%c%c%c{ffffff}%s%c%c%s%c" var_question 0xD 0xA 0xD 0xA var_preview1 0xD 0xA var_preview2 0x0
+                    30@ = 350
                 else
-                    0AD3: $dialog = format "{ffff00}%s%c%c%c%c{ffffff}%s%c%c%s%c" "NO QUESTION FOUND" 0xD 0xA 0xD 0xA var_preview1 0xD 0xA var_preview2 0x0
+                    30@ = 590
                 end
-                SAMP.ShowDialog(4447, "{20B2AA}Answer question", $dialog, "{32CD32}Continue", "{CC5500}Cancel", 0) 
-                free $dialog
+                28@ /= 2 
+                29@ /= 2 
+                28@ -= 335 
+                29@ -= 330
+                Dialog.Create($dialog, "Answer question")
+                Dialog.SetRECT($dialog,200, 200, 600, 600)
+                Dialog.AddButton($dialog, 0, "Continue", 0, 0, 10, 10)
+                Dialog.AddButton($dialog, 0, "Cancel", 0, 15, 10, 10)
+                Dialog.AddButton($dialog, 0, "Edit", 0, 30, 10, 10)
+            
                 var_showdialog = DIALOG_VISIBLE
             end
         else
