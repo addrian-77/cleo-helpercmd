@@ -81,6 +81,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "munceste" to_label @munceste
 0B34: samp register_client_command "skill" to_label @skill
 0B34: samp register_client_command "sfarm" to_label @sfarm   
+0B34: samp register_client_command "secundefarm" to_label @secundefarm
 0B34: samp register_client_command "struck" to_label @struck
 0B34: samp register_client_command "curse" to_label @curse
 0B34: samp register_client_command "remorca" to_label @remorca
@@ -1045,7 +1046,11 @@ SAMP.CmdRet()
 
 :sfarm
 0AD3: var_preview1 = format "/nre Pentru skill 2 ai nevoie de 70 ture, skill 3: 145 ture, skill 4: 366 ture, skill 5: 655 ture, skill 6: 875 ture."
-SAMP.CmdRet()     
+SAMP.CmdRet() 
+
+:secundefarm
+0AD3: var_preview1 = format "/nre La skill 1 trebuie sa muncesti 100 de secunde, scazand cate 5 secunde la fiecare skill up."
+SAMP.CmdRet()    
 
 :struck
 0AD3: var_preview1 = format "/nre Pentru skill 2 ai nevoie de 85 ture, skill 3: 180 ture, skill 4: 450 ture, skill 5: 808 ture, skill 6: 1080 ture."
