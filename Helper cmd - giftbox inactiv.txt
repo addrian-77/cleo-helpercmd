@@ -142,6 +142,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "fpayday" to_label @fpayday
 0B34: samp register_client_command "dobanda" to_label @dobanda
 0B34: samp register_client_command "taxa" to_label @taxa
+0B34: samp register_client_command "pretpp" to_label @pretpp
 0B34: samp register_client_command "canistra" to_label @canistra
 
 //Sisteme importante
@@ -1033,7 +1034,7 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 
 :profitabil
-0AD3: var_preview1 = format "/nre Toate joburile sunt profitabile, cu exceptia jobului 'Detective'. Personal iti recomand jobul 'Farmer'."    
+0AD3: var_preview1 = format "/nre Toate joburile sunt profitabile, cu exceptia jobului 'Detective'. Personal iti recomand jobul 'Farmer' sau 'Daily Job'."    
 SAMP.CmdRet()
 
 :munceste
@@ -1077,7 +1078,7 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 
 :pizza
-0AD3: var_preview1 = format "/nre La skill 1-6 poti livra: 2, 2+1, 2+2, 3+1, 3+2 si 4+2 pizza (numar de baza + bonus aleatoriu)"
+0AD3: var_preview1 = format "/nre La skill 1-6 poti livra: 2, 2+1, 2+1, 3+1, 3+1 si 4 pizza (numar de baza + bonus aleatoriu)"
 SAMP.CmdRet()
 
 :scutere
@@ -1113,7 +1114,7 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 
 :colete
-0AD3: var_preview1 = format "/nre La skill 1-6 poti livra: 2, 2+1, 2+2, 3+1, 3+2 si 4+2 colete (numar de baza + bonus aleatoriu)"
+0AD3: var_preview1 = format "/nre La skill 1-6 poti livra: 2, 2+1, 2+1, 2+1, 2+2 si 3+2 colete (numar de baza + bonus aleatoriu)"
 SAMP.CmdRet()
 
 :srob
@@ -1295,6 +1296,10 @@ SAMP.CmdRet()
 
 :taxa
 0AD3: var_preview1 = format "/nre Taxa de withdraw este de 0.5 la suta pentru cont normal/premium si 0.25 pentru cont OG."
+SAMP.CmdRet()
+
+:pretpp
+0AD3: var_preview1 = format "/nre Poti calcula chiar tu acest lucru avand in vedere ca 1 euro iti ofera 10 premium points."
 SAMP.CmdRet()
 
 :canistra
