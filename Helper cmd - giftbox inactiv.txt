@@ -1059,7 +1059,7 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 
 :curse
-0AD3: var_preview1 = format "La Trucker skill 2 vei putea face curse agregate, la skill 3 curse explozibile iar la skill 5 curse ilegale."
+0AD3: var_preview1 = format "/nre La Trucker skill 2 vei putea face curse agregate, la skill 3 curse explozibile iar la skill 5 curse ilegale."
 SAMP.CmdRet()
 
 :remorca
