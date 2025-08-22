@@ -258,6 +258,13 @@ gosub @create_additional_list
 var_showdialog = DIALOG_HIDDEN
 var_qmessage = 0
 
+var
+    $HelperCMD: HelperCMD
+end
+alloc $HelperCMD 1000
+$HelperCMD.Create(#NULL)
+chatmsg "value %h" -1 $HelperCMD
+
 :main_loop
 while true
 	wait 0
