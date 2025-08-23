@@ -62,6 +62,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 
 //Ce fac cu?
 0B34: samp register_client_command "ceogp" to_label @ceogp
+0B34: samp register_client_command "cepp" to_label @cepp
 0B34: samp register_client_command "cerob" to_label @cerob
 0B34: samp register_client_command "cemats" to_label @cemats
 0B34: samp register_client_command "cedrugs" to_label @cedrugs
@@ -161,6 +162,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "contog" to_label @contog
 0B34: samp register_client_command "contpremium" to_label @contpremium
 0B34: samp register_client_command "numecolor" to_label @numecolor
+0B34: samp register_client_command "sugestie" to_label @sugestie
 
 //Masini
 0B34: samp register_client_command "ds" to_label @ds
@@ -985,6 +987,10 @@ SAMP.CmdRet()
 0AD3: var_preview1 = format "/nre Cu 'OG Points' iti poti tuna masina la 'Tuning' sau poti achizitiona skinuri din 'Clothing Store' daca ai un cont OG."
 SAMP.CmdRet()
 
+:cepp
+0AD3: var_preview1 = format "/nre Cu 'Premium Points' poti achizitiona masini/diverse din [/shop] si poti cumpara tuning la masina."
+SAMP.CmdRet()
+
 :cerob
 0AD3: var_preview1 = format "/nre Pentru a putea jefui o afacere ai nevoie de nivel 5, 10 rob points sau 8 daca ai cont OG."
 SAMP.CmdRet()
@@ -1296,7 +1302,7 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 
 :fpayday
-0AD3: var_preview1 = format "/nre Poti calcula folosind formula: '$1000 x Nivel + Random $300 + 0.05, 0.04, 0.03 la suta din [...]"
+0AD3: var_preview1 = format "/nre Poti calcula folosind formula: '$1000 x Nivel + Random $500 + 0.05, 0.04, 0.03 la suta din [...]"
 0AD3: var_preview2 = format "/nre [...] banii din banca pentru cont OG, premium si normal."
 SAMP.CmdRet()
 
@@ -1368,6 +1374,10 @@ SAMP.CmdRet()
 
 :numecolor
 0AD3: var_preview1 = format "/nre Poti face acest lucru tastand comanda [/pcolor], daca detii un cont 'Premium'."
+SAMP.CmdRet()
+
+:sugestie
+0AD3: var_preview1 = format "/nre Poti crea o sugestie pe [/panel] la sectiunea sugestii cand acestea vor fi deschise."
 SAMP.CmdRet()
 
 //Masini----------------------------------------------------------------------------------------------------------------------
