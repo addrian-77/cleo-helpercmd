@@ -56,7 +56,8 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "cumgym" to_label @cumgym
 0B34: samp register_client_command "cumbail" to_label @cumbail
 0B34: samp register_client_command "cumrent" to_label @cumrent 
-0B34: samp register_client_command "cumtuning" to_label @cumtuning   
+0B34: samp register_client_command "cumtuning" to_label @cumtuning 
+0B34: samp register_client_command "cumspray" to_label @cumspray  
 0B34: samp register_client_command "anim" to_label @anim
 0B34: samp register_client_command "face" to_label @face
 0B34: samp register_client_command "tasta" to_label @tasta
@@ -104,7 +105,6 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "srob" to_label @srob
 0B34: samp register_client_command "peste" to_label @peste
 0B34: samp register_client_command "faina" to_label @faina
-0B34: samp register_client_command "spray" to_label @spray
 
 //Utile
 0B34: samp register_client_command "explicit" to_label @explicit
@@ -964,6 +964,10 @@ SAMP.CmdRet()
 0AD3: var_preview1 = format "/nre Poti tuna o masina la [/gps - Businesses - Tuning] apasand tasta 'H' pentru a intra."
 SAMP.CmdRet()
 
+:cumspray
+0AD3: var_preview1 = format "/nre Intervalul orar pentru Spray este zilnic intre orele 12:00 - 23:59."
+SAMP.CmdRet()
+
 :anim       
 0AD3: var_preview1 = format "/nre Pentru a vedea toate animatiile foloseste comanda [/animlist]."
 SAMP.CmdRet()
@@ -1144,10 +1148,6 @@ SAMP.CmdRet()
 
 :faina
 0AD3: var_preview1 = format "/nre Faina se va vinde automat, in momentul in care intri intr-un business de tip 'Burger'."
-SAMP.CmdRet()
-
-:spray
-0AD3: var_preview1 = format "/nre Intervalul orar pentru Spray este zilnic intre orele 12:00 - 23:59."
 SAMP.CmdRet()
 
 //Utile-----------------------------------------------------------------------------------------------------------------------
