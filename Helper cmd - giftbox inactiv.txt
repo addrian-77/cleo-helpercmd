@@ -55,7 +55,8 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "cumbandana" to_label @cumbandana
 0B34: samp register_client_command "cumgym" to_label @cumgym
 0B34: samp register_client_command "cumbail" to_label @cumbail
-0B34: samp register_client_command "cumrent" to_label @cumrent
+0B34: samp register_client_command "cumrent" to_label @cumrent 
+0B34: samp register_client_command "cumtuning" to_label @cumtuning   
 0B34: samp register_client_command "anim" to_label @anim
 0B34: samp register_client_command "face" to_label @face
 0B34: samp register_client_command "tasta" to_label @tasta
@@ -957,6 +958,10 @@ SAMP.CmdRet()
 
 :cumrent
 0AD3: var_preview1 = format "/nre Poti inchiria o masina/bike din [/gps - Businesses - Rent Car] folosind comanda [/rentcar si /rentbike]."
+SAMP.CmdRet()
+
+:cumtuning
+0AD3: var_preview1 = format "/nre Poti tuna o masina la [/gps - Businesses - Tuning] apasand tasta 'H' pentru a intra."
 SAMP.CmdRet()
 
 :anim       
