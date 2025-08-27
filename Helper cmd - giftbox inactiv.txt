@@ -1007,7 +1007,7 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 
 :cepp
-0AD3: var_preview1 = format "/nre Cu 'Premium Points' poti achizitiona masini/diverse din [/shop] si poti cumpara tuning la masina."
+0AD3: var_preview1 = format "/nre Cu 'Premium Points' poti achizitiona masini/diverse din [/shop] si poti cumpara tuning/VIP la masina."
 SAMP.CmdRet()
 
 :cerob
