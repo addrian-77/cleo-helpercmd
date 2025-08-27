@@ -167,6 +167,9 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "contpremium" to_label @contpremium
 0B34: samp register_client_command "numecolor" to_label @numecolor
 0B34: samp register_client_command "sugestie" to_label @sugestie
+0B34: samp register_client_command "bonus800" to_label @bonus800
+0B34: samp register_client_command "bonus900" to_label @bonus900
+0B34: samp register_client_command "bonus1000" to_label @bonus1000    
 
 //Masini
 0B34: samp register_client_command "ds" to_label @ds
@@ -1398,6 +1401,18 @@ SAMP.CmdRet()
 
 :sugestie
 0AD3: var_preview1 = format "/nre Poti crea o sugestie pe [/panel] la sectiunea sugestii cand acestea vor fi deschise."
+SAMP.CmdRet()
+
+:bonus800
+0AD3: var_preview1 = format "/nre La atingerea de 800 jucatori conectati se va acorda 1 'Respect Point' tuturor celor online, AFK sau nu."
+SAMP.CmdRet()
+
+:bonus900
+0AD3: var_preview1 = format "/nre La atingerea de 900 jucatori conectati se va acorda suma de '$50.000' tuturor celor online, AFK sau nu."
+SAMP.CmdRet()
+
+:bonus1000
+0AD3: var_preview1 = format "/nre La atingerea de 1000 jucatori conectati se va acorda 1 'Premium Point' tuturor celor online, AFK sau nu."
 SAMP.CmdRet()
 
 //Masini----------------------------------------------------------------------------------------------------------------------
