@@ -58,6 +58,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "cumrent" to_label @cumrent 
 0B34: samp register_client_command "cumtuning" to_label @cumtuning 
 0B34: samp register_client_command "cumspray" to_label @cumspray  
+0B34: samp register_client_command "cumskin" to_label @cumskin
 0B34: samp register_client_command "anim" to_label @anim
 0B34: samp register_client_command "face" to_label @face
 0B34: samp register_client_command "tasta" to_label @tasta
@@ -105,6 +106,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "srob" to_label @srob
 0B34: samp register_client_command "peste" to_label @peste
 0B34: samp register_client_command "faina" to_label @faina
+0B34: samp register_client_command "skillrpd" to_label @skillrpd
 
 //Utile
 0B34: samp register_client_command "explicit" to_label @explicit
@@ -137,6 +139,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "culori" to_label @culori
 0B34: samp register_client_command "flevel" to_label @flevel
 0B34: samp register_client_command "dutepanel" to_label @dutepanel
+0B34: samp register_client_command "duteds" to_label @duteds
 0B34: samp register_client_command "vezireg" to_label @vezireg
 0B34: samp register_client_command "calcula" to_label @calcula
 0B34: samp register_client_command "deschis" to_label @deschis
@@ -968,6 +971,10 @@ SAMP.CmdRet()
 0AD3: var_preview1 = format "/nre Intervalul orar pentru Spray este zilnic intre orele 12:00 - 23:59."
 SAMP.CmdRet()
 
+:cumskin
+0AD3: var_preview1 = format "/nre Poti cumpara un skin dintr-un business tip 'Clothing Store' folosind comanda [/clothes] in interiorul lui."
+SAMP.CmdRet()
+
 :anim       
 0AD3: var_preview1 = format "/nre Pentru a vedea toate animatiile foloseste comanda [/animlist]."
 SAMP.CmdRet()
@@ -1099,7 +1106,7 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 
 :pizza
-0AD3: var_preview1 = format "/nre La skill 1-6 poti livra: 2, 2+1, 2+1, 3+1, 3+1 si 4 pizza (numar de baza + bonus aleatoriu)"
+0AD3: var_preview1 = format "/nre La skill 1-6 poti livra: 2, 2+1, 2+1, 3+1, 3+1 si 4 pizza (numar de baza + bonus aleatoriu)."
 SAMP.CmdRet()
 
 :scutere
@@ -1135,7 +1142,7 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 
 :colete
-0AD3: var_preview1 = format "/nre La skill 1-6 poti livra: 2, 2+1, 2+1, 2+1, 2+2 si 3+2 colete (numar de baza + bonus aleatoriu)"
+0AD3: var_preview1 = format "/nre La skill 1-6 poti livra: 2, 2+1, 2+1, 2+1, 2+2 si 3+2 colete (numar de baza + bonus aleatoriu)."
 SAMP.CmdRet()
 
 :srob
@@ -1148,6 +1155,10 @@ SAMP.CmdRet()
 
 :faina
 0AD3: var_preview1 = format "/nre Faina se va vinde automat, in momentul in care intri intr-un business de tip 'Burger'."
+SAMP.CmdRet()
+
+:skillrpd
+0AD3: var_preview1 = format "/nre Toate job-urile sunt concepute sa cresti in skill destul de repede dar, personal recomand 'Farmer'."
 SAMP.CmdRet()
 
 //Utile-----------------------------------------------------------------------------------------------------------------------
@@ -1280,6 +1291,10 @@ SAMP.CmdRet()
 
 :dutepanel
 0AD3: var_preview1 = format "/nre Poti verifica chiar tu acest lucru pe [/panel] la sectiunea 'Shop' apasand pe butonul 'Descriere produs'."
+SAMP.CmdRet()
+
+:duteds
+0AD3: var_preview1 = format "/nre Poti vizita chiar tu 'Dealership-ul' prin comanda [/gps - Important Locations - Dealership] pentru a vedea acest lucru."
 SAMP.CmdRet()
 
 :vezireg
