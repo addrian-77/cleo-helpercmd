@@ -85,6 +85,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "profitabil" to_label @profitabil
 0B34: samp register_client_command "munceste" to_label @munceste
 0B34: samp register_client_command "skill" to_label @skill
+0B34: samp register_client_command "skillrpd" to_label @skillrpd
 0B34: samp register_client_command "sfarm" to_label @sfarm   
 0B34: samp register_client_command "secundefarm" to_label @secundefarm
 0B34: samp register_client_command "struck" to_label @struck
@@ -106,7 +107,6 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "srob" to_label @srob
 0B34: samp register_client_command "peste" to_label @peste
 0B34: samp register_client_command "faina" to_label @faina
-0B34: samp register_client_command "skillrpd" to_label @skillrpd
 
 //Utile
 0B34: samp register_client_command "explicit" to_label @explicit
@@ -167,9 +167,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "contpremium" to_label @contpremium
 0B34: samp register_client_command "numecolor" to_label @numecolor
 0B34: samp register_client_command "sugestie" to_label @sugestie
-0B34: samp register_client_command "bonus800" to_label @bonus800
-0B34: samp register_client_command "bonus900" to_label @bonus900
-0B34: samp register_client_command "bonus1000" to_label @bonus1000    
+0B34: samp register_client_command "bonus" to_label @bonus
 
 //Masini
 0B34: samp register_client_command "ds" to_label @ds
@@ -391,6 +389,10 @@ while true
                 then
                     0AD3: var_preview1 = format "/nre %sa fost oferit ca premiu la 'Giftbox' si atinge viteza maxima de %skm/h." var_vname var_vspeed
                 end
+                if var_vstockint == -3
+                then
+                    0AD3: var_preview1 = format "/nre %s nu se regaseste in 'Dealership' si atinge viteza maxima de %skm/h." var_vname var_vspeed
+                end
             end 
             var_ds_rtype = 0
         end
@@ -432,11 +434,16 @@ while true
                             then
                                 0AD3: var_preview1 = format "/nre Nu exista stock pentru acel vehicul, a fost oferit ca si premiu la 'Giftbox'."
                             else
-                                if var_vstockint >= 20
+                                if var_vstockint == -3
                                 then
-                                    0AD3: var_preview1 = format "/nre Mai exista %s de modele pentru %sin stock." var_vstock var_vname
+                                    0AD3: var_preview1 = format "/nre Acel vehicul nu se regaseste in 'Dealership'."
                                 else
-                                    0AD3: var_preview1 = format "/nre Mai exista %s modele pentru %sin stock." var_vstock var_vname
+                                    if var_vstockint >= 20
+                                    then
+                                        0AD3: var_preview1 = format "/nre Mai exista %s de modele pentru %sin stock." var_vstock var_vname
+                                    else
+                                        0AD3: var_preview1 = format "/nre Mai exista %s modele pentru %sin stock." var_vstock var_vname
+                                    end
                                 end
                             end
                         end
@@ -600,8 +607,15 @@ return
 
 :dialog_text_main_menu
 hex
-7B 39 38 66 62 39 38 7D 28 7B 66 66 66 66 66 66 7D 31 7B 39 38 66 62 39 38 7D 29 7B 66 66 66 66 66 66 7D 20 20 43 6F 6D 65 6E 7A 69 20 74 69 70 3A 20 43 75 6D 20 66 61 63 3F 0A 7B 39 38 66 62 39 38 7D 28 7B 66 66 66 66 66 66 7D 32 7B 39 38 66 62 39 38 7D 29 7B 66 66 66 66 66 66 7D 20 20 43 6F 6D 65 6E 7A 69 20 74 69 70 3A 20 43 65 20 66 61 63 20 63 75 3F 20 2F 20 43 65 20 65 73 74 65 3F 0A 7B 39 38 66 62 39 38 7D 28 7B 66 66 66 66 66 66 7D 33 7B 39 38 66 62 39 38 7D 29 7B 66 66 66 66 66 66 7D 20 20 4C 69 63 65 6E 74 65 0A 7B 39 38 66 62 39 38 7D 28 7B 66 66 66 66 66 66 7D 34 7B 39 38 66 62 39 38 7D 29 7B 66 66 66 66 66 66 7D 20 20 4A 6F 62 75 72 69 0A 7B 39 38 66 62 39 38 7D 28 7B 66 66 66 66 66 66 7D 35 7B 39 38 66 62 39 38 7D 29 7B 66 66 66 66 66 66 7D 20 20 55 74 69 6C 65 0A 7B 39 38 66 62 39 38 7D 28 7B 66 66 66 66 66 66 7D 36 7B 39 38 66 62 39 38 7D 29 7B 66 66 66 66 66 66 7D 20 20 41 6C 74 65 6C 65 0A 7B 39 38 66 62 39 38 7D 28 7B 66 66 66 66 66 66 7D 37 7B 39 38 66 62 39 38 7D 29 7B 66 66 66 66 66 66 7D 20 20 53 69 73 74 65 6D 65 20 69 6D 70 6F 72 74 61 6E 74 65 0A 7B 39 38 66 62 39 38 7D 28 7B 66 66 66 66 66 66 7D 38 7B 39 38 66 62 39 38 7D 29 7B 66 66 66 66 66 66 7D 20 20 4D 61 73 69 6E 69 0A 7B 39 38 66 62 39 38 7D 28 7B 66 66 66 66 66 66 7D 39 7B 39 38 66 62 39 38 7D 29 7B 66 66 66 66 66 66 7D 20 20 47 69 66 74 62 6F 78 20 28 61 63 74 69 76 29
-00
+"{98fb98}({ffffff}1{98fb98}){ffffff}  Comenzi tip: Cum fac?" A
+"{98fb98}({ffffff}2{98fb98}){ffffff}  Comenzi tip: Ce fac cu? / Ce este?" A
+"{98fb98}({ffffff}3{98fb98}){ffffff}  Licente" A
+"{98fb98}({ffffff}4{98fb98}){ffffff}  Joburi" A
+"{98fb98}({ffffff}5{98fb98}){ffffff}  Utile" A
+"{98fb98}({ffffff}6{98fb98}){ffffff}  Altele" A
+"{98fb98}({ffffff}7{98fb98}){ffffff}  Sisteme importante" A
+"{98fb98}({ffffff}8{98fb98}){ffffff}  Masini" A
+"{98fb98}({ffffff}9{98fb98}){ffffff}  Giftbox (activ)" 0
 end
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -615,8 +629,33 @@ return
 
 :dialog_text_cum
 hex
-7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 6F 67 70 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 75 6D 20 70 6F 74 69 20 66 61 63 65 20 72 6F 73 74 20 64 65 20 4F 47 20 50 6F 69 6E 74 73 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 70 70 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 75 6D 20 70 6F 74 69 20 66 61 63 65 20 72 6F 73 74 20 64 65 20 50 72 65 6D 69 75 6D 20 50 6F 69 6E 74 73 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 72 70 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 75 6D 20 70 6F 74 69 20 66 61 63 65 20 72 6F 73 74 20 64 65 20 52 65 73 70 65 63 74 20 50 6F 69 6E 74 73 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 72 62 70 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 75 6D 20 70 6F 74 69 20 66 61 63 65 20 72 6F 73 74 20 64 65 20 52 6F 62 20 50 6F 69 6E 74 73 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 72 6F 62 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 75 6D 20 64 61 69 20 72 6F 62 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 62 61 6E 69 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 75 6D 20 70 6F 74 69 20 66 61 63 65 20 72 6F 73 74 20 64 65 20 62 61 6E 69 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 6D 61 74 73 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 75 6D 20 70 6F 74 69 20 66 61 63 65 20 72 6F 73 74 20 64 65 20 6D 61 74 65 72 69 61 6C 65 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 61 64 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 75 6D 20 70 6F 74 69 20 70 75 6E 65 20 75 6E 20 5B 2F 61 64 5D 20 73 69 20 63 65 72 69 6E 74 65 6C 65 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 6D 61 73 69 6E 61 5D 7B 46 46 46 46 46 46 7D 20 2D 20 70 6F 74 69 20 6F 62 74 69 6E 65 20 6D 61 73 69 6E 61 20 64 69 6E 20 44 53 2C 20 2F 73 68 6F 70 20 73 61 75 20 64 65 20 6C 61 20 70 6C 61 79 65 72 69 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 66 69 6C 6C 5D 7B 46 46 46 46 46 46 7D 20 2D 20 49 69 20 73 70 75 69 20 6D 65 74 6F 64 65 6C 65 20 64 65 20 5B 2F 66 69 6C 6C 5D 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 6C 69 67 68 74 73 5D 7B 46 46 46 46 46 46 7D 20 2D 20 5B 2F 6C 69 67 68 74 73 5D 20 73 61 75 20 43 54 52 4C 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 63 75 6C 6F 61 72 65 5D 7B 46 46 46 46 46 46 7D 20 2D 20 49 69 20 73 70 75 69 20 63 75 6D 20 73 61 20 61 70 6C 69 63 65 20 63 75 6C 6F 61 72 65 61 20 70 65 20 6D 61 73 69 6E 61 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 63 75 6C 6F 61 72 65 68 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 75 6D 20 73 65 20 61 70 6C 69 63 61 20 68 69 64 64 65 6E 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 68 69 64 64 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 75 6D 20 70 6F 74 69 20 66 61 63 65 20 72 6F 73 74 20 64 65 20 68 69 64 64 65 6E 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 6C 65 76 65 6C 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 75 6D 20 66 61 63 65 20 6C 65 76 65 6C 20 73 69 20 64 65 20 63 65 20 61 72 65 20 6E 65 76 6F 69 65 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 76 69 61 74 61 5D 7B 46 46 46 46 46 46 7D 20 2D 20 75 6E 64 65 20 70 6F 74 69 20 6C 75 61 20 68 65 61 6C 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 63 68 61 74 5D 7B 46 46 46 46 46 46 7D 20 2D 20 46 6F 6C 6F 73 65 73 74 65 20 5B 2F 66 6F 6E 74 73 69 7A 65 5D 2C 20 72 65 73 70 65 63 74 69 76 20 5B 2F 70 61 67 65 73 69 7A 65 5D 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 62 61 6E 64 61 6E 61 5D 7B 46 46 46 46 46 46 7D 20 2D 20 50 6F 74 69 20 61 63 68 69 7A 69 74 69 6F 6E 61 20 63 75 20 4F 47 50 20 64 69 6E 20 42 69 6E 63 6F 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 67 79 6D 5D 7B 46 46 46 46 46 46 7D 20 2D 20 70 6F 74 69 20 73 61 20 69 74 69 20 73 63 68 69 6D 62 69 20 73 74 69 6C 75 6C 20 64 65 20 6C 75 70 74 61 20 6C 61 20 27 47 59 4D 27 20 63 75 20 63 6F 6D 61 6E 64 61 2E 2E 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 62 61 69 6C 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 75 6D 20 70 6F 74 69 20 64 61 20 62 61 69 6C 2C 20 24 32 30 30 30 20 2A 20 6D 69 6E 75 74 65 20 72 61 6D 61 73 65 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 72 65 6E 74 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 75 6D 20 73 69 20 64 65 20 75 6E 64 65 20 70 6F 74 69 20 69 6E 63 68 69 72 69 61 20 6F 20 6D 61 73 69 6E 61 20 2F 20 75 6E 20 6D 6F 74 6F 72 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 74 75 6E 69 6E 67 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 75 6D 20 73 69 20 75 6E 64 65 20 70 6F 74 69 20 74 75 6E 61 20 6D 61 73 69 6E 61 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 73 70 72 61 79 5D 7B 46 46 46 46 46 46 7D 20 2D 20 69 6E 74 65 72 76 61 6C 75 6C 20 6F 72 61 72 20 70 65 6E 74 72 75 20 73 70 72 61 79 0A 7B 39 38 46 42 39 38 7D 5B 2F 61 6E 69 6D 5D 7B 46 46 46 46 46 46 7D 20 2D 20 50 65 6E 74 72 75 20 61 20 76 65 64 65 61 20 74 6F 61 74 65 20 61 6E 69 6D 61 74 69 69 6C 65 20 66 6F 6C 6F 73 65 73 74 65 20 63 6F 6D 61 6E 64 61 20 5B 2F 61 6E 69 6D 6C 69 73 74 5D 0A 7B 39 38 46 42 39 38 7D 5B 2F 66 61 63 65 20 7B 38 37 43 45 45 42 7D 3C 63 6F 6D 61 6E 64 61 3E 7B 39 38 46 42 39 38 7D 5D 7B 46 46 46 46 46 46 7D 20 2D 20 50 6F 74 69 20 66 61 63 65 20 61 63 65 73 74 20 6C 75 63 72 75 20 74 61 73 74 61 6E 64 20 63 6F 6D 61 6E 64 61 20 5B 2F 3C 63 6F 6D 61 6E 64 61 3E 5D 0A 7B 39 38 46 42 39 38 7D 5B 2F 74 61 73 74 61 20 7B 38 37 43 45 45 42 7D 3C 74 61 73 74 61 3E 7B 39 38 46 42 39 38 7D 5D 7B 46 46 46 46 46 46 7D 20 2D 20 50 6F 74 69 20 66 61 63 65 20 61 63 65 73 74 20 6C 75 63 72 75 20 61 70 61 73 61 6E 64 20 74 61 73 74 61 20 27 3C 74 61 73 74 61 3E 27
-00
+"{98FB98}[/cumogp]{FFFFFF} - cum poti face rost de OG Points." A
+"{98FB98}[/cumpp]{FFFFFF} - cum poti face rost de Premium Points." A
+"{98FB98}[/cumrp]{FFFFFF} - cum poti face rost de Respect Points." A
+"{98FB98}[/cumrbp]{FFFFFF} - cum poti face rost de Rob Points." A
+"{98FB98}[/cumrob]{FFFFFF} - cum dai rob" A
+"{98FB98}[/cumbani]{FFFFFF} - cum poti face rost de bani." A
+"{98FB98}[/cummats]{FFFFFF} - cum poti face rost de materiale." A
+"{98FB98}[/cumad]{FFFFFF} - cum poti pune un [/ad] si cerintele." A
+"{98FB98}[/cummasina]{FFFFFF} - poti obtine masina din DS, /shop sau de la playeri" A
+"{98FB98}[/cumfill]{FFFFFF} - Ii spui metodele de [/fill]." A
+"{98FB98}[/cumlights]{FFFFFF} - [/lights] sau CTRL" A
+"{98FB98}[/cumculoare]{FFFFFF} - Ii spui cum sa aplice culoarea pe masina." A
+"{98FB98}[/cumculoareh]{FFFFFF} - cum se aplica hidden" A
+"{98FB98}[/cumhidd]{FFFFFF} - cum poti face rost de hidden." A
+"{98FB98}[/cumlevel]{FFFFFF} - cum face level si de ce are nevoie." A
+"{98FB98}[/cumviata]{FFFFFF} - unde poti lua heal." A
+"{98FB98}[/cumchat]{FFFFFF} - Foloseste [/fontsize], respectiv [/pagesize]" A
+"{98FB98}[/cumbandana]{FFFFFF} - Poti achizitiona cu OGP din Binco" A
+"{98FB98}[/cumgym]{FFFFFF} - poti sa iti schimbi stilul de lupta la 'GYM' cu comanda..." A
+"{98FB98}[/cumbail]{FFFFFF} - cum poti da bail, $2000 * minute ramase" A
+"{98FB98}[/cumrent]{FFFFFF} - cum si de unde poti inchiria o masina / un motor" A
+"{98FB98}[/cumtuning]{FFFFFF} - cum si unde poti tuna masina" A
+"{98FB98}[/cumspray]{FFFFFF} - intervalul orar pentru spray" A
+"{98FB98}[/cumskin]{FFFFFF} - cum si de unde poti cumpara skin" A
+"{98FB98}[/anim]{FFFFFF} - Pentru a vedea toate animatiile foloseste comanda [/animlist]" A
+"{98FB98}[/face {87CEEB}<comanda>{98FB98}]{FFFFFF} - Poti face acest lucru tastand comanda [/<comanda>]" A
+"{98FB98}[/tasta {87CEEB}<tasta>{98FB98}]{FFFFFF} - Poti face acest lucru apasand tasta '<tasta>'" 0
 end
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -630,8 +669,12 @@ return
 
 :dialog_text_ce
 hex
-7B 39 38 46 42 39 38 7D 5B 2F 63 65 6F 67 70 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 65 20 73 75 6E 74 20 4F 47 20 50 6F 69 6E 74 73 2D 75 72 69 6C 65 20 73 69 20 63 75 6D 20 6C 65 20 66 6F 6C 6F 73 65 73 74 69 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 65 70 70 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 65 20 70 6F 74 69 20 66 61 63 65 20 63 75 20 70 75 6E 63 74 65 20 70 72 65 6D 69 75 6D 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 65 72 6F 62 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 65 72 69 6E 74 65 6C 65 20 70 65 6E 74 72 75 20 61 20 64 61 20 72 6F 62 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 65 6D 61 74 73 5D 7B 46 46 46 46 46 46 7D 20 2D 20 69 69 20 73 70 75 69 20 63 65 20 70 6F 61 74 65 20 66 61 63 65 20 63 75 20 6D 61 74 65 72 69 61 6C 65 6C 65 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 65 64 72 75 67 73 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 65 20 70 6F 74 69 20 66 61 63 65 20 63 75 20 64 72 75 67 73 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 65 72 61 63 65 5D 7B 46 46 46 46 46 46 7D 20 2D 20 70 72 69 6D 65 73 74 69 20 62 61 6E 69 69 20 70 75 73 69 20 6C 61 20 63 6F 6D 75 6E 2C 20 64 61 72 20 65 20 70 72 65 6D 69 75 20 73 69 20 70 74 20 72 65 63 6F 72 64 75 72 69 2E
-00
+"{98FB98}[/ceogp]{FFFFFF} - ce sunt OG Points-urile si cum le folosesti." A
+"{98FB98}[/cepp]{FFFFFF} - ce poti face cu puncte premium" A
+"{98FB98}[/cerob]{FFFFFF} - cerintele pentru a da rob." A
+"{98FB98}[/cemats]{FFFFFF} - ii spui ce poate face cu materialele." A
+"{98FB98}[/cedrugs]{FFFFFF} - ce poti face cu drugs" A
+"{98FB98}[/cerace]{FFFFFF} - primesti banii pusi la comun, dar e premiu si pt recorduri." 0
 end
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -645,8 +688,10 @@ return
 
 :dialog_text_licente
 hex
-7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 6C 69 63 5D 7B 46 46 46 46 46 46 7D 20 2D 20 70 6F 74 69 20 64 61 20 2F 73 65 72 76 69 63 65 20 69 6E 73 74 72 75 63 74 6F 72 20 73 69 20 73 61 20 61 73 74 65 70 74 69 20 73 61 20 66 69 69 20 63 6F 6E 74 61 63 74 61 74 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 70 65 72 6D 69 73 5D 7B 46 46 46 46 46 46 7D 20 2D 20 49 69 20 73 70 75 69 20 74 61 78 61 20 70 65 6E 74 72 75 20 6C 69 63 65 6E 74 61 20 64 65 20 64 72 69 76 65 2E 20 0A 7B 39 38 46 42 39 38 7D 5B 2F 6C 69 63 67 75 6E 5D 7B 46 46 46 46 46 46 7D 20 2F 20 7B 39 38 46 42 39 38 7D 5B 2F 6C 69 63 66 6C 79 5D 7B 46 46 46 46 46 46 7D 20 2F 20 7B 39 38 46 42 39 38 7D 5B 2F 6C 69 63 62 6F 61 74 5D 7B 46 46 46 46 46 46 7D 20 2D 20 69 69 20 73 70 75 69 20 70 72 65 74 75 72 69 6C 65 20 70 65 6E 74 72 75 20 6C 69 63 65 6E 74 61 20 64 65 20 67 75 6E 20 2F 20 66 6C 79 20 2F 20 73 61 69 6C 69 6E 67 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 6C 69 63 61 6C 6C 5D 7B 46 46 46 46 46 46 7D 20 2D 20 49 69 20 73 70 75 69 20 70 72 65 74 75 6C 20 74 75 74 75 72 6F 72 20 6C 69 63 65 6E 74 65 6C 6F 72 2E
-00
+"{98FB98}[/cumlic]{FFFFFF} - poti da /service instructor si sa astepti sa fii contactat" A
+"{98FB98}[/cumpermis]{FFFFFF} - Ii spui taxa pentru licenta de drive." A
+"{98FB98}[/licgun]{FFFFFF} / {98FB98}[/licfly]{FFFFFF} / {98FB98}[/licboat]{FFFFFF} - ii spui preturile pentru licenta de gun / fly / sailing." A
+"{98FB98}[/licall]{FFFFFF} - Ii spui pretul tuturor licentelor." 0
 end
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -660,8 +705,33 @@ return
 
 :dialog_text_joburi
 hex
-7B 39 38 46 42 39 38 7D 5B 2F 64 61 69 6C 79 6A 6F 62 5D 7B 46 46 46 46 46 46 7D 20 2D 20 75 6E 64 65 20 69 6C 20 67 61 73 65 73 74 69 2C 20 62 65 6E 65 66 69 63 69 69 20 73 69 20 63 61 6E 64 20 73 65 20 73 63 68 69 6D 62 61 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 74 6F 70 77 6F 72 6B 65 72 5D 7B 46 46 46 46 46 46 7D 20 2D 20 70 72 65 6D 69 75 6C 2C 20 63 61 6E 64 20 73 65 20 70 72 6F 63 65 73 65 61 7A 61 20 73 69 20 63 75 6D 20 70 6F 74 69 20 70 61 72 74 69 63 69 70 61 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 70 72 6F 66 69 74 61 62 69 6C 5D 7B 46 46 46 46 46 46 7D 20 2D 20 73 70 75 69 20 63 61 72 65 20 65 73 74 65 20 63 65 6C 20 6D 61 69 20 70 72 6F 66 69 74 61 62 69 6C 20 6A 6F 62 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 6D 75 6E 63 65 73 74 65 5D 7B 46 46 46 46 46 46 7D 20 2D 20 50 6F 74 69 20 6C 75 63 72 61 20 63 68 69 61 72 20 74 75 20 70 65 6E 74 72 75 20 61 20 76 65 64 65 61 20 61 73 74 61 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 6B 69 6C 6C 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 65 20 70 72 69 6D 65 73 74 69 20 6C 61 20 53 6B 69 6C 6C 20 55 70 20 6C 61 20 6A 6F 62 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 66 61 72 6D 5D 7B 46 46 46 46 46 46 7D 20 2D 20 73 6B 69 6C 6C 2D 75 72 69 6C 65 20 6C 61 20 46 61 72 6D 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 65 63 75 6E 64 65 66 61 72 6D 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 61 74 65 20 73 65 63 75 6E 64 65 20 6D 75 6E 63 65 73 74 69 20 6C 61 20 66 61 72 6D 2C 20 31 30 30 20 6C 61 20 73 31 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 74 72 75 63 6B 5D 7B 46 46 46 46 46 46 7D 20 2D 20 73 6B 69 6C 6C 2D 75 72 69 6C 65 20 6C 61 20 54 72 75 63 6B 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 6B 69 6C 6C 74 72 75 63 6B 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 61 6E 64 20 73 69 20 63 65 20 63 75 72 73 65 20 64 65 62 6C 6F 63 68 65 7A 69 20 6C 61 20 54 72 75 63 6B 65 72 20 73 6B 69 6C 6C 20 32 20 26 20 33 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 72 65 6D 6F 72 63 61 5D 7B 46 46 46 46 46 46 7D 20 2D 20 46 6F 6C 6F 73 65 73 74 65 20 2F 74 6F 67 20 2D 3E 20 41 75 74 6F 20 41 74 74 61 63 68 20 70 65 6E 74 72 75 20 61 20 64 65 74 61 73 61 20 72 65 6D 6F 72 63 61 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 72 73 65 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 65 20 63 75 72 73 65 20 73 65 20 64 65 62 6C 6F 63 68 65 61 7A 61 20 6C 61 20 73 6B 69 6C 6C 20 32 2F 33 2F 35 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 6C 75 6D 62 65 72 5D 7B 46 46 46 46 46 46 7D 20 2D 20 73 6B 69 6C 6C 2D 75 72 69 6C 65 20 6C 61 20 4C 75 6D 62 65 72 6A 61 63 6B 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 67 61 72 62 61 67 65 5D 7B 46 46 46 46 46 46 7D 20 2D 20 73 6B 69 6C 6C 2D 75 72 69 6C 65 20 6C 61 20 47 61 72 62 61 67 65 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 70 69 7A 7A 61 5D 7B 46 46 46 46 46 46 7D 20 2D 20 73 6B 69 6C 6C 2D 75 72 69 6C 65 20 6C 61 20 50 69 7A 7A 61 20 42 6F 79 0A 7B 39 38 46 42 39 38 7D 5B 2F 70 69 7A 7A 61 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 61 74 65 20 70 69 7A 7A 61 20 70 6F 74 69 20 6C 69 76 72 61 20 6C 61 20 66 69 65 63 61 72 65 20 73 6B 69 6C 6C 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 63 75 74 65 72 65 5D 7B 46 46 46 46 46 46 7D 20 2D 20 53 63 75 74 65 72 65 6C 65 20 64 65 62 6C 6F 63 61 74 65 20 6C 61 20 73 6B 69 6C 6C 20 31 2C 20 33 20 73 69 20 35 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 63 75 72 69 65 72 5D 7B 46 46 46 46 46 46 7D 20 2D 20 73 6B 69 6C 6C 2D 75 72 69 6C 65 20 6C 61 20 43 75 72 69 65 72 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 66 6F 72 6B 5D 7B 46 46 46 46 46 46 7D 20 2D 20 73 6B 69 6C 6C 2D 75 72 69 6C 65 20 6C 61 20 46 6F 72 6B 6C 69 66 74 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 62 75 73 5D 7B 46 46 46 46 46 46 7D 20 2D 20 73 6B 69 6C 6C 2D 75 72 69 6C 65 20 6C 61 20 42 75 73 20 44 72 69 76 65 72 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 66 69 73 68 5D 7B 46 46 46 46 46 46 7D 20 2D 20 73 6B 69 6C 6C 2D 75 72 69 6C 65 20 6C 61 20 46 69 73 68 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 61 69 72 5D 7B 46 46 46 46 46 46 7D 20 2D 20 73 6B 69 6C 6C 2D 75 72 69 6C 65 20 6C 61 20 45 6D 65 72 67 65 6E 63 79 20 41 69 72 20 52 65 73 63 75 65 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 62 6F 61 74 5D 7B 46 46 46 46 46 46 7D 20 2D 20 73 6B 69 6C 6C 2D 75 72 69 6C 65 20 6C 61 20 42 6F 61 74 20 54 72 61 6E 73 70 6F 72 74 65 72 0A 7B 39 38 46 42 39 38 7D 5B 2F 62 61 72 63 69 5D 7B 46 46 46 46 46 46 7D 20 2D 20 42 61 72 63 69 6C 65 20 64 65 62 6C 6F 63 61 74 65 20 6C 61 20 73 6B 69 6C 6C 20 31 2C 20 33 20 73 69 20 35 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 6F 6C 65 74 65 5D 7B 46 46 46 46 46 46 7D 20 2D 20 43 61 74 65 20 63 6F 6C 65 74 65 20 70 6F 74 69 20 6C 69 76 72 61 20 6C 61 20 66 69 65 63 61 72 65 20 73 6B 69 6C 6C 2C 20 63 61 74 65 20 67 61 72 61 6E 74 61 74 20 73 69 20 63 61 74 65 20 72 61 6E 64 6F 6D 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 72 6F 62 5D 7B 46 46 46 46 46 46 7D 20 2D 20 73 6B 69 6C 6C 2D 75 72 69 6C 65 20 6C 61 20 52 6F 62 0A 7B 39 38 46 42 39 38 7D 5B 2F 70 65 73 74 65 5D 20 7B 46 46 46 46 46 46 7D 2F 20 7B 39 38 46 42 39 38 7D 5B 2F 66 61 69 6E 61 5D 7B 46 46 46 46 46 46 7D 20 2D 20 50 6F 74 69 20 76 69 6E 64 65 20 70 65 73 74 65 6C 65 20 2F 20 66 61 69 6E 61 20 6C 61 20 32 34 2F 37 20 2F 20 42 75 72 67 65 72
-00
+"{98FB98}[/dailyjob]{FFFFFF} - unde il gasesti, beneficii si cand se schimba." A
+"{98FB98}[/topworker]{FFFFFF} - premiul, cand se proceseaza si cum poti participa." A
+"{98FB98}[/profitabil]{FFFFFF} - spui care este cel mai profitabil job." A
+"{98FB98}[/munceste]{FFFFFF} - Poti lucra chiar tu pentru a vedea asta." A
+"{98FB98}[/skill]{FFFFFF} - ce primesti la Skill Up la job." A
+"{98FB98}[/skillrpd]{FFFFFF} - la ce job poti face skill rapid (trucker)" A
+"{98FB98}[/sfarm]{FFFFFF} - skill-urile la Farm" A
+"{98FB98}[/secundefarm]{FFFFFF} - cate secunde muncesti la farm, 100 la s1" A
+"{98FB98}[/struck]{FFFFFF} - skill-urile la Truck" A
+"{98FB98}[/skilltruck]{FFFFFF} - cand si ce curse deblochezi la Trucker skill 2 & 3." A
+"{98FB98}[/remorca]{FFFFFF} - Foloseste /tog -> Auto Attach pentru a detasa remorca" A
+"{98FB98}[/curse]{FFFFFF} - ce curse se deblocheaza la skill 2/3/5" A
+"{98FB98}[/slumber]{FFFFFF} - skill-urile la Lumberjack" A
+"{98FB98}[/sgarbage]{FFFFFF} - skill-urile la Garbage" A
+"{98FB98}[/spizza]{FFFFFF} - skill-urile la Pizza Boy" A
+"{98FB98}[/pizza]{FFFFFF} - cate pizza poti livra la fiecare skill" A
+"{98FB98}[/scutere]{FFFFFF} - Scuterele deblocate la skill 1, 3 si 5." A
+"{98FB98}[/scurier]{FFFFFF} - skill-urile la Curier" A
+"{98FB98}[/sfork]{FFFFFF} - skill-urile la Forklift" A
+"{98FB98}[/sbus]{FFFFFF} - skill-urile la Bus Driver" A
+"{98FB98}[/sfish]{FFFFFF} - skill-urile la Fish" A
+"{98FB98}[/sair]{FFFFFF} - skill-urile la Emergency Air Rescue" A
+"{98FB98}[/sboat]{FFFFFF} - skill-urile la Boat Transporter" A
+"{98FB98}[/barci]{FFFFFF} - Barcile deblocate la skill 1, 3 si 5." A
+"{98FB98}[/colete]{FFFFFF} - Cate colete poti livra la fiecare skill, cate garantat si cate random." A
+"{98FB98}[/srob]{FFFFFF} - skill-urile la Rob" A
+"{98FB98}[/peste] {FFFFFF}/ {98FB98}[/faina]{FFFFFF} - Poti vinde pestele / faina la 24/7 / Burger" 0
 end
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -675,8 +745,24 @@ return
 
 :dialog_text_utile
 hex
-7B 39 38 46 42 39 38 7D 5B 2F 65 78 70 6C 69 63 69 74 5D 7B 46 46 46 46 46 46 7D 20 2D 20 5B 2F 6E 64 5D 20 69 69 20 73 70 75 69 20 73 61 20 66 69 65 20 6D 61 69 20 65 78 70 6C 69 63 69 74 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 6E 61 69 75 72 65 61 5D 7B 46 46 46 46 46 46 7D 20 2D 20 5B 2F 6E 64 5D 20 6E 20 61 69 75 72 65 61 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 6E 70 72 6F 73 74 5D 7B 46 46 46 46 46 46 7D 20 2D 20 5B 2F 6E 64 5D 20 66 6F 6C 6F 73 65 73 74 65 20 2F 6E 20 64 6F 61 72 20 70 65 6E 74 72 75 20 69 6E 74 72 65 62 61 72 69 20 6C 65 67 61 74 65 20 64 65 20 73 65 72 76 65 72 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 6E 6D 20 7B 38 37 43 45 45 42 7D 3C 69 64 3E 7B 39 38 46 42 39 38 7D 5D 7B 46 46 46 46 46 46 7D 20 2D 20 2F 6E 6D 75 74 65 20 3C 69 64 3E 20 33 30 20 5B 2F 6E 5D 20 61 69 75 72 65 61 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 75 70 6F 72 74 5D 7B 46 46 46 46 46 46 7D 20 2D 20 6E 75 20 6F 66 65 72 69 6D 20 73 75 70 6F 72 74 20 6D 6F 64 75 72 69 6C 6F 72 2C 20 74 65 68 6E 69 63 20 73 61 75 20 70 74 20 76 61 72 69 61 6E 74 61 20 64 65 20 74 65 6C 65 66 6F 6E 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 6D 6F 64 75 72 69 5D 7B 46 46 46 46 46 46 7D 20 2D 20 70 6F 74 69 20 76 65 64 65 61 20 70 65 20 70 61 6E 65 6C 20 63 65 20 6D 6F 64 75 72 69 20 73 75 6E 74 20 70 65 72 6D 69 73 65 0A 7B 39 38 46 42 39 38 7D 5B 2F 70 6F 74 69 5D 7B 46 46 46 46 46 46 7D 20 2D 20 64 61 2C 20 70 6F 74 69 20 66 61 63 65 20 61 63 65 73 74 20 6C 75 63 72 75 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 6E 75 70 6F 74 69 5D 7B 46 46 46 46 46 46 7D 20 2D 20 6E 75 20 70 6F 74 69 20 66 61 63 65 20 61 63 65 73 74 20 6C 75 63 72 75 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 6E 75 64 65 74 69 6E 65 6D 5D 7B 46 46 46 46 46 46 7D 20 2D 20 4E 75 20 64 65 74 69 6E 65 6D 20 61 63 65 61 73 74 61 20 69 6E 66 6F 72 6D 61 74 69 65 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 6E 75 65 78 69 73 74 61 5D 7B 46 46 46 46 46 46 7D 20 2D 20 41 63 65 6C 20 73 69 73 74 65 6D 20 6E 75 20 65 78 69 73 74 61 20 70 65 20 73 65 72 76 65 72 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 62 75 67 5D 7B 46 46 46 46 46 46 7D 20 2D 20 64 61 63 61 20 61 20 67 61 73 69 74 20 75 6E 20 62 75 67 20 69 6C 20 70 6F 61 74 65 20 72 61 70 6F 72 74 61 20 70 65 20 5B 2F 70 61 6E 65 6C 5D 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 70 6F 73 74 5D 7B 46 46 46 46 46 46 7D 20 2D 20 70 6F 74 69 20 73 61 20 72 65 63 6C 61 6D 69 20 6A 75 63 61 74 6F 72 75 6C 20 70 65 20 5B 2F 70 61 6E 65 6C 5D 20 64 61 63 61 20 61 69 20 64 6F 76 65 7A 69 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 61 66 6C 61 5D 7B 46 46 46 46 46 46 7D 20 2D 20 69 69 20 73 70 75 69 20 63 61 20 70 6F 61 74 65 20 61 66 6C 61 20 63 68 69 61 72 20 65 6C 20 66 61 63 61 6E 64 20 61 63 65 6C 20 6C 75 63 72 75 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 6E 65 74 5D 7B 46 46 46 46 46 46 7D 20 2D 20 67 61 73 65 73 74 69 20 6D 61 69 20 6D 75 6C 74 65 20 64 65 74 61 6C 69 69 20 64 65 73 70 72 65 20 6C 6F 63 61 74 69 65 2F 69 6E 66 6F 72 6D 61 74 69 65 20 70 65 20 69 6E 74 65 72 6E 65 74 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 6D 72 70 5D 7B 46 46 46 46 46 46 7D 20 2D 20 2F 6D 79 72 61 70 6F 72 74 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 68 6B 5D 7B 46 46 46 46 46 46 7D 20 2D 20 2F 63 68 65 63 6B 68 65 6C 70 0A 7B 39 38 46 42 39 38 7D 5B 2F 61 6A 75 74 20 7B 38 37 43 45 45 42 7D 3C 69 64 3E 7B 39 38 46 42 39 38 7D 5D 7B 46 46 46 46 46 46 7D 20 2D 20 2F 6A 6F 69 6E 63 68 61 74 20 3C 69 64 3E 2C 20 73 69 20 64 75 70 61 20 2F 6C 63 20 53 61 6C 75 74 2E 2E 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 76 5D 7B 46 46 46 46 46 46 7D 20 2D 20 70 72 65 73 63 75 72 74 61 72 65 20 70 65 6E 74 72 75 20 2F 73 6F 6C 76 65 64
-00
+"{98FB98}[/explicit]{FFFFFF} - [/nd] ii spui sa fie mai explicit." A
+"{98FB98}[/naiurea]{FFFFFF} - [/nd] n aiurea." A
+"{98FB98}[/nprost]{FFFFFF} - [/nd] foloseste /n doar pentru intrebari legate de server." A
+"{98FB98}[/nm {87CEEB}<id>{98FB98}]{FFFFFF} - /nmute <id> 30 [/n] aiurea" A
+"{98FB98}[/suport]{FFFFFF} - nu oferim suport modurilor, tehnic sau pt varianta de telefon." A
+"{98FB98}[/moduri]{FFFFFF} - poti vedea pe panel ce moduri sunt permise" A
+"{98FB98}[/poti]{FFFFFF} - da, poti face acest lucru." A
+"{98FB98}[/nupoti]{FFFFFF} - nu poti face acest lucru." A
+"{98FB98}[/nudetinem]{FFFFFF} - Nu detinem aceasta informatie." A
+"{98FB98}[/nuexista]{FFFFFF} - Acel sistem nu exista pe server." A
+"{98FB98}[/bug]{FFFFFF} - daca a gasit un bug il poate raporta pe [/panel]." A
+"{98FB98}[/post]{FFFFFF} - poti sa reclami jucatorul pe [/panel] daca ai dovezi." A
+"{98FB98}[/afla]{FFFFFF} - ii spui ca poate afla chiar el facand acel lucru." A
+"{98FB98}[/net]{FFFFFF} - gasesti mai multe detalii despre locatie/informatie pe internet." A
+"{98FB98}[/mrp]{FFFFFF} - /myraport" A
+"{98FB98}[/chk]{FFFFFF} - /checkhelp" A
+"{98FB98}[/ajut {87CEEB}<id>{98FB98}]{FFFFFF} - /joinchat <id>, si dupa /lc Salut..." A
+"{98FB98}[/sv]{FFFFFF} - prescurtare pentru /solved" 0
 end
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -690,8 +776,28 @@ return
 
 :dialog_text_altele
 hex
-7B 39 38 46 42 39 38 7D 5B 2F 70 6F 70 75 6C 61 72 61 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 61 72 65 20 65 73 74 65 20 63 65 61 20 6D 61 69 20 70 6F 70 75 6C 61 72 61 20 66 72 65 63 76 65 6E 74 61 20 28 31 32 33 34 29 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 70 72 65 74 61 72 6D 65 5D 7B 46 46 46 46 46 46 7D 20 2D 20 43 61 74 20 63 6F 73 74 61 20 73 61 20 63 72 61 66 74 65 7A 69 20 66 69 65 63 61 72 65 20 61 72 6D 61 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 69 6E 61 6C 74 61 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 61 72 65 20 65 20 63 65 61 20 6D 61 69 20 69 6E 61 6C 74 61 20 63 6C 61 64 69 72 65 0A 7B 39 38 46 42 39 38 7D 5B 2F 76 65 6E 64 69 6E 67 5D 7B 46 46 46 46 46 46 7D 20 2D 20 70 6F 74 69 20 67 61 73 69 20 76 65 6E 64 69 6E 67 20 69 6E 20 32 34 2F 37 0A 7B 39 38 46 42 39 38 7D 5B 2F 61 6D 65 6E 7A 69 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 61 72 65 20 73 75 6E 74 20 61 6D 65 6E 7A 69 6C 65 20 73 69 20 63 61 74 20 63 6F 73 74 61 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 6F 6E 74 75 72 69 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 75 20 63 61 74 65 20 63 6F 6E 74 75 72 69 20 61 69 20 76 6F 69 65 20 63 6F 6E 65 63 74 61 74 20 73 69 6D 75 6C 74 61 6E 0A 7B 39 38 46 42 39 38 7D 5B 2F 74 61 78 69 5D 7B 46 46 46 46 46 46 7D 20 2D 20 50 6F 74 69 20 70 75 6E 65 20 75 6E 20 74 61 78 69 6D 65 74 72 69 73 74 20 73 61 20 74 65 20 64 75 63 61 20 2F 20 63 61 75 74 61 20 70 65 20 69 6E 74 65 72 6E 65 74 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6C 6F 72 69 5D 7B 46 46 46 46 46 46 7D 20 2D 20 74 61 73 74 65 61 7A 61 20 5B 2F 63 6F 6C 6F 72 73 5D 20 70 65 6E 74 72 75 20 61 20 76 65 64 65 61 20 74 6F 61 74 65 20 63 75 6C 6F 72 69 6C 65 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 66 6C 65 76 65 6C 20 7B 38 37 43 45 45 42 7D 3C 6C 65 76 65 6C 3E 7B 39 38 46 42 39 38 7D 5D 7B 46 46 46 46 46 46 7D 20 2D 20 61 69 20 6E 65 76 6F 69 65 20 64 65 20 6E 69 76 65 6C 75 6C 20 58 20 70 65 6E 74 72 75 20 61 63 65 61 20 66 61 63 74 69 75 6E 65 20 28 2B 31 35 68 2C 20 61 70 6C 69 63 61 74 69 65 29 0A 7B 39 38 46 42 39 38 7D 5B 2F 64 75 74 65 70 61 6E 65 6C 5D 7B 46 46 46 46 46 46 7D 20 2D 20 61 63 63 65 73 65 61 7A 61 20 5B 2F 70 61 6E 65 6C 5D 20 2D 20 53 68 6F 70 20 2D 20 44 65 73 63 72 69 65 72 65 20 70 72 6F 64 75 73 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 76 65 7A 69 72 65 67 5D 7B 46 46 46 46 46 46 7D 20 2D 20 70 6F 74 69 20 76 65 72 69 66 69 63 61 20 73 69 6E 67 75 72 20 72 65 67 75 6C 61 6D 65 6E 74 75 6C 20 70 65 20 2F 70 61 6E 65 6C 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 61 6C 63 75 6C 61 5D 7B 46 46 46 46 46 46 7D 20 2D 20 70 6F 74 69 20 63 61 6C 63 75 6C 61 20 73 69 6E 67 75 72 20 64 65 20 63 61 74 65 20 7A 69 6C 65 20 65 20 64 65 73 63 68 69 73 2C 20 61 76 61 6E 64 20 69 6E 20 76 65 64 65 72 65 20 63 61 2E 2E 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 64 65 73 63 68 69 73 5D 7B 46 46 46 46 46 46 7D 20 2D 20 53 65 72 76 65 72 75 6C 20 61 20 66 6F 73 74 20 64 65 73 63 68 69 73 20 70 65 20 31 35 2E 30 38 2E 32 30 32 35 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 75 70 64 61 74 65 5D 7B 46 46 46 46 46 46 7D 20 2D 20 76 65 72 69 66 69 63 61 20 70 65 20 5B 2F 70 61 6E 65 6C 20 2D 20 55 70 64 61 74 65 73 5D 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 61 6E 75 6E 74 75 72 69 5D 7B 46 46 46 46 46 46 7D 20 2D 20 61 6E 75 6E 74 75 72 69 20 64 65 73 70 72 65 20 68 65 6C 70 65 72 69 2F 6C 69 64 65 72 69 20 70 65 20 5B 2F 64 69 73 63 6F 72 64 5D 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 62 69 6B 65 5D 7B 46 46 46 46 46 46 7D 20 2D 20 46 6F 6C 6F 73 65 73 74 65 20 2F 73 70 61 77 6E 62 69 6B 65 20 70 65 6E 74 72 75 20 61 20 73 70 61 77 6E 61 20 6F 20 62 69 63 69 63 6C 65 74 61 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 66 70 61 79 64 61 79 5D 7B 46 46 46 46 46 46 7D 20 2D 20 46 6F 72 6D 75 6C 61 20 70 61 79 64 61 79 2C 20 69 6E 63 6C 75 73 69 76 20 63 6F 6E 74 20 70 72 65 6D 69 75 6D 2F 4F 47 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 64 6F 62 61 6E 64 61 5D 7B 46 46 46 46 46 46 7D 20 2D 20 44 6F 62 61 6E 64 61 20 6D 61 78 69 6D 61 20 65 73 74 65 20 32 30 30 6B 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 74 61 78 61 5D 7B 46 46 46 46 46 46 7D 20 2D 20 54 61 78 61 20 65 73 74 65 20 64 65 20 30 2E 35 2C 20 72 65 73 70 65 63 74 69 76 20 30 2E 32 35 20 70 74 20 70 72 65 6D 69 75 6D 2F 4F 47 0A 7B 39 38 46 42 39 38 7D 5B 2F 70 72 65 74 70 70 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 75 20 31 20 65 75 72 6F 20 70 6F 74 69 20 63 75 6D 70 61 72 61 20 31 30 70 70 2C 20 63 61 6C 63 75 6C 65 61 7A 61 20 73 69 20 74 75 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 61 6E 69 73 74 72 61 5D 7B 46 46 46 46 46 46 7D 20 2D 20 50 6F 74 69 20 63 75 6D 70 61 72 61 20 64 65 20 6C 61 20 32 34 2F 37 2C 20 5B 2F 66 69 6C 6C 67 61 73 63 61 6E 5D 0A
-00
+"{98FB98}[/populara]{FFFFFF} - care este cea mai populara frecventa (1234)." A
+"{98FB98}[/pretarme]{FFFFFF} - Cat costa sa craftezi fiecare arma." A
+"{98FB98}[/inalta]{FFFFFF} - care e cea mai inalta cladire" A
+"{98FB98}[/vending]{FFFFFF} - poti gasi vending in 24/7" A
+"{98FB98}[/amenzi]{FFFFFF} - care sunt amenzile si cat costa" A
+"{98FB98}[/conturi]{FFFFFF} - cu cate conturi ai voie conectat simultan" A
+"{98FB98}[/taxi]{FFFFFF} - Poti pune un taximetrist sa te duca / cauta pe internet" A
+"{98FB98}[/culori]{FFFFFF} - tasteaza [/colors] pentru a vedea toate culorile." A
+"{98FB98}[/flevel {87CEEB}<level>{98FB98}]{FFFFFF} - ai nevoie de nivelul X pentru acea factiune (+15h, aplicatie)" A
+"{98FB98}[/dutepanel]{FFFFFF} - acceseaza [/panel] - Shop - Descriere produs." A
+"{98FB98}[/duteds]{FFFFFF} - poti vedea singur la Dealership" A
+"{98FB98}[/vezireg]{FFFFFF} - poti verifica singur regulamentul pe /panel" A
+"{98FB98}[/calcula]{FFFFFF} - poti calcula singur de cate zile e deschis, avand in vedere ca..." A
+"{98FB98}[/deschis]{FFFFFF} - Serverul a fost deschis pe 15.08.2025." A
+"{98FB98}[/update]{FFFFFF} - verifica pe [/panel - Updates]." A
+"{98FB98}[/anunturi]{FFFFFF} - anunturi despre helperi/lideri pe [/discord]." A
+"{98FB98}[/sbike]{FFFFFF} - Foloseste /spawnbike pentru a spawna o bicicleta." A
+"{98FB98}[/fpayday]{FFFFFF} - Formula payday, inclusiv cont premium/OG." A
+"{98FB98}[/dobanda]{FFFFFF} - Dobanda maxima este 200k." A
+"{98FB98}[/taxa]{FFFFFF} - Taxa este de 0.5, respectiv 0.25 pt premium/OG" A
+"{98FB98}[/pretpp]{FFFFFF} - cu 1 euro poti cumpara 10pp, calculeaza si tu" A
+"{98FB98}[/canistra]{FFFFFF} - Poti cumpara de la 24/7, [/fillgascan]" 0
 end
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -704,8 +810,21 @@ return
 
 :dialog_text_sisteme_importante
 hex
-7B 39 38 46 42 39 38 7D 5B 2F 70 61 69 6E 74 62 61 6C 6C 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 65 72 69 6E 74 65 6C 65 20 70 65 6E 74 72 75 20 61 20 6A 75 63 61 20 6C 61 20 70 61 69 6E 74 0A 7B 39 38 46 42 39 38 7D 5B 2F 72 61 63 65 72 65 63 6F 72 64 5D 7B 46 46 46 46 46 46 7D 20 2D 20 70 72 69 6D 65 73 74 69 20 63 61 74 65 20 24 35 30 2E 30 30 30 20 73 69 20 31 30 30 20 4F 47 50 20 70 65 6E 74 72 75 20 66 69 65 63 61 72 65 20 63 6F 6E 63 75 72 65 6E 74 0A 7B 39 38 46 42 39 38 7D 5B 2F 71 75 65 73 74 75 72 69 5D 7B 46 46 46 46 46 46 7D 20 2D 20 49 69 20 73 70 75 69 20 6C 61 20 63 65 20 6F 72 61 20 73 65 20 72 65 73 74 65 61 7A 61 20 71 75 65 73 74 75 72 69 6C 65 20 7A 69 6C 6E 69 63 65 2E 0A 7B 39 38 46 42 39 38 7D 5B 2F 64 65 6C 61 79 5D 7B 46 46 46 46 46 46 7D 20 2D 20 44 65 6C 61 79 2D 75 6C 20 70 65 6E 74 72 75 20 71 75 65 73 74 75 72 69 6C 65 20 63 75 20 6D 61 6E 61 6E 63 61 2F 65 74 63 20 28 36 30 73 29 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 61 73 69 6E 6F 6C 69 6D 69 74 5D 7B 46 46 46 46 46 46 7D 20 2D 20 4C 69 6D 69 74 61 20 73 65 20 72 65 73 65 74 65 61 7A 61 20 6C 75 6E 69 20 6C 61 20 30 37 3A 30 30 2C 20 70 6F 74 69 20 76 65 64 65 61 20 63 75 20 2F 63 61 73 69 6E 6F 0A 7B 39 38 46 42 39 38 7D 5B 2F 62 72 65 66 65 72 61 6C 5D 7B 46 46 46 46 46 46 7D 20 2D 20 62 65 6E 65 66 69 63 69 69 20 72 65 66 65 72 72 61 6C 0A 7B 39 38 46 42 39 38 7D 5B 2F 6D 61 73 69 6E 61 76 69 70 5D 7B 46 46 46 46 46 46 7D 20 2D 20 49 69 20 73 70 75 69 20 63 65 20 62 65 6E 65 66 69 63 69 69 20 75 70 67 72 61 64 65 2D 75 6C 20 56 49 50 20 70 65 20 6D 61 73 69 6E 61 20 0A 7B 39 38 46 42 39 38 7D 5B 2F 72 65 61 6C 69 7A 61 72 69 65 5D 7B 46 46 46 46 46 46 7D 20 2D 20 70 72 65 6D 69 69 20 72 65 61 6C 69 7A 61 72 69 20 45 41 53 59 0A 7B 39 38 46 42 39 38 7D 5B 2F 72 65 61 6C 69 7A 61 72 69 6D 5D 7B 46 46 46 46 46 46 7D 20 2D 20 70 72 65 6D 69 69 20 72 65 61 6C 69 7A 61 72 69 20 4D 45 44 49 55 4D 0A 7B 39 38 46 42 39 38 7D 5B 2F 72 65 61 6C 69 7A 61 72 69 68 5D 7B 46 46 46 46 46 46 7D 20 2D 20 70 72 65 6D 69 69 20 72 65 61 6C 69 7A 61 72 69 20 48 41 52 44 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 6F 6E 74 6F 67 5D 7B 46 46 46 46 46 46 7D 20 2D 20 6F 62 74 69 6E 65 72 65 20 63 6F 6E 74 20 4F 47 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 6F 6E 74 70 72 65 6D 69 75 6D 5D 7B 46 46 46 46 46 46 7D 20 2D 20 6F 62 74 69 6E 65 72 65 20 63 6F 6E 74 20 70 72 65 6D 69 75 6D 0A 7B 39 38 46 42 39 38 7D 5B 2F 6E 75 6D 65 63 6F 6C 6F 72 5D 7B 46 46 46 46 46 46 7D 20 2D 20 49 69 20 73 70 75 69 20 64 65 20 5B 2F 70 63 6F 6C 6F 72 5D 20 64 61 63 61 20 61 72 65 20 50 72 65 6D 69 75 6D 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 75 67 65 73 74 69 65 5D 7B 46 46 46 46 46 46 7D 20 2D 20 75 6E 64 65 20 70 6F 74 69 20 63 72 65 61 20 6F 20 73 75 67 65 73 74 69 65 20 70 65 20 70 61 6E 65 6C
-00
+"{98FB98}[/paintball]{FFFFFF} - cerintele pentru a juca la paint" A
+"{98FB98}[/racerecord]{FFFFFF} - primesti cate $50.000 si 100 OGP pentru fiecare concurent" A
+"{98FB98}[/questuri]{FFFFFF} - Ii spui la ce ora se resteaza questurile zilnice." A
+"{98FB98}[/delay]{FFFFFF} - Delay-ul pentru questurile cu mananca/etc (60s)" A
+"{98FB98}[/casinolimit]{FFFFFF} - Limita se reseteaza luni la 07:00, poti vedea cu /casino" A
+"{98FB98}[/breferal]{FFFFFF} - beneficii referral" A
+"{98FB98}[/masinavip]{FFFFFF} - Ii spui ce beneficii upgrade-ul VIP pe masina" A
+"{98FB98}[/realizarie]{FFFFFF} - premii realizari EASY" A
+"{98FB98}[/realizarim]{FFFFFF} - premii realizari MEDIUM" A
+"{98FB98}[/realizarih]{FFFFFF} - premii realizari HARD" A
+"{98FB98}[/contog]{FFFFFF} - obtinere cont OG" A
+"{98FB98}[/contpremium]{FFFFFF} - obtinere cont premium" A
+"{98FB98}[/numecolor]{FFFFFF} - Ii spui de [/pcolor] daca are Premium" A
+"{98FB98}[/sugestie]{FFFFFF} - unde poti crea o sugestie pe panel" A
+"{98FB98}[/bonus {87CEEB}<800 | 900 | 1000>{98FB98}]{FFFFFF} - ce bonusuri se ofera la 800/900/1000" 0
 end
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -719,8 +838,17 @@ return
 
 :dialog_text_masini
 hex
-7B 39 38 46 42 39 38 7D 5B 2F 64 73 20 7B 38 37 43 45 45 42 7D 3C 6D 61 73 69 6E 61 3E 7B 39 38 46 42 39 38 7D 5D 7B 46 46 46 46 46 46 7D 20 2D 20 49 69 20 73 70 75 69 20 64 65 74 61 6C 69 69 20 64 65 73 70 72 65 20 6D 61 73 69 6E 61 20 73 69 20 63 61 74 65 20 73 75 6E 74 20 69 6E 20 73 74 6F 63 6B 20 28 65 78 65 6D 70 6C 75 3A 20 5B 2F 64 73 20 69 6E 66 65 72 6E 75 73 5D 20 64 65 74 61 6C 69 69 20 66 75 6C 6C 20 49 6E 66 65 72 6E 75 73 20 6C 75 61 74 65 20 64 69 6E 20 2F 64 73 70 72 69 63 65 29 0A 7B 39 38 46 42 39 38 7D 5B 2F 6E 6F 64 73 5D 7B 46 46 46 46 46 46 7D 20 2D 20 4D 61 73 69 6E 61 20 6E 75 20 73 65 20 61 66 6C 61 20 69 6E 20 27 44 65 61 6C 65 72 73 68 69 70 27 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 6F 73 74 61 20 7B 38 37 43 45 45 42 7D 3C 6D 61 73 69 6E 61 3E 7B 39 38 46 42 39 38 7D 5D 7B 46 46 46 46 46 46 7D 20 2D 20 73 70 75 69 20 70 72 65 74 75 6C 20 6D 61 73 69 6E 69 69 20 69 6E 20 44 53 0A 7B 39 38 46 42 39 38 7D 5B 2F 76 69 74 65 7A 61 20 7B 38 37 43 45 45 42 7D 3C 6D 61 73 69 6E 61 3E 7B 39 38 46 42 39 38 7D 5D 7B 46 46 46 46 46 46 7D 20 2D 20 73 70 75 69 20 63 65 20 76 69 74 65 7A 61 20 70 72 69 6E 64 65 20 6F 20 6D 61 73 69 6E 61 0A 7B 39 38 46 42 39 38 7D 5B 2F 6B 6D 20 7B 38 37 43 45 45 42 7D 3C 76 69 74 65 7A 61 3E 7B 39 38 46 42 39 38 7D 5D 7B 46 46 46 46 46 46 7D 20 2D 20 41 63 65 6C 20 76 65 68 69 63 75 6C 20 70 72 69 6E 64 65 2E 2E 2E 20 28 70 65 6E 74 72 75 20 6D 61 73 69 6E 69 20 63 61 72 65 20 6E 75 20 73 75 6E 74 20 69 6E 20 44 53 29 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 74 6F 63 6B 20 7B 38 37 43 45 45 42 7D 3C 6D 61 73 69 6E 61 3E 7B 39 38 46 42 39 38 7D 5D 7B 46 46 46 46 46 46 7D 20 2D 20 63 61 74 65 20 6D 61 73 69 6E 69 20 6D 61 69 20 73 75 6E 74 20 69 6E 20 73 74 6F 63 6B 0A 7B 39 38 46 42 39 38 7D 5B 2F 64 65 63 69 73 5D 7B 46 46 46 46 46 46 7D 20 2D 20 73 70 75 69 20 63 61 20 70 72 65 74 75 6C 20 6D 61 73 69 6E 69 69 20 65 73 74 65 20 64 65 63 69 73 20 64 65 20 76 61 6E 7A 61 74 6F 72 20 28 65 78 3A 20 76 65 68 20 73 70 65 63 69 61 6C 65 20 67 69 66 74 2C 20 70 72 65 6D 69 75 6D 29 0A 7B 39 38 46 42 39 38 7D 5B 2F 6D 61 73 69 6E 61 69 65 66 74 69 6E 61 5D 7B 46 46 46 46 46 46 7D 20 2D 20 44 65 74 61 6C 69 69 20 50 65 72 65 6E 6E 69 61 6C 0A 7B 39 38 46 42 39 38 7D 5B 2F 76 65 68 69 63 75 6C 69 65 66 74 69 6E 5D 7B 46 46 46 46 46 46 7D 20 2D 20 44 65 74 61 6C 69 69 20 42 69 6B 65 0A 7B 39 38 46 42 39 38 7D 5B 2F 6D 6F 74 6F 72 69 65 66 74 69 6E 5D 7B 46 46 46 46 46 46 7D 20 2D 20 44 65 74 61 6C 69 69 20 46 72 65 65 77 61 79 0A 7B 39 38 46 42 39 38 7D 5B 2F 6D 61 73 69 6E 61 73 63 75 6D 70 61 5D 7B 46 46 46 46 46 46 7D 20 2D 20 44 65 74 61 6C 69 69 20 49 6E 66 65 72 6E 75 73
-00
+"{98FB98}[/ds {87CEEB}<masina>{98FB98}]{FFFFFF} - Ii spui detalii despre masina si cate sunt in stock (exemplu: [/ds infernus] detalii full Infernus luate din /dsprice)" A
+"{98FB98}[/nods]{FFFFFF} - Masina nu se afla in 'Dealership'" A
+"{98FB98}[/costa {87CEEB}<masina>{98FB98}]{FFFFFF} - spui pretul masinii in DS" A
+"{98FB98}[/viteza {87CEEB}<masina>{98FB98}]{FFFFFF} - spui ce viteza prinde o masina" A
+"{98FB98}[/km {87CEEB}<viteza>{98FB98}]{FFFFFF} - Acel vehicul prinde... (pentru masini care nu sunt in DS)" A
+"{98FB98}[/stock {87CEEB}<masina>{98FB98}]{FFFFFF} - cate masini mai sunt in stock" A
+"{98FB98}[/decis]{FFFFFF} - spui ca pretul masinii este decis de vanzator (ex: veh speciale gift, premium)" A
+"{98FB98}[/masinaieftina]{FFFFFF} - Detalii Perennial" A
+"{98FB98}[/vehiculieftin]{FFFFFF} - Detalii Bike" A
+"{98FB98}[/motorieftin]{FFFFFF} - Detalii Freeway" A
+"{98FB98}[/masinascumpa]{FFFFFF} - Detalii Infernus" 0
 end
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -734,8 +862,17 @@ return
 
 :dialog_text_giftbox
 hex
-7B 39 38 46 42 39 38 7D 5B 2F 70 67 69 66 74 5D 7B 46 46 46 46 46 46 7D 20 2D 20 73 70 75 69 20 70 72 65 6D 69 69 6C 65 20 64 65 20 6C 61 20 67 69 66 74 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 75 6D 67 69 66 74 5D 7B 46 46 46 46 46 46 7D 20 2D 20 69 69 20 73 70 75 69 20 63 61 20 61 72 65 20 6E 65 76 20 64 65 20 33 20 6F 72 65 2C 20 6C 65 76 65 6C 20 35 0A 7B 39 38 46 42 39 38 7D 5B 2F 67 69 66 74 64 65 6C 61 79 5D 7B 46 46 46 46 46 46 7D 20 2D 20 69 69 20 73 70 75 69 20 63 61 20 70 6F 61 74 65 20 64 61 20 67 69 66 74 20 6C 61 20 33 20 70 61 79 64 61 79 75 72 69 20 63 75 20 31 38 30 31 20 73 65 63 0A 7B 39 38 46 42 39 38 7D 5B 2F 67 69 66 74 73 65 63 5D 7B 46 46 46 46 46 46 7D 20 2D 20 69 69 20 73 70 75 69 20 63 61 20 74 72 65 62 75 69 65 20 73 61 20 6A 6F 61 63 65 20 31 38 30 31 20 73 65 63 75 6E 64 65 20 6C 61 20 70 61 79 64 61 79 0A 7B 39 38 46 42 39 38 7D 5B 2F 63 61 6C 65 6E 64 61 72 5D 7B 46 46 46 46 46 46 7D 20 2D 20 67 61 73 65 73 74 69 20 65 76 65 6E 69 6D 65 6E 74 75 6C 20 7A 69 6C 65 69 20 70 65 20 70 61 6E 65 6C 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 70 65 63 69 61 6C 71 75 65 73 74 5D 7B 46 46 46 46 46 46 7D 20 2D 20 70 72 65 6D 69 69 20 73 70 65 63 69 61 6C 20 71 75 65 73 74 20 28 71 75 65 73 74 20 61 63 74 69 76 3A 20 78 4D 61 73 20 51 75 65 73 74 29 20 0A 7B 39 38 46 42 39 38 7D 5B 2F 71 75 65 73 74 70 61 72 74 79 5D 7B 46 46 46 46 46 46 7D 20 2D 20 62 65 6E 65 66 69 63 69 69 20 71 75 65 73 74 70 61 72 74 79 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 69 64 65 71 75 65 73 74 5D 7B 46 46 46 46 46 46 7D 20 2D 20 70 72 65 6D 69 69 6C 65 20 64 65 20 6C 61 20 53 69 64 65 20 51 75 65 73 74 20 28 71 75 65 73 74 20 61 63 74 69 76 3A 20 27 4D 4F 53 20 43 52 41 43 49 55 4E 27 29 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 61 6E 73 65 5D 7B 46 46 46 46 46 46 7D 20 2D 20 73 61 6E 73 65 6C 65 20 70 65 6E 74 72 75 20 53 69 64 65 20 51 75 65 73 74 2C 20 76 61 20 73 63 72 69 65 20 64 6F 61 72 20 76 6F 75 61 20 69 6E 20 63 68 61 74 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 61 6E 73 61 20 7B 38 37 43 45 45 42 7D 3C 6E 72 3E 20 3C 6E 72 3E 20 3C 6E 72 3E 7B 39 38 46 42 39 38 7D 20 2E 2E 2E 5D 7B 46 46 46 46 46 46 7D 20 2D 20 53 61 6E 73 65 6C 65 20 70 65 6E 74 72 75 20 61 63 65 6C 65 20 6A 6F 62 75 72 69 20 73 75 6E 74 20 64 65 20 2E 2E 2E 20 0A 7B 39 38 46 42 39 38 7D 5B 2F 73 61 6E 73 61 6D 61 72 65 5D 7B 46 46 46 46 46 46 7D 20 2D 20 43 65 6C 65 20 6D 61 69 20 6D 61 72 69 20 73 61 6E 73 65 20 73 75 6E 74 20 6C 61 3A 20 47 61 72 62 61 67 65 20 2D 20 35 30 2C 20 41 69 72 20 72 65 73 63 75 65 20 2D 20 33 30 2C 20 46 61 72 6D 65 72 20 73 69 20 42 6F 61 74 20 2D 20 32 30 2E
-00
+"{98FB98}[/pgift]{FFFFFF} - spui premiile de la gift" A
+"{98FB98}[/cumgift]{FFFFFF} - ii spui ca are nev de 3 ore, level 5" A
+"{98FB98}[/giftdelay]{FFFFFF} - ii spui ca poate da gift la 3 paydayuri cu 1801 sec" A
+"{98FB98}[/giftsec]{FFFFFF} - ii spui ca trebuie sa joace 1801 secunde la payday" A
+"{98FB98}[/calendar]{FFFFFF} - gasesti evenimentul zilei pe panel" A
+"{98FB98}[/specialquest]{FFFFFF} - premii special quest (quest activ: xMas Quest)" A 
+"{98FB98}[/questparty]{FFFFFF} - beneficii questparty" A
+"{98FB98}[/sidequest]{FFFFFF} - premiile de la Side Quest (quest activ: 'MOS CRACIUN')" A
+"{98FB98}[/sanse]{FFFFFF} - sansele pentru Side Quest, va scrie doar voua in chat" A
+"{98FB98}[/sansa {87CEEB}<nr> <nr> <nr>{98FB98} ...]{FFFFFF} - Sansele pentru acele joburi sunt de ..." A
+"{98FB98}[/sansamare]{FFFFFF} - Cele mai mari sanse sunt la: Garbage - 50, Air rescue - 30, Farmer si Boat - 20." 0
 end
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -840,7 +977,7 @@ return
 :other_vehicles
 var_index = 1
 alloc 1@ 14
-while var_index <= 9   // 12 strings, modify as needed
+while var_index <= 11   // the index of template-premium, must be modified when new cars get added
     0AD3: 1@v = format "vehicle%d" var_index
     0AF4: var_auxstring = read_string_from_ini_file "cleo\cleo_saves\Helper CMD - Additional data.ini" section "AdditionalVehicles" key 1@v
     0C13: strcpy destination var_extract source var_auxstring
@@ -860,8 +997,7 @@ return
 
 :other_vehicles_text
 hex 
-61 20 61 20 2D 20 53 70 61 72 72 6F 77 20 28 61 20 61 20 34 30 30 2C 20 2D 31 20 61 20 61 20 31 33 30 20 6D 20 61 3B 61 20 61 20 2D 20 4D 61 76 65 72 69 63 6B 20 28 61 20 61 20 37 30 30 2C 20 2D 31 20 61 20 61 20 31 37 30 20 6D 20 61 3B 61 20 61 20 2D 20 53 74 72 65 74 63 68 20 28 61 20 61 20 33 35 30 2C 20 2D 31 20 61 20 61 20 31 34 39 20 6D 20 61 3B 61 20 61 20 2D 20 48 6F 74 72 69 6E 67 20 41 2F 42 2F 43 20 28 61 20 61 20 35 30 30 2C 20 2D 31 20 61 20 61 20 32 30 33 20 6D 20 61 3B 61 20 61 20 2D 20 4D 6F 6E 73 74 65 72 20 28 61 20 61 20 2D 31 2C 20 2D 31 20 61 20 61 20 31 30 34 20 6D 20 61 3B 61 20 61 20 2D 20 53 68 61 6D 61 6C 20 28 61 20 61 20 35 30 30 2C 20 2D 31 20 61 20 61 20 32 35 35 20 6D 20 61 3B 61 20 61 20 2D 20 54 72 6F 70 69 63 20 28 61 20 61 20 33 35 30 2C 20 2D 31 20 61 20 61 20 31 32 30 20 6D 20 61 3B 61 20 61 20 2D 20 53 61 6E 63 68 65 7A 20 28 61 20 61 20 32 35 30 2C 20 2D 31 20 61 20 61 20 31 33 36 20 6D 20 61 3B 61 20 61 20 2D 20 42 6C 6F 6F 64 72 69 6E 67 20 42 61 6E 67 65 72 20 28 61 20 61 20 33 35 30 2C 20 2D 31 20 61 20 61 20 31 36 33 20 6D 20 61 3B 61 20 61 20 2D 20 74 65 6D 70 6C 61 74 65 2D 70 72 65 6D 69 75 6D 20 28 61 20 61 20 70 72 69 63 65 2C 20 2D 31 20 61 20 61 20 73 70 65 65 64 20 6D 20 61 3B 61 20 61 20 2D 20 74 65 6D 70 6C 61 74 65 2D 67 69 66 74 62 6F 78 20 28 61 20 61 20 2D 31 2C 20 2D 32 20 61 20 61 20 73 70 65 65 64 20 6D 20 61 3B 20
-00
+"a a - Sparrow (a a 400, -1 a a 130 m a;a a - Maverick (a a 700, -1 a a 170 m a;a a - Stretch (a a 350, -1 a a 149 m a;a a - Hotring A/B/C (a a 500, -1 a a 203 m a;a a - Monster (a a -1, -1 a a 104 m a;a a - Shamal (a a 500, -1 a a 255 m a;a a - Tropic (a a 350, -1 a a 120 m a;a a - Sanchez (a a 250, -1 a a 136 m a;a a - Bloodring Banger (a a 350, -1 a a 163 m a;a a - Wayfarer (a a -1, -3 a a 136 m a;a a - template-premium (a a price, -1 a a speed m a;a a - template-giftbox (a a -1, -2 a a speed m a;a a - template-nods (a a -1, -3 a a speed m a;" 0
 end
 
 :printds
@@ -1076,6 +1212,10 @@ SAMP.CmdRet()
 0AD3: var_preview1 = format "/nre O sa primesti mai multi bani practicand jobul si o suma de OG Points."
 SAMP.CmdRet()
 
+:skillrpd
+0AD3: var_preview1 = format "/nre Toate job-urile sunt concepute sa cresti in skill destul de repede dar, personal recomand 'Farmer'."
+SAMP.CmdRet()
+
 :sfarm
 0AD3: var_preview1 = format "/nre Pentru skill 2 ai nevoie de 70 ture, skill 3: 145 ture, skill 4: 366 ture, skill 5: 655 ture, skill 6: 875 ture."
 SAMP.CmdRet() 
@@ -1158,10 +1298,6 @@ SAMP.CmdRet()
 
 :faina
 0AD3: var_preview1 = format "/nre Faina se va vinde automat, in momentul in care intri intr-un business de tip 'Burger'."
-SAMP.CmdRet()
-
-:skillrpd
-0AD3: var_preview1 = format "/nre Toate job-urile sunt concepute sa cresti in skill destul de repede dar, personal recomand 'Farmer'."
 SAMP.CmdRet()
 
 //Utile-----------------------------------------------------------------------------------------------------------------------
@@ -1403,16 +1539,31 @@ SAMP.CmdRet()
 0AD3: var_preview1 = format "/nre Poti crea o sugestie pe [/panel] la sectiunea sugestii cand acestea vor fi deschise."
 SAMP.CmdRet()
 
-:bonus800
-0AD3: var_preview1 = format "/nre La atingerea de 800 jucatori conectati se va acorda 1 'Respect Point' tuturor celor online, AFK sau nu."
-SAMP.CmdRet()
-
-:bonus900
-0AD3: var_preview1 = format "/nre La atingerea de 900 jucatori conectati se va acorda suma de '$50.000' tuturor celor online, AFK sau nu."
-SAMP.CmdRet()
-
-:bonus1000
-0AD3: var_preview1 = format "/nre La atingerea de 1000 jucatori conectati se va acorda 1 'Premium Point' tuturor celor online, AFK sau nu."
+:bonus
+if 0B35: samp var_param = get_last_command_params
+then
+    if
+        0C14: strcmp string1 var_param string2 "800"
+    then
+        0AD3: var_preview1 = format "/nre La atingerea de 800 jucatori conectati se va acorda 1 'Respect Point' tuturor celor online, AFK sau nu."
+    else
+        if
+        0C14: strcmp string1 var_param string2 "900"
+        then
+            0AD3: var_preview1 = format "/nre La atingerea de 900 jucatori conectati se va acorda suma de '$50.000' tuturor celor online, AFK sau nu."
+        else
+            if
+            0C14: strcmp string1 var_param string2 "1000"
+            then
+                0AD3: var_preview1 = format "/nre La atingerea de 1000 jucatori conectati se va acorda 1 'Premium Point' tuturor celor online, AFK sau nu."
+            else
+                chatmsg "{bfbfbf}Syntax: {ffffff}/bonus <800 | 900 | 1000>" -1
+            end
+        end
+    end
+else
+    chatmsg "{bfbfbf}Syntax: {ffffff}/bonus <800 | 900 | 1000>" -1
+end     
 SAMP.CmdRet()
 
 //Masini----------------------------------------------------------------------------------------------------------------------
