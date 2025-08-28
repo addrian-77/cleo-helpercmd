@@ -88,7 +88,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "sfarm" to_label @sfarm   
 0B34: samp register_client_command "secundefarm" to_label @secundefarm
 0B34: samp register_client_command "struck" to_label @struck
-0B34: samp register_client_command "curse" to_label @curse
+0B34: samp register_client_command "curse" to_label @curse   
 0B34: samp register_client_command "remorca" to_label @remorca
 0B34: samp register_client_command "slumber" to_label @slumber
 0B34: samp register_client_command "sgarbage" to_label @sgarbage
@@ -1093,7 +1093,7 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 
 :remorca
-0AD3: var_preview1 = format "/nre Pentru a face acest lucru, tasteaza comanda [/tog] si dezactiveaza 'Auto attach trailer (trucker)'."
+0AD3: var_preview1 = format "/nre Foloseste comanda [/tog - Auto Attach Trailer] ON ca sa se cupleze automat remorca si OFF ca sa nu se cupleze."
 SAMP.CmdRet()
 
 :slumber
