@@ -97,6 +97,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "pizza" to_label @pizza
 0B34: samp register_client_command "scutere" to_label @scutere
 0B34: samp register_client_command "scurier" to_label @scurier
+0B34: samp register_client_command "dube" to_label @dube
 0B34: samp register_client_command "sfork" to_label @sfork
 0B34: samp register_client_command "sbus" to_label @sbus
 0B34: samp register_client_command "sfish" to_label @sfish
@@ -156,6 +157,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "paintball" to_label @paintball
 0B34: samp register_client_command "racerecord" to_label @racerecord
 0B34: samp register_client_command "questuri" to_label @questuri
+0B34: samp register_client_command "bquest" to_label @bquest
 0B34: samp register_client_command "delay" to_label @delay
 0B34: samp register_client_command "casinolimit" to_label @casinolimit
 0B34: samp register_client_command "breferal" to_label @breferal
@@ -163,6 +165,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "realizarie" to_label @realizarie
 0B34: samp register_client_command "realizarim" to_label @realizarim
 0B34: samp register_client_command "realizarih" to_label @realizarih
+0B34: samp register_client_command "brealizari" to_label @brealizari
 0B34: samp register_client_command "contog" to_label @contog
 0B34: samp register_client_command "contpremium" to_label @contpremium
 0B34: samp register_client_command "numecolor" to_label @numecolor
@@ -723,6 +726,7 @@ hex
 "{98FB98}[/pizza]{FFFFFF} - cate pizza poti livra la fiecare skill" A
 "{98FB98}[/scutere]{FFFFFF} - Scuterele deblocate la skill 1, 3 si 5." A
 "{98FB98}[/scurier]{FFFFFF} - skill-urile la Curier" A
+"{98FB98}[/dube]{FFFFFF} - Enumera masinile la job-ul Curier in functie de skill" A
 "{98FB98}[/sfork]{FFFFFF} - skill-urile la Forklift" A
 "{98FB98}[/sbus]{FFFFFF} - skill-urile la Bus Driver" A
 "{98FB98}[/sfish]{FFFFFF} - skill-urile la Fish" A
@@ -813,13 +817,15 @@ hex
 "{98FB98}[/paintball]{FFFFFF} - cerintele pentru a juca la paint" A
 "{98FB98}[/racerecord]{FFFFFF} - primesti cate $50.000 si 100 OGP pentru fiecare concurent" A
 "{98FB98}[/questuri]{FFFFFF} - Ii spui la ce ora se resteaza questurile zilnice." A
+"{98FB98}[/bquest]{FFFFFF} - Ii spui beneficiile oferite de Daily Quest." A
 "{98FB98}[/delay]{FFFFFF} - Delay-ul pentru questurile cu mananca/etc (60s)" A
 "{98FB98}[/casinolimit]{FFFFFF} - Limita se reseteaza luni la 07:00, poti vedea cu /casino" A
 "{98FB98}[/breferal]{FFFFFF} - beneficii referral" A
 "{98FB98}[/masinavip]{FFFFFF} - Ii spui ce beneficii upgrade-ul VIP pe masina" A
-"{98FB98}[/realizarie]{FFFFFF} - premii realizari EASY" A
-"{98FB98}[/realizarim]{FFFFFF} - premii realizari MEDIUM" A
-"{98FB98}[/realizarih]{FFFFFF} - premii realizari HARD" A
+"{98FB98}[/realizarie]{FFFFFF} - Premii realizari EASY" A
+"{98FB98}[/realizarim]{FFFFFF} - Premii realizari MEDIUM" A
+"{98FB98}[/realizarih]{FFFFFF} - Premii realizari HARD" A
+"{98FB98}[/brealizari]{FFFFFF} - Premii oferite in general de realizari" A
 "{98FB98}[/contog]{FFFFFF} - obtinere cont OG" A
 "{98FB98}[/contpremium]{FFFFFF} - obtinere cont premium" A
 "{98FB98}[/numecolor]{FFFFFF} - Ii spui de [/pcolor] daca are Premium" A
@@ -1019,19 +1025,19 @@ return
 
 // GIFTBOX 
 :cumogp
-0AD3: var_preview1 = format "/nre Poti obtine 'OG Points' din Level up, Daily Quests, Skill Up si din [/realizari]."
+0AD3: var_preview1 = format "/nre Poti obtine 'OG Points' din: Level up, Daily Quests, Skill Up si din [/realizari]."
 SAMP.CmdRet()
 // GIFTBOX
 :cumpp
-0AD3: var_preview1 = format "/nre Poti obtine Premium Points din plati pe [/panel], [/buylevel] peste nivel 10 sau [/realizari]."
+0AD3: var_preview1 = format "/nre Poti obtine Premium Points din: plati pe [/panel], [/buylevel] peste nivel 10, bonus 1000 on sau [/realizari]."
 SAMP.CmdRet()
 // GIFTBOX
 :cumrp
-0AD3: var_preview1 = format "/nre Poti obtine Respect Points din Payday, Referral si Daily Quests."
+0AD3: var_preview1 = format "/nre Poti obtine Respect Points din: Payday, Referral, bonus 800 on si Daily Quests."
 SAMP.CmdRet()
 // GIFTBOX
 :cumrbp
-0AD3: var_preview1 = format "/nre Poti obtine Rob Points prin Payday."
+0AD3: var_preview1 = format "/nre Poti obtine Rob Points din: Payday."
 SAMP.CmdRet()
 
 :cumrob
@@ -1039,7 +1045,7 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 // GIFTBOX
 :cumbani
-0AD3: var_preview1 = format "/nre Poti obtine bani din job, [/realizari], Daily Quests, Rob, Referral si Payday."
+0AD3: var_preview1 = format "/nre Poti obtine bani din: job, [/realizari], Daily Quests, Rob, Referral, bonus 900 on si Payday."
 SAMP.CmdRet()
 // GIFTBOX
 :cummats
@@ -1253,11 +1259,15 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 
 :scutere
-0AD3: var_preview1 = format "/nre La jobul respectiv vei avea 'Pizzaboy' la skill 1-2, 'Wayfarer' la skill 3-4 si 'PCJ-600' la skill 5-6."
+0AD3: var_preview1 = format "/nre La job-ul respectiv vei avea 'Pizzaboy' la skill 1-2, 'Wayfarer' la skill 3-4 si 'PCJ-600' la skill 5-6."
 SAMP.CmdRet()
 
 :scurier
 0AD3: var_preview1 = format "/nre Pentru skill 2 ai nevoie de 85 ture, skill 3: 175 ture, skill 4: 440 ture, skill 5: 790 ture, skill 6: 1050 ture."
+SAMP.CmdRet()
+
+:dube
+0AD3: var_preview1 = format "/nre La job-ul respectiv vei avea 'Benson' la skill 1-2, 'Berkley's RC Van' la skill 3-4 si 'Burrito' la skill 5-6."
 SAMP.CmdRet()
 
 :sfork
@@ -1495,6 +1505,10 @@ SAMP.CmdRet()
 0AD3: var_preview1 = format "/nre Questurile zilnice se vor reseta in fiecare zi la ora 07:00 dimineata."
 SAMP.CmdRet()
 
+:bquest
+0AD3: var_preview1 = format "/nre Completand Daily Quests vei primi: 1 Respect Point si o suma random de OGPoints si bani."
+SAMP.CmdRet()
+
 :delay
 0AD3: var_preview1 = format "/nre Acel quest are un delay de 60 de secunde."
 SAMP.CmdRet()
@@ -1521,6 +1535,10 @@ SAMP.CmdRet()
 
 :realizarih
 0AD3: var_preview1 = format "/nre Pentru o realizare de tip 'Hard' vei fi recompensat cu $2.500.000, 5 Puncte Premium si 1000 OG Points."
+SAMP.CmdRet()
+
+:brealizari
+0AD3: var_preview1 = format "/nre Completarea [/realizari] ofera, in functie de dificultate: OGPoints, Premium Points si o suma de bani."
 SAMP.CmdRet()
 
 :contog
