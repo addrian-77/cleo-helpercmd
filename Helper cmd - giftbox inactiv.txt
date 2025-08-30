@@ -43,6 +43,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "cumbani" to_label @cumbani
 0B34: samp register_client_command "cummats" to_label @cummats
 0B34: samp register_client_command "cumad" to_label @cumad
+0B34: samp register_client_command "cumvreme" to_label @cumvreme
 0B34: samp register_client_command "cummasina" to_label @cummasina
 0B34: samp register_client_command "cumfill" to_label @cumfill
 0B34: samp register_client_command "cumlights" to_label @cumlights
@@ -146,6 +147,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "deschis" to_label @deschis
 0B34: samp register_client_command "update" to_label @update
 0B34: samp register_client_command "anunturi" to_label @anunturi
+0B34: samp register_client_command "anunturifac" to_label @anunturifac
 0B34: samp register_client_command "sbike" to_label @sbike
 0B34: samp register_client_command "fpayday" to_label @fpayday
 0B34: samp register_client_command "dobanda" to_label @dobanda
@@ -640,6 +642,7 @@ hex
 "{98FB98}[/cumbani]{FFFFFF} - cum poti face rost de bani." A
 "{98FB98}[/cummats]{FFFFFF} - cum poti face rost de materiale." A
 "{98FB98}[/cumad]{FFFFFF} - cum poti pune un [/ad] si cerintele." A
+"{98FB98}[/cumvreme]{FFFFFF} - cum poti schimba vremea prin [/setw] si [/sett]." A
 "{98FB98}[/cummasina]{FFFFFF} - poti obtine masina din DS, /shop sau de la playeri" A
 "{98FB98}[/cumfill]{FFFFFF} - Ii spui metodele de [/fill]." A
 "{98FB98}[/cumlights]{FFFFFF} - [/lights] sau CTRL" A
@@ -796,6 +799,7 @@ hex
 "{98FB98}[/deschis]{FFFFFF} - Serverul a fost deschis pe 15.08.2025." A
 "{98FB98}[/update]{FFFFFF} - verifica pe [/panel - Updates]." A
 "{98FB98}[/anunturi]{FFFFFF} - anunturi despre helperi/lideri pe [/discord]." A
+"{98FB98}[/anunturifac]{FFFFFF} - anunturi despre deschidere aplicatii factiuni pe discord." A
 "{98FB98}[/sbike]{FFFFFF} - Foloseste /spawnbike pentru a spawna o bicicleta." A
 "{98FB98}[/fpayday]{FFFFFF} - Formula payday, inclusiv cont premium/OG." A
 "{98FB98}[/dobanda]{FFFFFF} - Dobanda maxima este 200k." A
@@ -1056,6 +1060,10 @@ SAMP.CmdRet()
 0AD3: var_preview1 = format "/nre Tasteaza comanda [/ad] cand esti la un business de tip 'CNN', ai nevoie de minim nivel 5."
 SAMP.CmdRet()
 
+:cumvreme
+0AD3: var_preview1 = format "/nre Foloseste comenzile [/setw si /sett] pentru a schimba vremea si ziua daca detii un cont de tip OG."
+SAMP.CmdRet()
+
 :cummasina
 0AD3: var_preview1 = format "/nre Poti achizitiona o masina din Dealership, din [/shop] sau de la playeri prin [/trade]."
 SAMP.CmdRet()
@@ -1180,19 +1188,19 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 
 :licgun
-0AD3: var_preview1 = format "/nre Licenta de 'Gun' costa $250.000."
+0AD3: var_preview1 = format "/nre Licenta de 'Gun' costa $175.000."
 SAMP.CmdRet()
 
 :licfly
-0AD3: var_preview1 = format "/nre Licenta de 'Fly' costa $150.000."
+0AD3: var_preview1 = format "/nre Licenta de 'Fly' costa $120.000."
 SAMP.CmdRet()
 
 :licboat
-0AD3: var_preview1 = format "/nre Licenta de 'Sailing' costa $100.000."
+0AD3: var_preview1 = format "/nre Licenta de 'Sailing' costa $75.000."
 SAMP.CmdRet()
 
 :licall
-0AD3: var_preview1 = format "/nre Licenta de condus costa $1.000, iar licentele de 'Gun', 'Fly' si 'Sailling' costa $250.000, $150.000, respectiv $100.000."
+0AD3: var_preview1 = format "/nre Licenta de condus costa $1.000, iar licentele de 'Gun', 'Fly' si 'Sailling' costa $175.000, $120.000, respectiv $75.000."
 SAMP.CmdRet()
 
 //Joburi----------------------------------------------------------------------------------------------------------------------
@@ -1464,6 +1472,10 @@ SAMP.CmdRet()
 
 :anunturi
 0AD3: var_preview1 = format "/nre Poti afla astfel de informatii pe [/discord] la sectiunea 'anno'."
+SAMP.CmdRet()
+
+:anunturifac
+0AD3: var_preview1 = format "/nre Poti vedea cand o factiune deschide aplicatiile pe [/discord] la sectiunea 'Applications-anno'."
 SAMP.CmdRet()
 
 :sbike
