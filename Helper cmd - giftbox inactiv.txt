@@ -877,9 +877,9 @@ return
 :dialog_text_giftbox
 hex
 "{98FB98}[/pgift]{FFFFFF} - spui premiile de la gift" A
-"{98FB98}[/cumgift]{FFFFFF} - ii spui ca are nev de 3 ore, level 5" A
-"{98FB98}[/giftdelay]{FFFFFF} - ii spui ca poate da gift la 3 paydayuri cu 1801 sec" A
-"{98FB98}[/giftsec]{FFFFFF} - ii spui ca trebuie sa joace 1801 secunde la payday" A
+"{98FB98}[/cumgift]{FFFFFF} - ii spui ca are nev de 3 ore, level 3" A
+"{98FB98}[/giftdelay]{FFFFFF} - ii spui ca poate da gift la 2 paydayuri cu 1800 sec" A
+"{98FB98}[/giftsec]{FFFFFF} - ii spui ca trebuie sa joace 1800 secunde la payday" A
 "{98FB98}[/calendar]{FFFFFF} - gasesti evenimentul zilei pe panel" A
 "{98FB98}[/specialquest]{FFFFFF} - premii special quest (quest activ: xMas Quest)" A 
 "{98FB98}[/questparty]{FFFFFF} - beneficii questparty" A
@@ -1157,7 +1157,7 @@ SAMP.CmdRet()
 //Ce fac cu?------------------------------------------------------------------------------------------------------------------
 
 :ceogp
-0AD3: var_preview1 = format "/nre Cu 'OG Points' iti poti tuna masina la 'Tuning' sau poti achizitiona skinuri din 'Clothing Store' daca ai un cont OG."
+0AD3: var_preview1 = format "/nre Cu 'OGPoints' iti poti tuna masina, cumpara din [/ogshop] sau achizitiona skinuri daca ai un cont OG."
 SAMP.CmdRet()
 
 :cepp
@@ -1165,7 +1165,7 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 
 :cerob
-0AD3: var_preview1 = format "/nre Pentru a putea jefui o afacere ai nevoie de nivel 5, 10 rob points sau 8 daca ai cont OG."
+0AD3: var_preview1 = format "/nre Pentru a putea jefui o afacere ai nevoie de nivel 5, licenta Gun si 10 rob points sau 8 daca ai cont OG."
 SAMP.CmdRet()
 
 :cemats
@@ -1722,20 +1722,20 @@ SAMP.CmdRet()
 //Giftbox---------------------------------------------------------------------------------------------------------------------
 
 :pgift
-0AD3: var_preview1 = format "/nre Din 'Giftbox' ai sansa de a castiga: Banshee, Mountain Bike, 'Premium Points', Vehicle Slot[...]"
-0AD3: var_preview2 = format "/nre [...] Hidden, 'OG Points', bani, droguri, materiale, 'Respect Points', clear warn sau fireworks."
+0AD3: var_preview1 = format "/nre Din 'Giftbox' ai sansa de a castiga: Bani, Respect Points, Rob Points, Hidden Color, Materiale, Premium Points,[...]"
+0AD3: var_preview2 = format "/nre [...] Kart, BMX, OG Points, Drugs, Slot Vehicul, Clear Warn sau o Casa."
 SAMP.CmdRet()
 
 :cumgift
-0AD3: var_preview1 = format "/nre Poti tasta [/getgift] daca ai 3 ore jucate totale, 3 ore jucate in ultimele 7 zile si minim nivel 5."
+0AD3: var_preview1 = format "/nre Poti tasta [/getgift] daca ai 3 ore jucate totale, 3 ore jucate in ultimele 7 zile si minim nivel 3."
 SAMP.CmdRet()
 
 :giftdelay
-0AD3: var_preview1 = format "/nre Pentru a putea uitliza din nou [/getgift], ai nevoie de 3 Paydayuri luate in care te-ai jucat minim 1801 secunde."
+0AD3: var_preview1 = format "/nre Pentru a putea uitliza din nou [/getgift], ai nevoie de 2 Payday-uri luate in care te-ai jucat minim 1800 secunde."
 SAMP.CmdRet()
 
 :giftsec
-0AD3: var_preview1 = format "/nre Ai nevoie de minim 1801 secunde jucate la 'Payday' pentru a ti se contoriza o ora jucata de la 'Giftbox'."
+0AD3: var_preview1 = format "/nre Ai nevoie de minim 1800 secunde jucate la 'Payday' pentru a ti se contoriza o ora jucata la 'Giftbox'."
 SAMP.CmdRet()
 
 :calendar
