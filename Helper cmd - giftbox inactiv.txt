@@ -160,6 +160,8 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "racerecord" to_label @racerecord
 0B34: samp register_client_command "questuri" to_label @questuri
 0B34: samp register_client_command "bquest" to_label @bquest
+0B34: samp register_client_command "cepayday" to_label @cepayday
+0B34: samp register_client_command "candpayday" to_label @candpayday
 0B34: samp register_client_command "delay" to_label @delay
 0B34: samp register_client_command "casinolimit" to_label @casinolimit
 0B34: samp register_client_command "breferal" to_label @breferal
@@ -822,6 +824,8 @@ hex
 "{98FB98}[/racerecord]{FFFFFF} - primesti cate $50.000 si 100 OGP pentru fiecare concurent" A
 "{98FB98}[/questuri]{FFFFFF} - Ii spui la ce ora se resteaza questurile zilnice." A
 "{98FB98}[/bquest]{FFFFFF} - Ii spui beneficiile oferite de Daily Quest." A
+"{98FB98}[/cepayday]{FFFFFF} - Ii spui beneficiile oferite la Payday." A
+"{98FB98}[/candpayday]{FFFFFF} - Ii spui orele cand se ofera Payday." A
 "{98FB98}[/delay]{FFFFFF} - Delay-ul pentru questurile cu mananca/etc (60s)" A
 "{98FB98}[/casinolimit]{FFFFFF} - Limita se reseteaza luni la 07:00, poti vedea cu /casino" A
 "{98FB98}[/breferal]{FFFFFF} - beneficii referral" A
@@ -1519,6 +1523,14 @@ SAMP.CmdRet()
 
 :bquest
 0AD3: var_preview1 = format "/nre Completand Daily Quests vei primi: 1 Respect Point si o suma random de OGPoints si bani."
+SAMP.CmdRet()
+
+:cepayday
+0AD3: var_preview1 = format "/nre Un 'Payday' iti ofera 1 'Respect Point', 1 'Rob Point' si o suma de bani."
+SAMP.CmdRet()  
+
+:candpayday
+0AD3: var_preview1 = format "/nre 'Payday' se ofera la fiecare ora fixa a zilei, de exemplu ora 15:00."
 SAMP.CmdRet()
 
 :delay
