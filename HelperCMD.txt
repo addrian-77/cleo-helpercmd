@@ -1,0 +1,1887 @@
+{$CLEO}
+{$INCLUDE SF}
+{$USE CLEO+}
+{$USE file}
+{$USE ini}
+{$USE bitwise}
+
+:HCMD
+03A4: name_thread 'HCMD'
+
+0000:                  
+repeat
+wait 0
+until SAMP.Available()
+
+const
+    __BLU = 0x268efc
+    __LTB = 0x2db7f7
+    __RED = 0xff2b2b
+    __YLW = 0xffeb0f
+    __WHT = 0xffffff
+    __GRN = 0x4ae072
+    __GRA = 0xcfcfcf
+    __PUR = 0xc515e8
+    __LIM = 0x83D47D
+end
+
+wait 200
+chatmsg "{%x}[Helper CMD] {%x}Authors {%x}iAdriaN, SWAG & kerva {%x}has loaded!" -1 __BLU __WHT __PUR __WHT
+chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschide meniul." -1 __WHT __LIM __WHT __LIM __WHT
+
+0B34: samp register_client_command "helpercmd" to_label @helpercmd
+0B34: samp register_client_command "hcmd" to_label @helpercmd
+
+0B34: samp register_client_command "hconfirm" to_label @hconfirm
+
+//Cum faci chestii
+0B34: samp register_client_command "cumogp" to_label @cumogp
+0B34: samp register_client_command "cumpp" to_label @cumpp
+0B34: samp register_client_command "cumrp" to_label @cumrp
+0B34: samp register_client_command "cumrbp" to_label @cumrbp
+0B34: samp register_client_command "cumrob" to_label @cumrob
+0B34: samp register_client_command "cumbani" to_label @cumbani
+0B34: samp register_client_command "cummats" to_label @cummats
+0B34: samp register_client_command "cumad" to_label @cumad
+0B34: samp register_client_command "cumvreme" to_label @cumvreme
+0B34: samp register_client_command "cummasina" to_label @cummasina
+0B34: samp register_client_command "cumfill" to_label @cumfill
+0B34: samp register_client_command "cumlights" to_label @cumlights
+0B34: samp register_client_command "cumculoare" to_label @cumculoare
+0B34: samp register_client_command "cumculoareh" to_label @cumculoareh
+0B34: samp register_client_command "cumhidd" to_label @cumhidd
+0B34: samp register_client_command "cumlevel" to_label @cumlevel
+0B34: samp register_client_command "cumviata" to_label @cumviata
+0B34: samp register_client_command "cumchat" to_label @cumchat
+0B34: samp register_client_command "cumbandana" to_label @cumbandana
+0B34: samp register_client_command "cumgym" to_label @cumgym
+0B34: samp register_client_command "cumbail" to_label @cumbail
+0B34: samp register_client_command "cumrent" to_label @cumrent 
+0B34: samp register_client_command "cumtuning" to_label @cumtuning 
+0B34: samp register_client_command "cumspray" to_label @cumspray  
+0B34: samp register_client_command "cumskin" to_label @cumskin
+0B34: samp register_client_command "cumparasuta" to_label @cumparasuta
+0B34: samp register_client_command "anim" to_label @anim
+0B34: samp register_client_command "face" to_label @face
+0B34: samp register_client_command "tasta" to_label @tasta
+
+//Ce fac cu?
+0B34: samp register_client_command "ceogp" to_label @ceogp
+0B34: samp register_client_command "cepp" to_label @cepp
+0B34: samp register_client_command "cerob" to_label @cerob
+0B34: samp register_client_command "cemats" to_label @cemats
+0B34: samp register_client_command "cedrugs" to_label @cedrugs
+0B34: samp register_client_command "cerace" to_label @cerace
+
+//Licente
+0B34: samp register_client_command "cumlic" to_label @cumlic
+0B34: samp register_client_command "cumpermis" to_label @cumpermis
+0B34: samp register_client_command "licgun" to_label @licgun
+0B34: samp register_client_command "licfly" to_label @licfly
+0B34: samp register_client_command "licboat" to_label @licboat
+0B34: samp register_client_command "licall" to_label @licall
+
+//Joburi
+0B34: samp register_client_command "dailyjob" to_label @dailyjob
+0B34: samp register_client_command "topworker" to_label @topworker
+0B34: samp register_client_command "profitabil" to_label @profitabil
+0B34: samp register_client_command "munceste" to_label @munceste
+0B34: samp register_client_command "skill" to_label @skill
+0B34: samp register_client_command "skillrpd" to_label @skillrpd
+0B34: samp register_client_command "sfarm" to_label @sfarm   
+0B34: samp register_client_command "secundefarm" to_label @secundefarm
+0B34: samp register_client_command "struck" to_label @struck
+0B34: samp register_client_command "curse" to_label @curse   
+0B34: samp register_client_command "remorca" to_label @remorca
+0B34: samp register_client_command "slumber" to_label @slumber
+0B34: samp register_client_command "sgarbage" to_label @sgarbage
+0B34: samp register_client_command "spizza" to_label @spizza
+0B34: samp register_client_command "pizza" to_label @pizza
+0B34: samp register_client_command "scutere" to_label @scutere
+0B34: samp register_client_command "scurier" to_label @scurier
+0B34: samp register_client_command "dube" to_label @dube
+0B34: samp register_client_command "sfork" to_label @sfork
+0B34: samp register_client_command "sbus" to_label @sbus
+0B34: samp register_client_command "sfish" to_label @sfish
+0B34: samp register_client_command "sair" to_label @sair
+0B34: samp register_client_command "sboat" to_label @sboat
+0B34: samp register_client_command "barci" to_label @barci
+0B34: samp register_client_command "colete" to_label @colete
+0B34: samp register_client_command "srob" to_label @srob
+0B34: samp register_client_command "peste" to_label @peste
+0B34: samp register_client_command "faina" to_label @faina
+
+//Utile
+0B34: samp register_client_command "explicit" to_label @explicit
+0B34: samp register_client_command "naiurea" to_label @naiurea
+0B34: samp register_client_command "nprost" to_label @nprost
+0B34: samp register_client_command "nm" to_label @nm
+0B34: samp register_client_command "suport" to_label @suport
+0B34: samp register_client_command "moduri" to_label @moduri
+0B34: samp register_client_command "poti" to_label @poti
+0B34: samp register_client_command "nupoti" to_label @nupoti
+0B34: samp register_client_command "nudetinem" to_label @nudetinem
+0B34: samp register_client_command "nuexista" to_label @nuexista
+0B34: samp register_client_command "bug" to_label @bug
+0B34: samp register_client_command "post" to_label @post
+0B34: samp register_client_command "afla" to_label @afla
+0B34: samp register_client_command "net" to_label @net                                           
+0B34: samp register_client_command "mrp" to_label @mrp      
+0B34: samp register_client_command "chk" to_label @chk
+0B34: samp register_client_command "ajut" to_label @ajut
+0B34: samp register_client_command "sv" to_label @sv
+
+//Altele
+0B34: samp register_client_command "populara" to_label @populara   
+0B34: samp register_client_command "pretarme" to_label @pretarme
+0B34: samp register_client_command "inalta" to_label @inalta
+0B34: samp register_client_command "vending" to_label @vending
+0B34: samp register_client_command "amenzi" to_label @amenzi
+0B34: samp register_client_command "conturi" to_label @conturi
+0B34: samp register_client_command "taxi" to_label @taxi
+0B34: samp register_client_command "culori" to_label @culori
+0B34: samp register_client_command "flevel" to_label @flevel
+0B34: samp register_client_command "dutepanel" to_label @dutepanel
+0B34: samp register_client_command "duteds" to_label @duteds
+0B34: samp register_client_command "vezireg" to_label @vezireg
+0B34: samp register_client_command "calcula" to_label @calcula
+0B34: samp register_client_command "deschis" to_label @deschis
+0B34: samp register_client_command "update" to_label @update
+0B34: samp register_client_command "anunturi" to_label @anunturi
+0B34: samp register_client_command "anunturifac" to_label @anunturifac
+0B34: samp register_client_command "sbike" to_label @sbike
+0B34: samp register_client_command "fpayday" to_label @fpayday
+0B34: samp register_client_command "dobanda" to_label @dobanda
+0B34: samp register_client_command "taxa" to_label @taxa
+0B34: samp register_client_command "pretpp" to_label @pretpp
+0B34: samp register_client_command "canistra" to_label @canistra
+
+//Sisteme importante
+0B34: samp register_client_command "paintball" to_label @paintball
+0B34: samp register_client_command "racerecord" to_label @racerecord
+0B34: samp register_client_command "questuri" to_label @questuri
+0B34: samp register_client_command "bquest" to_label @bquest
+0B34: samp register_client_command "cepayday" to_label @cepayday
+0B34: samp register_client_command "candpayday" to_label @candpayday
+0B34: samp register_client_command "delay" to_label @delay
+0B34: samp register_client_command "casinolimit" to_label @casinolimit
+0B34: samp register_client_command "breferal" to_label @breferal
+0B34: samp register_client_command "masinavip" to_label @masinavip
+0B34: samp register_client_command "realizarie" to_label @realizarie
+0B34: samp register_client_command "realizarim" to_label @realizarim
+0B34: samp register_client_command "realizarih" to_label @realizarih
+0B34: samp register_client_command "brealizari" to_label @brealizari
+0B34: samp register_client_command "contog" to_label @contog
+0B34: samp register_client_command "contpremium" to_label @contpremium
+0B34: samp register_client_command "numecolor" to_label @numecolor
+0B34: samp register_client_command "sugestie" to_label @sugestie
+0B34: samp register_client_command "goalmare1" to_label @goalmare1
+0B34: samp register_client_command "goalmare2" to_label @goalmare2
+0B34: samp register_client_command "goalmare3" to_label @goalmare3
+0B34: samp register_client_command "goalmic1" to_label @goalmic1
+0B34: samp register_client_command "goalmic2" to_label @goalmic2
+0B34: samp register_client_command "goalmic3" to_label @goalmic3
+0B34: samp register_client_command "suplimentar" to_label @suplimentar
+0B34: samp register_client_command "cumgoalmare" to_label @cumgoalmare
+0B34: samp register_client_command "baragalbena" to_label @baragalbena
+0B34: samp register_client_command "cejobgoal" to_label @cejobgoal
+0B34: samp register_client_command "bonus" to_label @bonus
+
+//Masini
+0B34: samp register_client_command "ds" to_label @ds
+0B34: samp register_client_command "nods" to_label @nods
+0B34: samp register_client_command "costa" to_label @costa
+0B34: samp register_client_command "viteza" to_label @viteza
+0B34: samp register_client_command "km" to_label @km
+0B34: samp register_client_command "stock" to_label @stock
+0B34: samp register_client_command "decis" to_label @decis
+0B34: samp register_client_command "masinaieftina" to_label @masinaieftina
+0B34: samp register_client_command "vehiculieftin" to_label @vehiculieftin
+0B34: samp register_client_command "motorieftin" to_label @motorieftin
+0B34: samp register_client_command "masinascumpa" to_label @masinascumpa
+0BE3: raknet setup_incoming_rpc_hook @ds_message 
+
+//Giftbox
+0B34: samp register_client_command "pgift" to_label @pgift
+0B34: samp register_client_command "cumgift" to_label @cumgift
+0B34: samp register_client_command "giftdelay" to_label @giftdelay
+0B34: samp register_client_command "giftsec" to_label @giftsec
+0B34: samp register_client_command "calendar" to_label @calendar
+0B34: samp register_client_command "specialquest" to_label @specialquest
+0B34: samp register_client_command "questparty" to_label @questparty
+0B34: samp register_client_command "sidequest" to_label @sidequest
+0B34: samp register_client_command "sanse" to_label @sanse
+0B34: samp register_client_command "sansa" to_label @sansa
+0B34: samp register_client_command "sansamare" to_label @sansamare
+
+//Local variables
+longstring var_vname 
+longstring var_vspeed
+longstring var_vprice
+longstring var_vstock
+longstring var_auxstring
+longstring var_param
+int var_vstockint
+int var_button
+int var_item
+int var_msg_req
+int var_ds_req 
+int var_ds_rtype 
+int var_ds_obtained
+int var_index                            
+int var_confirmation
+int var_ajut = 0             
+string var_preview1
+string var_preview2     
+int var_previewlen          
+int var_nqmessage = 0       
+string var_question         
+int var_showdialog          
+int var_qmessage = 0 
+int var_not_used
+int var_auxlen
+longstring var_extract
+longstring var_result
+
+alloc var_preview1 150
+alloc var_preview2 150
+alloc var_vspeed 30
+alloc var_vname 50
+alloc var_vprice 30
+alloc var_question 150
+alloc var_vstock 20
+0C24: strncpy destination var_preview1 source var_preview1 size 0
+0C24: strncpy destination var_preview2 source var_preview1 size 0
+0C24: strncpy destination var_question source var_preview1 size 0
+
+const
+    DS_REQ_EXISTING         = -5
+    DS_REQ_OTHER            = -6
+	DS_OBTAINED 			= -7       	    
+    DS_RTYPE_FULL           = -8
+    DS_RTYPE_PRICE          = -9
+    DS_RTYPE_SPEED          = -10
+    DS_RTYPE_STOCK          = -11
+    DS_RTYPE_VEHIEFTIN      = -12 
+    DS_RTYPE_MASIEFTINA     = -13
+    DS_RTYPE_MASSCUMPA      = -14
+    DS_RTYPE_MOTORIEFTIN    = -15
+    DIALOG_HIDDEN           = -18
+    DIALOG_VISIBLE          = -19
+end
+
+const 
+    MSG_REQ_AJUT            = -20
+end
+
+alloc var_auxstring 256
+0AA8: call_function_method 6946896 struct 12694336 num_params 1 pop 0 'CRED205' var_auxstring 
+0AA5: call 7439872 num_params 2 pop 2 var_auxstring "HelperCMD confirmation enabled, [/hconfirm]"
+free var_auxstring
+
+alloc var_auxstring 150
+
+if 0B00: delete_file "cleo\cleo_saves\Helper CMD - Additional data.ini"
+then
+end
+
+if 0AAB: file_exists "cleo\cleo_saves\Helper CMD - Settings.ini"
+then
+    0AF0: var_confirmation = get_int_from_ini_file "cleo\cleo_saves\Helper CMD - Settings.ini" section "HelperCMD" key "confirmation"
+else
+    0AF1: write_int 1 to_ini_file "cleo\cleo_saves\Helper CMD - Settings.ini" section "HelperCMD" key "confirmation"
+    var_confirmation = 1
+end
+
+gosub @create_additional_list    
+
+var_showdialog = DIALOG_HIDDEN
+var_qmessage = 0
+
+:main_loop
+while true
+	wait 0
+	
+    if var_confirmation == 1
+    then
+        03F0: enable_text_draw 1
+        033F: set_text_draw_letter_size 0.22 0.9 
+        081C: draw_text_outline 1 RGBA 0 0 0 255 
+        0340: set_text_draw_RGBA 65 255 144 255 
+        0349: set_text_draw_font 1
+        03E4: set_text_draw_align_right 1 
+        033E: set_draw_text_position 180.0 425.0 GXT 'CRED205'
+    end
+    
+    0C17: var_previewlen = strlen var_preview1
+    if var_previewlen > 0
+    then
+        if var_confirmation == 1
+        then
+            if var_showdialog == DIALOG_HIDDEN
+            then
+                //chatmsg "entered if statement" -1
+                alloc $dialog 400
+                if var_qmessage == 2
+                then
+                    0AD3: $dialog = format "{ffff00}%s%c%c%c%c{ffffff}%s%c%c%s%c" var_question 0xD 0xA 0xD 0xA var_preview1 0xD 0xA var_preview2 0x0
+                else
+                    0AD3: $dialog = format "{ffff00}%s%c%c%c%c{ffffff}%s%c%c%s%c" "NO QUESTION FOUND" 0xD 0xA 0xD 0xA var_preview1 0xD 0xA var_preview2 0x0
+                end
+                SAMP.ShowDialog(4447, "{20B2AA}Answer question", $dialog, "{32CD32}Continue", "{CC5500}Cancel", 0) 
+                free $dialog
+                var_showdialog = DIALOG_VISIBLE
+            end
+        else
+            say var_preview1
+            0C17: var_previewlen = strlen var_preview2
+            if var_previewlen > 0
+            then
+                wait 2000
+                say var_preview2
+            end
+            0C24: strncpy destination var_preview1 source var_preview1 size 0
+            0C24: strncpy destination var_preview2 source var_preview1 size 0
+        end 
+    end
+    if
+    0B3C: 4447 var_button var_item 0
+    then
+        if var_button == 1
+        then
+            say var_preview1
+            0C17: var_previewlen = strlen var_preview2
+            if var_previewlen > 0
+            then
+                wait 2000
+                say var_preview2
+            end
+            0C24: strncpy destination var_preview1 source var_preview1 size 0
+            0C24: strncpy destination var_preview2 source var_preview1 size 0
+            var_showdialog = DIALOG_HIDDEN
+            var_qmessage = 0
+        end
+        if var_button == 0
+        then
+            0C24: strncpy destination var_preview1 source var_preview1 size 0
+            0C24: strncpy destination var_preview2 source var_preview1 size 0
+            chatmsg "{%x} >> {%x}Message was not sent.{%x} << " -1 __RED __WHT __RED
+            var_showdialog = DIALOG_HIDDEN
+        end
+    end
+    
+    
+    if var_ds_req == DS_REQ_OTHER
+    then
+        gosub @other_vehicles
+        var_ds_req = 0
+    end
+    
+    if var_ds_obtained == DS_OBTAINED
+    then
+        var_ds_obtained = 0
+        chatmsg "Extracting from: %s" -1 var_extract
+        gosub @printds
+        
+        if var_ds_rtype == DS_RTYPE_FULL
+        then
+            if 0AD4: var_not_used = scan_string var_vstock format "%d" var_vstockint
+            then
+                if var_vstockint == 0
+                then
+                    0AD3: var_preview1 = format "/nre %scosta%s in 'Dealership', atinge viteza maxima de %skm/h si nu se mai afla in stock." var_vname var_vprice var_vspeed
+                end
+                if var_vstockint == 1
+                then
+                    0AD3: var_preview1 = format "/nre %scosta%s in 'Dealership', atinge viteza maxima de %skm/h si mai este %s in stock." var_vname var_vprice var_vspeed var_vstock
+                end
+                if var_vstockint > 1
+                then
+                    0AD3: var_preview1 = format "/nre %scosta%s in 'Dealership', atinge viteza maxima de %skm/h si mai sunt %s in stock." var_vname var_vprice var_vspeed var_vstock 
+                end
+                if var_vstockint == -1
+                then
+                    0AD3: var_preview1 = format "/nre %scosta %s Premium Points in [/shop] si atinge viteza maxima de %skm/h." var_vname var_vprice var_vspeed
+                end
+                if var_vstockint == -2
+                then
+                    0AD3: var_preview1 = format "/nre %sa fost oferit ca premiu la 'Giftbox' si atinge viteza maxima de %skm/h." var_vname var_vspeed
+                end
+                if var_vstockint == -3
+                then
+                    0AD3: var_preview1 = format "/nre %s nu se regaseste in 'Dealership' si atinge viteza maxima de %skm/h." var_vname var_vspeed
+                end
+            end 
+            var_ds_rtype = 0
+        end
+        
+        if var_ds_rtype == DS_RTYPE_PRICE
+        then
+            if
+            0C14: strcmp string1 var_vprice string2 "-1"
+            then
+                0AD3: var_preview1 = format "/nre Acel vehicul nu se regaseste in 'Dealership'."
+            else
+                if 0C14: strcmp string1 var_vstock string2 "-1"
+                then
+                    0AD3: var_preview1 = format "/nre Acel vehicul costa %s Premium Points in [/shop]." var_vprice
+                else
+                    0AD3: var_preview1 = format "/nre Acel vehicul costa%s in 'Dealership'." var_vprice
+                end
+            end
+            var_ds_rtype = 0                                                                                                                                        
+        end
+        
+        if var_ds_rtype == DS_RTYPE_STOCK                                               
+        then
+            if 0AD4: var_not_used = scan_string var_vstock format "%d" var_vstockint
+            then
+                if var_vstockint == 0
+                then
+                    0AD3: var_preview1 = format "/nre Acel model nu se mai afla in stock."
+                else
+                    if var_vstockint == 1
+                    then
+                        0AD3: var_preview1 = format "/nre Mai exista un singur model pentru %sin stock." var_vname
+                    else
+                        if var_vstockint == -1
+                        then    
+                            0AD3: var_preview1 = format "/nre Vehiculele din [/shop] au stock nelimitat."
+                        else
+                            if var_vstockint == -2
+                            then
+                                0AD3: var_preview1 = format "/nre Nu exista stock pentru acel vehicul, a fost oferit ca si premiu la 'Giftbox'."
+                            else
+                                if var_vstockint == -3
+                                then
+                                    0AD3: var_preview1 = format "/nre Acel vehicul nu se regaseste in 'Dealership'."
+                                else
+                                    if var_vstockint >= 20
+                                    then
+                                        0AD3: var_preview1 = format "/nre Mai exista %s de modele pentru %sin stock." var_vstock var_vname
+                                    else
+                                        0AD3: var_preview1 = format "/nre Mai exista %s modele pentru %sin stock." var_vstock var_vname
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+            var_ds_rtype = 0
+        end
+        
+        if var_ds_rtype == DS_RTYPE_SPEED
+        then
+            0AD3: var_preview1 = format "/nre Acel vehicul atinge viteza maxima de %skm/h." var_vspeed
+            var_ds_rtype = 0
+        end
+        
+        if var_ds_rtype == DS_RTYPE_VEHIEFTIN
+        then
+            if
+            0C14: strcmp string1 var_vstock string2 "0"
+            then
+                0AD3: var_preview1 = format "/nre %seste cel mai ieftin, acesta costa%s in 'Dealership', atinge viteza maxima de %skm/h si nu se mai afla in stock." var_vname var_vprice var_vspeed
+            else
+                0AD3: var_preview1 = format "/nre %seste cel mai ieftin, acesta costa%s in 'Dealership', atinge viteza maxima de %skm/h si mai sunt %s in stock." var_vname var_vprice var_vspeed var_vstock
+            end
+            var_ds_rtype = 0
+        end
+        
+        if var_ds_rtype == DS_RTYPE_MASIEFTINA
+        then
+            if
+            0C14: strcmp string1 var_vstock string2 "0"
+            then
+                0AD3: var_preview1 = format "/nre %seste cea mai ieftina, costa%s in 'Dealership', atinge viteza maxima de %skm/h si nu se mai afla in stock." var_vname var_vprice var_vspeed
+            else
+                0AD3: var_preview1 = format "/nre %seste cea mai ieftina, costa%s in 'Dealership', atinge viteza maxima de %skm/h si mai sunt %s in stock." var_vname var_vprice var_vspeed var_vstock
+            end
+            var_ds_rtype = 0
+        end
+        
+        if var_ds_rtype == DS_RTYPE_MASSCUMPA
+        then
+            if
+            0C14: strcmp string1 var_vstock string2 "0"
+            then
+                0AD3: var_preview1 = format "/nre %seste cea mai scumpa, costa%s in 'Dealership', atinge viteza maxima de %skm/h si nu se mai afla in stock." var_vname var_vprice var_vspeed
+            else
+                0AD3: var_preview1 = format "/nre %seste cea mai scumpa, costa%s in 'Dealership', atinge viteza maxima de %skm/h si mai sunt %s in stock." var_vname var_vprice var_vspeed var_vstock
+            end
+            var_ds_rtype = 0
+        end
+
+        if var_ds_rtype == DS_RTYPE_MOTORIEFTIN
+        then
+            if
+            0C14: strcmp string1 var_vstock string2 "0"
+            then
+                0AD3: var_preview1 = format "/nre %seste cel mai ieftin motor, costa%s in 'Dealership', atinge viteza maxima de %skm/h si nu se mai afla in stock." var_vname var_vprice var_vspeed
+            else
+                0AD3: var_preview1 = format "/nre %seste cel mai ieftin motor, costa%s in 'Dealership', atinge viteza maxima de %skm/h si mai sunt %s in stock." var_vname var_vprice var_vspeed var_vstock
+            end
+            var_ds_rtype = 0
+        end
+
+        wait 50
+    end
+    
+    if var_msg_req == MSG_REQ_AJUT
+    then
+        wait 100
+        0AD3: var_preview1 = format "/lc Salut! Cu ce te pot ajuta? Foloseste comanda [/lc] pentru a scrie."
+        var_msg_req = 0
+    end
+	
+    if
+    0B3C: 8888 var_button var_item 0
+    then
+        if and 
+        var_button == 1
+        var_item == 0
+        then    
+            gosub @dialog_cum
+        end
+        
+        if and 
+        var_button == 1
+        var_item == 1
+        then
+            gosub @dialog_ce
+        end
+        
+        if and
+        var_button == 1
+        var_item == 2
+        then
+            gosub @dialog_licente
+        end
+        
+        if and
+        var_button == 1
+        var_item == 3
+        then
+            gosub @dialog_joburi
+        end
+        
+        if and
+        var_button == 1
+        var_item == 4
+        then
+            gosub @dialog_utile
+        end
+        
+        if and
+        var_button == 1
+        var_item == 5
+        then
+            gosub @dialog_altele
+        end
+        
+        if and
+        var_button == 1
+        var_item == 6
+        then
+            gosub @dialog_sisteme_importante
+        end
+        
+        if and
+        var_button == 1
+        var_item == 7
+        then
+            gosub @dialog_masini
+        end
+        
+        if and
+        var_button == 1
+        var_item == 8
+        then
+            gosub @dialog_giftbox
+        end
+    end
+    
+    if
+    0B3C: 9999 var_button var_item 0
+    then
+        if or
+        var_button == 0
+        var_button == 1
+        then
+            gosub @dialog_main_menu
+        end
+    end  
+end
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+:dialog_main_menu
+alloc 0@ 20000
+0AC6: 0@ = label @dialog_text_main_menu offset
+SAMP.ShowDialog(8888, "{20B2AA}Informatii Helper CMD by iAdriaN", 0@, "{32CD32}Alege", "{CC5500}Inchide", 2)
+free 0@
+return
+
+:dialog_text_main_menu
+hex
+"{98fb98}({ffffff}1{98fb98}){ffffff}  Comenzi tip: Cum fac?" A
+"{98fb98}({ffffff}2{98fb98}){ffffff}  Comenzi tip: Ce fac cu? / Ce este?" A
+"{98fb98}({ffffff}3{98fb98}){ffffff}  Licente" A
+"{98fb98}({ffffff}4{98fb98}){ffffff}  Joburi" A
+"{98fb98}({ffffff}5{98fb98}){ffffff}  Utile" A
+"{98fb98}({ffffff}6{98fb98}){ffffff}  Altele" A
+"{98fb98}({ffffff}7{98fb98}){ffffff}  Sisteme importante" A
+"{98fb98}({ffffff}8{98fb98}){ffffff}  Masini" A
+"{98fb98}({ffffff}9{98fb98}){ffffff}  Giftbox (activ)" 0
+end
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+:dialog_cum
+alloc 0@ 20000
+0AC6: 0@ = label @dialog_text_cum offset
+SAMP.ShowDialog(9999, "{20B2AA}Comenzi tip: Cum fac?", 0@, "{32CD32}Inapoi", "", 0)
+free 0@
+return
+
+:dialog_text_cum
+hex
+"{98FB98}[/cumogp]{FFFFFF} - cum poti face rost de OG Points." A
+"{98FB98}[/cumpp]{FFFFFF} - cum poti face rost de Premium Points." A
+"{98FB98}[/cumrp]{FFFFFF} - cum poti face rost de Respect Points." A
+"{98FB98}[/cumrbp]{FFFFFF} - cum poti face rost de Rob Points." A
+"{98FB98}[/cumrob]{FFFFFF} - cum dai rob" A
+"{98FB98}[/cumbani]{FFFFFF} - cum poti face rost de bani." A
+"{98FB98}[/cummats]{FFFFFF} - cum poti face rost de materiale." A
+"{98FB98}[/cumad]{FFFFFF} - cum poti pune un [/ad] si cerintele." A
+"{98FB98}[/cumvreme]{FFFFFF} - cum poti schimba vremea prin [/setw] si [/sett]." A
+"{98FB98}[/cummasina]{FFFFFF} - poti obtine masina din DS, /shop sau de la playeri" A
+"{98FB98}[/cumfill]{FFFFFF} - Ii spui metodele de [/fill]." A
+"{98FB98}[/cumlights]{FFFFFF} - [/lights] sau CTRL" A
+"{98FB98}[/cumculoare]{FFFFFF} - Ii spui cum sa aplice culoarea pe masina." A
+"{98FB98}[/cumculoareh]{FFFFFF} - cum se aplica hidden" A
+"{98FB98}[/cumhidd]{FFFFFF} - cum poti face rost de hidden." A
+"{98FB98}[/cumlevel]{FFFFFF} - cum face level si de ce are nevoie." A
+"{98FB98}[/cumviata]{FFFFFF} - unde poti lua heal." A
+"{98FB98}[/cumchat]{FFFFFF} - Foloseste [/fontsize], respectiv [/pagesize]" A
+"{98FB98}[/cumbandana]{FFFFFF} - Poti achizitiona cu OGP din Binco" A
+"{98FB98}[/cumgym]{FFFFFF} - poti sa iti schimbi stilul de lupta la 'GYM' cu comanda..." A
+"{98FB98}[/cumbail]{FFFFFF} - cum poti da bail, $2000 * minute ramase" A
+"{98FB98}[/cumrent]{FFFFFF} - cum si de unde poti inchiria o masina / un motor" A
+"{98FB98}[/cumtuning]{FFFFFF} - cum si unde poti tuna masina" A
+"{98FB98}[/cumspray]{FFFFFF} - intervalul orar pentru spray" A
+"{98FB98}[/cumskin]{FFFFFF} - cum si de unde poti cumpara skin" A
+"{98FB98}[/cumparasuta]{FFFFFF} - de unde poti lua parasuta" A
+"{98FB98}[/anim]{FFFFFF} - Pentru a vedea toate animatiile foloseste comanda [/animlist]" A
+"{98FB98}[/face {87CEEB}<comanda>{98FB98}]{FFFFFF} - Poti face acest lucru tastand comanda [/<comanda>]" A
+"{98FB98}[/tasta {87CEEB}<tasta>{98FB98}]{FFFFFF} - Poti face acest lucru apasand tasta '<tasta>'" 0
+end
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+:dialog_ce
+alloc 0@ 20000
+0AC6: 0@ = label @dialog_text_ce offset
+SAMP.ShowDialog(9999, "{20B2AA}Comenzi tip: Ce fac cu? / Ce este?", 0@, "{32CD32}Inapoi", "", 0)
+free 0@
+return
+
+:dialog_text_ce
+hex
+"{98FB98}[/ceogp]{FFFFFF} - ce sunt OG Points-urile si cum le folosesti." A
+"{98FB98}[/cepp]{FFFFFF} - ce poti face cu puncte premium" A
+"{98FB98}[/cerob]{FFFFFF} - cerintele pentru a da rob." A
+"{98FB98}[/cemats]{FFFFFF} - ii spui ce poate face cu materialele." A
+"{98FB98}[/cedrugs]{FFFFFF} - ce poti face cu drugs" A
+"{98FB98}[/cerace]{FFFFFF} - primesti banii pusi la comun, dar e premiu si pt recorduri." 0
+end
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+:dialog_licente
+alloc 0@ 20000
+0AC6: 0@ = label @dialog_text_licente offset
+SAMP.ShowDialog(9999, "{20B2AA}Licente", 0@, "{32CD32}Inapoi", "", 0)
+free 0@
+return
+
+:dialog_text_licente
+hex
+"{98FB98}[/cumlic]{FFFFFF} - poti da /service instructor si sa astepti sa fii contactat" A
+"{98FB98}[/cumpermis]{FFFFFF} - Ii spui taxa pentru licenta de drive." A
+"{98FB98}[/licgun]{FFFFFF} / {98FB98}[/licfly]{FFFFFF} / {98FB98}[/licboat]{FFFFFF} - ii spui preturile pentru licenta de gun / fly / sailing." A
+"{98FB98}[/licall]{FFFFFF} - Ii spui pretul tuturor licentelor." 0
+end
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+:dialog_joburi
+alloc 0@ 20000
+0AC6: 0@ = label @dialog_text_joburi offset
+SAMP.ShowDialog(9999, "{20B2AA}Joburi", 0@, "{32CD32}Inapoi", "", 0)
+free 0@
+return
+
+:dialog_text_joburi
+hex
+"{98FB98}[/dailyjob]{FFFFFF} - unde il gasesti, beneficii si cand se schimba." A
+"{98FB98}[/topworker]{FFFFFF} - premiul, cand se proceseaza si cum poti participa." A
+"{98FB98}[/profitabil]{FFFFFF} - spui care este cel mai profitabil job." A
+"{98FB98}[/munceste]{FFFFFF} - Poti lucra chiar tu pentru a vedea asta." A
+"{98FB98}[/skill]{FFFFFF} - ce primesti la Skill Up la job." A
+"{98FB98}[/skillrpd]{FFFFFF} - la ce job poti face skill rapid (trucker)" A
+"{98FB98}[/sfarm]{FFFFFF} - skill-urile la Farm" A
+"{98FB98}[/secundefarm]{FFFFFF} - cate secunde muncesti la farm, 100 la s1" A
+"{98FB98}[/struck]{FFFFFF} - skill-urile la Truck" A
+"{98FB98}[/skilltruck]{FFFFFF} - cand si ce curse deblochezi la Trucker skill 2 & 3." A
+"{98FB98}[/remorca]{FFFFFF} - Foloseste /tog -> Auto Attach pentru a detasa remorca" A
+"{98FB98}[/curse]{FFFFFF} - ce curse se deblocheaza la skill 2/3/5" A
+"{98FB98}[/slumber]{FFFFFF} - skill-urile la Lumberjack" A
+"{98FB98}[/sgarbage]{FFFFFF} - skill-urile la Garbage" A
+"{98FB98}[/spizza]{FFFFFF} - skill-urile la Pizza Boy" A
+"{98FB98}[/pizza]{FFFFFF} - cate pizza poti livra la fiecare skill" A
+"{98FB98}[/scutere]{FFFFFF} - Scuterele deblocate la skill 1, 3 si 5." A
+"{98FB98}[/scurier]{FFFFFF} - skill-urile la Curier" A
+"{98FB98}[/dube]{FFFFFF} - Enumera masinile la job-ul Curier in functie de skill" A
+"{98FB98}[/sfork]{FFFFFF} - skill-urile la Forklift" A
+"{98FB98}[/sbus]{FFFFFF} - skill-urile la Bus Driver" A
+"{98FB98}[/sfish]{FFFFFF} - skill-urile la Fish" A
+"{98FB98}[/sair]{FFFFFF} - skill-urile la Emergency Air Rescue" A
+"{98FB98}[/sboat]{FFFFFF} - skill-urile la Boat Transporter" A
+"{98FB98}[/barci]{FFFFFF} - Barcile deblocate la skill 1, 3 si 5." A
+"{98FB98}[/colete]{FFFFFF} - Cate colete poti livra la fiecare skill, cate garantat si cate random." A
+"{98FB98}[/srob]{FFFFFF} - skill-urile la Rob" A
+"{98FB98}[/peste] {FFFFFF}/ {98FB98}[/faina]{FFFFFF} - Poti vinde pestele / faina la 24/7 / Burger" 0
+end
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+:dialog_utile
+alloc 0@ 20000
+0AC6: 0@ = label @dialog_text_utile offset
+SAMP.ShowDialog(9999, "{20B2AA}Utile", 0@, "{32CD32}Inapoi", "", 0)
+free 0@
+return
+
+:dialog_text_utile
+hex
+"{98FB98}[/explicit]{FFFFFF} - [/nd] ii spui sa fie mai explicit." A
+"{98FB98}[/naiurea]{FFFFFF} - [/nd] n aiurea." A
+"{98FB98}[/nprost]{FFFFFF} - [/nd] foloseste /n doar pentru intrebari legate de server." A
+"{98FB98}[/nm {87CEEB}<id>{98FB98}]{FFFFFF} - /nmute <id> 30 [/n] aiurea" A
+"{98FB98}[/suport]{FFFFFF} - nu oferim suport modurilor, tehnic sau pt varianta de telefon." A
+"{98FB98}[/moduri]{FFFFFF} - poti vedea pe panel ce moduri sunt permise" A
+"{98FB98}[/poti]{FFFFFF} - da, poti face acest lucru." A
+"{98FB98}[/nupoti]{FFFFFF} - nu poti face acest lucru." A
+"{98FB98}[/nudetinem]{FFFFFF} - Nu detinem aceasta informatie." A
+"{98FB98}[/nuexista]{FFFFFF} - Acel sistem nu exista pe server." A
+"{98FB98}[/bug]{FFFFFF} - daca a gasit un bug il poate raporta pe [/panel]." A
+"{98FB98}[/post]{FFFFFF} - poti sa reclami jucatorul pe [/panel] daca ai dovezi." A
+"{98FB98}[/afla]{FFFFFF} - ii spui ca poate afla chiar el facand acel lucru." A
+"{98FB98}[/net]{FFFFFF} - gasesti mai multe detalii despre locatie/informatie pe internet." A
+"{98FB98}[/mrp]{FFFFFF} - /myraport" A
+"{98FB98}[/chk]{FFFFFF} - /checkhelp" A
+"{98FB98}[/ajut {87CEEB}<id>{98FB98}]{FFFFFF} - /joinchat <id>, si dupa /lc Salut..." A
+"{98FB98}[/sv]{FFFFFF} - prescurtare pentru /solved" 0
+end
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+:dialog_altele
+alloc 0@ 20000
+0AC6: 0@ = label @dialog_text_altele offset
+SAMP.ShowDialog(9999, "{20B2AA}Altele", 0@, "{32CD32}Inapoi", "", 0)
+free 0@
+return
+
+:dialog_text_altele
+hex
+"{98FB98}[/populara]{FFFFFF} - care este cea mai populara frecventa (1234)." A
+"{98FB98}[/pretarme]{FFFFFF} - Cat costa sa craftezi fiecare arma." A
+"{98FB98}[/inalta]{FFFFFF} - care e cea mai inalta cladire" A
+"{98FB98}[/vending]{FFFFFF} - poti gasi vending in 24/7" A
+"{98FB98}[/amenzi]{FFFFFF} - care sunt amenzile si cat costa" A
+"{98FB98}[/conturi]{FFFFFF} - cu cate conturi ai voie conectat simultan" A
+"{98FB98}[/taxi]{FFFFFF} - Poti pune un taximetrist sa te duca / cauta pe internet" A
+"{98FB98}[/culori]{FFFFFF} - tasteaza [/colors] pentru a vedea toate culorile." A
+"{98FB98}[/flevel {87CEEB}<level>{98FB98}]{FFFFFF} - ai nevoie de nivelul X pentru acea factiune (+15h, aplicatie)" A
+"{98FB98}[/dutepanel]{FFFFFF} - acceseaza [/panel] - Shop - Descriere produs." A
+"{98FB98}[/duteds]{FFFFFF} - poti vedea singur la Dealership" A
+"{98FB98}[/vezireg]{FFFFFF} - poti verifica singur regulamentul pe /panel" A
+"{98FB98}[/calcula]{FFFFFF} - poti calcula singur de cate zile e deschis, avand in vedere ca..." A
+"{98FB98}[/deschis]{FFFFFF} - Serverul a fost deschis pe 15.08.2025." A
+"{98FB98}[/update]{FFFFFF} - verifica pe [/panel - Updates]." A
+"{98FB98}[/anunturi]{FFFFFF} - anunturi despre helperi/lideri pe [/discord]." A
+"{98FB98}[/anunturifac]{FFFFFF} - anunturi despre deschidere aplicatii factiuni pe discord." A
+"{98FB98}[/sbike]{FFFFFF} - Foloseste /spawnbike pentru a spawna o bicicleta." A
+"{98FB98}[/fpayday]{FFFFFF} - Formula payday, inclusiv cont premium/OG." A
+"{98FB98}[/dobanda]{FFFFFF} - Dobanda maxima este 200k." A
+"{98FB98}[/taxa]{FFFFFF} - Taxa este de 0.5, respectiv 0.25 pt premium/OG" A
+"{98FB98}[/pretpp]{FFFFFF} - cu 1 euro poti cumpara 10pp, calculeaza si tu" A
+"{98FB98}[/canistra]{FFFFFF} - Poti cumpara de la 24/7, [/fillgascan]" 0
+end
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+:dialog_sisteme_importante
+alloc 0@ 20000
+0AC6: 0@ = label @dialog_text_sisteme_importante offset
+SAMP.ShowDialog(9999, "{20B2AA}Sisteme importante", 0@, "{32CD32}Inapoi", "", 0)
+free 0@
+return
+
+:dialog_text_sisteme_importante
+hex
+"{98FB98}[/paintball]{FFFFFF} - cerintele pentru a juca la paint" A
+"{98FB98}[/racerecord]{FFFFFF} - primesti cate $50.000 si 100 OGP pentru fiecare concurent" A
+"{98FB98}[/questuri]{FFFFFF} - Ii spui la ce ora se resteaza questurile zilnice." A
+"{98FB98}[/bquest]{FFFFFF} - Ii spui beneficiile oferite de Daily Quest." A
+"{98FB98}[/cepayday]{FFFFFF} - Ii spui beneficiile oferite la Payday." A
+"{98FB98}[/candpayday]{FFFFFF} - Ii spui orele cand se ofera Payday." A
+"{98FB98}[/delay]{FFFFFF} - Delay-ul pentru questurile cu mananca/etc (60s)" A
+"{98FB98}[/casinolimit]{FFFFFF} - Limita se reseteaza luni la 07:00, poti vedea cu /casino" A
+"{98FB98}[/breferal]{FFFFFF} - beneficii referral" A
+"{98FB98}[/masinavip]{FFFFFF} - Ii spui ce beneficii upgrade-ul VIP pe masina" A
+"{98FB98}[/realizarie]{FFFFFF} - Premii realizari EASY" A
+"{98FB98}[/realizarim]{FFFFFF} - Premii realizari MEDIUM" A
+"{98FB98}[/realizarih]{FFFFFF} - Premii realizari HARD" A
+"{98FB98}[/brealizari]{FFFFFF} - Premii oferite in general de realizari" A
+"{98FB98}[/contog]{FFFFFF} - obtinere cont OG" A
+"{98FB98}[/contpremium]{FFFFFF} - obtinere cont premium" A
+"{98FB98}[/numecolor]{FFFFFF} - Ii spui de [/pcolor] daca are Premium" A
+"{98FB98}[/sugestie]{FFFFFF} - unde poti crea o sugestie pe panel" A
+"{98FB98}[/goalmare1]{FFFFFF} - cum poate obtine si ce primeste de la job goal mare streak 1" A
+"{98FB98}[/goalmare2]{FFFFFF} - cum poate obtine si ce primeste de la job goal mare streak 2" A
+"{98FB98}[/goalmare3]{FFFFFF} - cum poate obtine si ce primeste de la job goal mare streak 3" A
+"{98FB98}[/goalmic1]{FFFFFF} - cum poate obtine si ce primeste de la job goal mic streak 1" A
+"{98FB98}[/goalmic2]{FFFFFF} - cum poate obtine si ce primeste de la job goal mic streak 2" A
+"{98FB98}[/goalmic3]{FFFFFF} - cum poate obtine si ce primeste de la job goal mic streak 3" A
+"{98FB98}[/suplimentar]{FFFFFF} - cum poate obtine si ce primeste la completarea celor 3 streak" A
+"{98FB98}[/cumgoalmare]{FFFFFF} - cum se poate inscrie la jobgoal-ul cel mare" A
+"{98FB98}[/baragalbena]{FFFFFF} - ce reprezinta bara galbena de job goal" A
+"{98FB98}[/cejobgoal]{FFFFFF} - informatii despre job goal" A
+"{98FB98}[/bonus {87CEEB}<800 | 900 | 1000>{98FB98}]{FFFFFF} - ce bonusuri se ofera la 800/900/1000" 0
+end
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+:dialog_masini
+alloc 0@ 20000
+0AC6: 0@ = label @dialog_text_masini offset
+SAMP.ShowDialog(9999, "{20B2AA}Masini", 0@, "{32CD32}Inapoi", "", 0)
+free 0@
+return
+
+:dialog_text_masini
+hex
+"{98FB98}[/ds {87CEEB}<masina>{98FB98}]{FFFFFF} - Ii spui detalii despre masina si cate sunt in stock (exemplu: [/ds infernus] detalii full Infernus luate din /dsprice)" A
+"{98FB98}[/nods]{FFFFFF} - Masina nu se afla in 'Dealership'" A
+"{98FB98}[/costa {87CEEB}<masina>{98FB98}]{FFFFFF} - spui pretul masinii in DS" A
+"{98FB98}[/viteza {87CEEB}<masina>{98FB98}]{FFFFFF} - spui ce viteza prinde o masina" A
+"{98FB98}[/km {87CEEB}<viteza>{98FB98}]{FFFFFF} - Acel vehicul prinde... (pentru masini care nu sunt in DS)" A
+"{98FB98}[/stock {87CEEB}<masina>{98FB98}]{FFFFFF} - cate masini mai sunt in stock" A
+"{98FB98}[/decis]{FFFFFF} - spui ca pretul masinii este decis de vanzator (ex: veh speciale gift, premium)" A
+"{98FB98}[/masinaieftina]{FFFFFF} - Detalii Perennial" A
+"{98FB98}[/vehiculieftin]{FFFFFF} - Detalii Bike" A
+"{98FB98}[/motorieftin]{FFFFFF} - Detalii Freeway" A
+"{98FB98}[/masinascumpa]{FFFFFF} - Detalii Infernus" 0
+end
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+:dialog_giftbox
+alloc 0@ 20000
+0AC6: 0@ = label @dialog_text_giftbox offset
+SAMP.ShowDialog(9999, "{20B2AA}Giftbox", 0@, "{32CD32}Inapoi", "", 0)
+free 0@
+return
+
+:dialog_text_giftbox
+hex
+"{98FB98}[/pgift]{FFFFFF} - spui premiile de la gift" A
+"{98FB98}[/cumgift]{FFFFFF} - ii spui ca are nev de 3 ore, level 3" A
+"{98FB98}[/giftdelay]{FFFFFF} - ii spui ca poate da gift la 2 paydayuri cu 1800 sec" A
+"{98FB98}[/giftsec]{FFFFFF} - ii spui ca trebuie sa joace 1800 secunde la payday" A
+"{98FB98}[/calendar]{FFFFFF} - gasesti evenimentul zilei pe panel" A
+"{98FB98}[/specialquest]{FFFFFF} - premii special quest (quest activ: xMas Quest)" A 
+"{98FB98}[/questparty]{FFFFFF} - beneficii questparty" A
+"{98FB98}[/sidequest]{FFFFFF} - premiile de la Side Quest (quest activ: 'MOS CRACIUN')" A
+"{98FB98}[/sanse]{FFFFFF} - sansele pentru Side Quest, va scrie doar voua in chat" A
+"{98FB98}[/sansa {87CEEB}<nr> <nr> <nr>{98FB98} ...]{FFFFFF} - Sansele pentru acele joburi sunt de ..." A
+"{98FB98}[/sansamare]{FFFFFF} - Cele mai mari sanse sunt la: Garbage - 50, Air rescue - 30, Farmer si Boat - 20." 0
+end
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+:helpercmd
+gosub @dialog_main_menu
+SAMP.CmdRet()
+
+:hconfirm
+var_showdialog = DIALOG_HIDDEN
+var_qmessage = 0
+0B12: var_confirmation = var_confirmation XOR 1
+0AF1: write_int var_confirmation to_ini_file "cleo\cleo_saves\Helper CMD - Settings.ini" section "HelperCMD" key "confirmation"
+SAMP.CmdRet()
+
+:ds_message
+0BE5: raknet 28@ = get_hook_param PARAM_PACKETID
+if 28@ == RPC_SCRCLIENTMESSAGE
+then     
+    0BE5: raknet 28@ = get_hook_param PARAM_BITSTREAM
+    0BE7: raknet 27@ = bit_stream_read 28@ type BS_TYPE_INT
+    0BE7: raknet 26@ = bit_stream_read 28@ type BS_TYPE_INT 
+    26@++
+    alloc 25@ 26@
+    0C11: memset destination 25@ value 0 size 26@
+    26@-- 
+    0BE8: raknet bit_stream 28@ read_array 25@ size 26@
+    0C0D: struct 25@ offset 26@ size 1 = 0 
+    
+    if and
+    0C29: -1 = stristr string1 25@ string2 "New question:"
+    var_qmessage == 0
+    then
+        var_qmessage = 1
+        0BE0: raknet hook_ret true
+    end
+    
+    
+    if and 
+    0C29: -1 = stristr string1 25@ string2 "* "
+    var_qmessage == 1
+    then
+        0C13: strcpy destination var_question source 25@
+        var_qmessage = 2    
+        0BE0: raknet hook_ret true
+    end
+    
+    if 
+    0C29: -1 = stristr string1 25@ string2 "Ai sarit peste aceasta intrebare."
+    then
+        chatmsg "skipped question" -1
+        var_qmessage = 0    
+        0BE0: raknet hook_ret true
+    end
+    
+    
+    if
+    0C29: -1 = stristr string1 25@ string2 "Dealer"
+    then
+        if var_ds_req == DS_REQ_EXISTING
+        then
+            var_ds_req = 0
+            var_ds_obtained = DS_OBTAINED
+            0C13: strcpy destination var_extract source 25@ 
+            0BE0: raknet hook_ret false 
+        else
+            0BE0: raknet hook_ret true
+        end
+    end
+    if
+    0C29: -1 = stristr string1 25@ string2 "* Nu au fost gasite rezultate!"
+    then
+        if var_ds_req == DS_REQ_EXISTING
+        then
+            var_ds_req = DS_REQ_OTHER
+            chatmsg "{bfbfbf}Eroare: {ffffff}Vehiculul nu se afla in 'Dealership'. Se verifica lista aditionala." -1
+            0BE0: raknet hook_ret false 
+        else
+            0BE0: raknet hook_ret true
+        end
+    end
+    free 25@   
+end
+0BE0: raknet hook_ret true
+
+:create_additional_list
+alloc 0@ 20000
+0AC6: 0@ = label @other_vehicles_text offset
+0C16: var_extract = strtok string1 0@ string2 ";"
+var_index = 0
+alloc 1@ 12
+while not var_extract == #NULL
+    var_index++
+    0AD3: 1@v = format "vehicle%d" var_index
+    0AF5: write_string var_extract to_ini_file "cleo\cleo_saves\Helper CMD - Additional data.ini" section "AdditionalVehicles" key 1@v
+    0C16: var_extract = strtok string1 #NULL string2 ";"
+end
+free 0@
+free 1@
+return
+
+:other_vehicles
+var_index = 1
+alloc 1@ 14
+while var_index <= 11   // the index of template-premium, must be modified when new cars get added
+    0AD3: 1@v = format "vehicle%d" var_index
+    0AF4: var_auxstring = read_string_from_ini_file "cleo\cleo_saves\Helper CMD - Additional data.ini" section "AdditionalVehicles" key 1@v
+    0C13: strcpy destination var_extract source var_auxstring
+    var_index ++
+    if 0C29: var_not_used = stristr string1 var_extract string2 var_param  // change var
+    then
+        var_ds_obtained = DS_OBTAINED
+        break
+    end
+end
+free 1@
+if var_ds_obtained == 0
+then
+    chatmsg "Not found in additional list." -1
+end
+return
+
+:other_vehicles_text
+hex 
+"a a - Sparrow (a a 400, -1 a a 130 m a;a a - Maverick (a a 700, -1 a a 170 m a;a a - Stretch (a a 350, -1 a a 149 m a;a a - Hotring A/B/C (a a 500, -1 a a 203 m a;a a - Monster (a a -1, -1 a a 104 m a;a a - Shamal (a a 500, -1 a a 255 m a;a a - Tropic (a a 350, -1 a a 120 m a;a a - Sanchez (a a 250, -1 a a 136 m a;a a - Bloodring Banger (a a 350, -1 a a 163 m a;a a - Wayfarer (a a -1, -3 a a 136 m a;a a - Kart (a a -1, -2 a a 88 m a;a a - template-nods (a a -1, -3 a a speed m a;a a - template-premium (a a price, -1 a a speed m a;a a - template-giftbox (a a -1, -2 a a speed m a;a a - template-nods (a a -1, -3 a a speed m a;" 0
+end
+
+:printds
+0C16: var_auxstring = strtok string1 var_extract string2 " "
+0C16: var_auxstring = strtok string1 #NULL string2 " "
+0C16: var_auxstring = strtok string1 #NULL string2 " "
+0C16: var_vname = strtok string1 #NULL string2 "("
+0C16: var_auxstring = strtok string1 #NULL string2 " "
+0C16: var_auxstring = strtok string1 #NULL string2 " "
+0C16: var_vprice = strtok string1 #NULL string2 ","
+0C16: var_vstock = strtok string1 #NULL string2 " "            
+0C16: var_auxstring = strtok string1 #NULL string2 " "
+0C16: var_auxstring = strtok string1 #NULL string2 " "
+0C16: var_vspeed = strtok string1 #NULL string2 " "
+wait 400
+return
+
+//Cum faci chestii------------------------------------------------------------------------------------------------------------
+
+// GIFTBOX 
+:cumogp
+0AD3: var_preview1 = format "/nre Poti obtine 'OG Points' din: Level up, Daily Quests, Skill Up, Giftbox si din [/realizari]."
+SAMP.CmdRet()
+// GIFTBOX
+:cumpp
+0AD3: var_preview1 = format "/nre Poti obtine Premium Points din: plati pe [/panel], [/buylevel] peste nivel 10, bonus 1000 on, Giftbox sau [/realizari]."
+SAMP.CmdRet()
+// GIFTBOX
+:cumrp
+0AD3: var_preview1 = format "/nre Poti obtine Respect Points din: Payday, Referral, bonus 800 on, Giftbox si Daily Quests."
+SAMP.CmdRet()
+// GIFTBOX
+:cumrbp
+0AD3: var_preview1 = format "/nre Poti obtine Rob Points din: Payday."
+SAMP.CmdRet()
+
+:cumrob
+0AD3: var_preview1 = format "/nre Pentru a jefui o afacere tasteaza comanda [/rob] in aceasta si urmeaza checkpointurile rosii pentru a fi platit."
+SAMP.CmdRet()
+// GIFTBOX
+:cumbani
+0AD3: var_preview1 = format "/nre Poti obtine bani din: job, [/realizari], Daily Quests, Rob, Referral, bonus 900 on si Payday."
+SAMP.CmdRet()
+// GIFTBOX
+:cummats
+0AD3: var_preview1 = format "/nre Poti obtine materiale de la alti jucatori prin [/trade], de la jobul 'Arms Dealer' si 'Paintball'."
+SAMP.CmdRet()
+
+:cumad
+0AD3: var_preview1 = format "/nre Tasteaza comanda [/ad] cand esti la un business de tip 'CNN', ai nevoie de minim nivel 5."
+SAMP.CmdRet()
+
+:cumvreme
+0AD3: var_preview1 = format "/nre Foloseste comenzile [/setw si /sett] pentru a schimba vremea si ziua daca detii un cont de tip OG."
+SAMP.CmdRet()
+
+:cummasina
+0AD3: var_preview1 = format "/nre Poti achizitiona o masina din Dealership, din [/shop] sau de la playeri prin [/trade]."
+SAMP.CmdRet()
+
+:cumfill
+0AD3: var_preview1 = format "/nre Poti alimenta vehiculul prin [/fill] la un business 'Gas Station' si prin [/usegascan] daca ai o canistra."
+SAMP.CmdRet()
+
+:cumlights
+0AD3: var_preview1 = format "/nre Poti aprinde farurile folosind comanda [/lights] sau apasand tasta 'CTRL'."
+SAMP.CmdRet()
+
+:cumculoare
+0AD3: var_preview1 = format "/nre Tasteaza [/carcolor 1/2 <0-255>] pentru a face acest lucru."
+SAMP.CmdRet()
+
+:cumculoareh
+0AD3: var_preview1 = format "/nre Poti adauga un 'Hidden' pe automobile folosind comanda [/carcolor 1/2 <128-255>] daca detii unul."
+SAMP.CmdRet()
+// GIFTBOX
+:cumhidd
+0AD3: var_preview1 = format "/nre Poti obtine 'Hidden' de la jucatori prin [/trade] si din [/shop]."
+SAMP.CmdRet()
+
+:cumlevel
+0AD3: var_preview1 = format "/nre Poti avansa in nivel prin comanda [/buylevel] daca detii numarul necesar de 'Respect Points', ore si bani."
+SAMP.CmdRet()
+
+:cumviata
+0AD3: var_preview1 = format "/nre Iti poti reface viata la un business de tip 'Food' si la un vending machine."
+SAMP.CmdRet()
+
+:cumchat
+0AD3: var_preview1 = format "/nre Pentru a face acest lucru foloseste comanda [/fontsize], respectiv [/pagesize]."
+SAMP.CmdRet()
+
+:cumbandana
+0AD3: var_preview1 = format "/nre Iti poti achizitiona o bandana cu OG Points dintr-un business de tip 'Clothing Store'."
+SAMP.CmdRet()
+
+:cumgym
+0AD3: var_preview1 = format "/nre Poti achizitiona un stil de lupta dintr-un business tip 'GYM' folosind comanda [/buyfightstyle]."
+SAMP.CmdRet()
+
+:cumbail
+0AD3: var_preview1 = format "/nre Folosind comanda [/bail] poti iesi din jail in schimbul sumei de $2.000 x minute ramase in jail."
+SAMP.CmdRet()
+
+:cumrent
+0AD3: var_preview1 = format "/nre Poti inchiria o masina/bike din [/gps - Businesses - Rent Car] folosind comanda [/rentcar si /rentbike]."
+SAMP.CmdRet()
+
+:cumtuning
+0AD3: var_preview1 = format "/nre Poti tuna o masina la [/gps - Businesses - Tuning] apasand tasta 'H' pentru a intra."
+SAMP.CmdRet()
+
+:cumspray
+0AD3: var_preview1 = format "/nre Intervalul orar pentru Spray este zilnic intre orele 12:00 - 23:59."
+SAMP.CmdRet()
+
+:cumskin
+0AD3: var_preview1 = format "/nre Poti cumpara un skin dintr-un business tip 'Clothing Store' folosind comanda [/clothes] in interiorul lui."
+SAMP.CmdRet()
+
+:cumparasuta
+0AD3: var_preview1 = format "/nre Aceasta o vei primi automat cand vei urca intr-o aeronava."
+SAMP.CmdRet()
+
+:anim       
+0AD3: var_preview1 = format "/nre Pentru a vedea toate animatiile foloseste comanda [/animlist]."
+SAMP.CmdRet()
+
+:face
+if 0B35: samp var_param = get_last_command_params
+then
+    0AD3: var_preview1 = format "/nre Poti face acest lucru tastand comanda [/%s]." var_param
+else
+    chatmsg "{bfbfbf}Syntax: {ffffff}/face <comanda>" -1
+end
+SAMP.CmdRet()
+
+:tasta
+if 0B35: samp var_param = get_last_command_params
+then
+    0AD3: var_preview1 = format "/nre Poti face acest lucru apasand tasta '%s'." var_param
+else
+    chatmsg "{bfbfbf}Syntax: {ffffff}/tasta <tasta>" -1
+end
+SAMP.CmdRet()
+
+//Ce fac cu?------------------------------------------------------------------------------------------------------------------
+
+:ceogp
+0AD3: var_preview1 = format "/nre Cu 'OG Points' iti poti tuna masina la 'Tuning' sau poti achizitiona skinuri din 'Clothing Store' daca ai un cont OG."
+SAMP.CmdRet()
+
+:cepp
+0AD3: var_preview1 = format "/nre Cu 'Premium Points' poti achizitiona masini/diverse din [/shop] si poti cumpara tuning/VIP la masina."
+SAMP.CmdRet()
+
+:cerob
+0AD3: var_preview1 = format "/nre Pentru a putea jefui o afacere ai nevoie de nivel 5, 10 rob points sau 8 daca ai cont OG."
+SAMP.CmdRet()
+
+:cemats
+0AD3: var_preview1 = format "/nre Cu 'Mats' iti poti crafta arme prin [/creategun], poti vinde arme prin [/sellgun] sau le poti comercializa prin [/trade]."
+SAMP.CmdRet()
+
+:cedrugs
+0AD3: var_preview1 = format "/nre Drogurile le poti folosi prin [/usedrugs] sau le poti comercializa prin [/trade]."
+SAMP.CmdRet()
+
+:cerace
+0AD3: var_preview1 = format "/nre La 'Race Arena', fiecare concurent poate paria pana la $50.000, iar castigatorul cursei primeste suma de bani. [...]" 
+0AD3: var_preview2 = format "/nre [...] De asemenea, daca bati recordul unei harti vei primi bani si 'OG Points', in functie de numarul de concurenti."
+SAMP.CmdRet()
+
+//Licente---------------------------------------------------------------------------------------------------------------------
+
+:cumlic
+0AD3: var_preview1 = format "/nre Pentru a obtine o licenta foloseste comanda [/service - Instructor] si asteapta sa fii contactat."
+SAMP.CmdRet()
+
+:cumpermis
+0AD3: var_preview1 = format "/nre Folosese comanda [/gps - Important Locations - Driving School], iar acolo scrie [/exam] pentru a incepe."
+SAMP.CmdRet()
+
+:licgun
+0AD3: var_preview1 = format "/nre Licenta de 'Gun' costa $175.000."
+SAMP.CmdRet()
+
+:licfly
+0AD3: var_preview1 = format "/nre Licenta de 'Fly' costa $120.000."
+SAMP.CmdRet()
+
+:licboat
+0AD3: var_preview1 = format "/nre Licenta de 'Sailing' costa $75.000."
+SAMP.CmdRet()
+
+:licall
+0AD3: var_preview1 = format "/nre Licenta de condus costa $1.000, iar licentele de 'Gun', 'Fly' si 'Sailling' costa $175.000, $120.000, respectiv $75.000."
+SAMP.CmdRet()
+
+//Joburi----------------------------------------------------------------------------------------------------------------------
+
+:dailyjob
+0AD3: var_preview1 = format "/nre Poti vedea jobul zilei folosind [/jobs]. Acesta ofera cu 15 la suta mai multi bani si se schimba zilnic la ora 00:05."    
+SAMP.CmdRet()
+
+:topworker
+0AD3: var_preview1 = format "/nre Cei mai buni muncitori ai fiecarui job vor fi recompensati cu cate 50 Premium Points. Procesarea se face [...]"
+0AD3: var_preview2 = format "/nre [...] in fiecare duminica la ora 20:30. Pentru a participa ai nevoie de minim nivel 2 si 50 de ture la un job."
+SAMP.CmdRet()
+
+:profitabil
+0AD3: var_preview1 = format "/nre Toate joburile sunt profitabile, cu exceptia jobului 'Detective'. Personal iti recomand jobul 'Farmer' sau 'Daily Job'."    
+SAMP.CmdRet()
+
+:munceste
+0AD3: var_preview1 = format "/nre Poti lucra chiar tu la jobul respectiv pentru a afla acest lucru."
+SAMP.CmdRet()
+
+:skill
+0AD3: var_preview1 = format "/nre O sa primesti mai multi bani practicand jobul si o suma de OG Points."
+SAMP.CmdRet()
+
+:skillrpd
+0AD3: var_preview1 = format "/nre Toate job-urile sunt concepute sa cresti in skill destul de repede dar, personal recomand 'Farmer'."
+SAMP.CmdRet()
+
+:sfarm
+0AD3: var_preview1 = format "/nre Pentru skill 2 ai nevoie de 70 ture, skill 3: 145 ture, skill 4: 366 ture, skill 5: 655 ture, skill 6: 875 ture."
+SAMP.CmdRet() 
+
+:secundefarm
+0AD3: var_preview1 = format "/nre La skill 1 trebuie sa muncesti 100 de secunde, scazand cate 5 secunde la fiecare skill up."
+SAMP.CmdRet()    
+
+:struck
+0AD3: var_preview1 = format "/nre Pentru skill 2 ai nevoie de 85 ture, skill 3: 180 ture, skill 4: 450 ture, skill 5: 808 ture, skill 6: 1080 ture."
+SAMP.CmdRet()
+
+:curse
+0AD3: var_preview1 = format "/nre La Trucker skill 2 vei putea face curse agregate, la skill 3 curse explozibile iar la skill 5 curse ilegale."
+SAMP.CmdRet()
+
+:remorca
+0AD3: var_preview1 = format "/nre Foloseste comanda [/tog - Auto Attach Trailer] ON ca sa se cupleze automat remorca si OFF ca sa nu se cupleze."
+SAMP.CmdRet()
+
+:slumber
+0AD3: var_preview1 = format "/nre Pentru skill 2 ai nevoie de 135 ture, skill 3: 300 ture, skill 4: 720 ture, skill 5: 1300 ture, skill 6: 1735 ture."
+SAMP.CmdRet()
+
+:sgarbage
+0AD3: var_preview1 = format "/nre Pentru skill 2 ai nevoie de 25 ture, skill 3: 55 ture, skill 4: 140 ture, skill 5: 250 ture, skill 6: 340 ture."
+SAMP.CmdRet()
+
+:spizza
+0AD3: var_preview1 = format "/nre Pentru skill 2 ai nevoie de 100 ture, skill 3: 200 ture, skill 4: 510 ture, skill 5: 920 ture, skill 6: 1224 ture."
+SAMP.CmdRet()
+
+:pizza
+0AD3: var_preview1 = format "/nre La skill 1-6 poti livra: 2, 2+1, 2+1, 3+1, 3+1 si 4 pizza (numar de baza + bonus aleatoriu)."
+SAMP.CmdRet()
+
+:scutere
+0AD3: var_preview1 = format "/nre La job-ul respectiv vei avea 'Pizzaboy' la skill 1-2, 'Wayfarer' la skill 3-4 si 'PCJ-600' la skill 5-6."
+SAMP.CmdRet()
+
+:scurier
+0AD3: var_preview1 = format "/nre Pentru skill 2 ai nevoie de 85 ture, skill 3: 175 ture, skill 4: 440 ture, skill 5: 790 ture, skill 6: 1050 ture."
+SAMP.CmdRet()
+
+:dube
+0AD3: var_preview1 = format "/nre La job-ul respectiv vei avea 'Benson' la skill 1-2, 'Berkley's RC Van' la skill 3-4 si 'Burrito' la skill 5-6."
+SAMP.CmdRet()
+
+:sfork
+0AD3: var_preview1 = format "/nre Pentru skill 2 ai nevoie de 566 ture, skill 3: 1133 ture, skill 4: 2833 ture, skill 5: 5100 ture, skill 6: 6800 ture."
+SAMP.CmdRet()
+
+:sbus
+0AD3: var_preview1 = format "/nre Pentru skill 2 ai nevoie de 765 ture, skill 3: 1530 ture, skill 4: 3825 ture, skill 5: 6885 ture, skill 6: 9180 ture."
+SAMP.CmdRet()
+
+:sfish
+0AD3: var_preview1 = format "/nre Pentru skill 2 ai nevoie de 111 ture, skill 3: 225 ture, skill 4: 566 ture, skill 5: 1020 ture, skill 6: 1360 ture."
+SAMP.CmdRet()
+
+:sair
+0AD3: var_preview1 = format "/nre Pentru skill 2 ai nevoie de 85 ture, skill 3: 210 ture, skill 4: 383 ture, skill 5: 566 ture, skill 6: 850 ture."
+SAMP.CmdRet()
+
+:sboat
+0AD3: var_preview1 = format "/nre Pentru skill 2 ai nevoie de 64 ture, skill 3: 128 ture, skill 4: 286 ture, skill 5: 595 ture, skill 6: 850 ture."
+SAMP.CmdRet()
+
+:barci
+0AD3: var_preview1 = format "/nre La jobul respectiv vei avea 'Dinghy' la skill 1-2, 'Speeder' la skill 3-4 si 'Squallo' la skill 5-6."
+SAMP.CmdRet()
+
+:colete
+0AD3: var_preview1 = format "/nre La skill 1-6 poti livra: 2, 2+1, 2+1, 2+1, 2+2 si 3+2 colete (numar de baza + bonus aleatoriu)."
+SAMP.CmdRet()
+
+:srob
+0AD3: var_preview1 = format "/nre Pentru skill 2 ai nevoie de 25 de roburi, skill 3: 50, skill 4: 85, skill 5: 128, skill 6: 200."
+SAMP.CmdRet()
+
+:peste
+0AD3: var_preview1 = format "/nre Pestele se va vinde automat, in momentul in care intri intr-un business de tip '24/7'."
+SAMP.CmdRet()
+
+:faina
+0AD3: var_preview1 = format "/nre Faina se va vinde automat, in momentul in care intri intr-un business de tip 'Burger'."
+SAMP.CmdRet()
+
+//Utile-----------------------------------------------------------------------------------------------------------------------
+
+:explicit
+0AD3: var_preview1 = format "/nd Te rog sa fii mai explicit pentru a te putea ajuta"
+SAMP.CmdRet()
+
+:naiurea
+0AD3: var_preview1 = format "/nd [/n] aiurea"
+SAMP.CmdRet()
+
+:nprost
+0AD3: var_preview1 = format "/nd Foloseste [/n] doar daca ai nelamuriri/curiozitati strict despre server"
+SAMP.CmdRet()
+
+:nm
+if 0B35: samp var_param = get_last_command_params
+then
+    0AD3: var_preview1 = format "/nmute %s 30 [/n] aiurea" var_param
+else
+    chatmsg "{bfbfbf}Syntax: {ffffff}/nm <id>" -1
+end     
+SAMP.CmdRet()
+   
+:suport
+0AD3: var_preview1 = format "/nre Nu oferim suport pentru moduri, tehnic, sau varianta de telefon a jocului."
+SAMP.CmdRet()
+
+:moduri
+0AD3: var_preview1 = format "/nre Poti verifica regulamentul serverului pentru a vedea ce moduri sunt permise/nepermise."
+SAMP.CmdRet()
+
+:poti
+0AD3: var_preview1 = format "/nre Da, poti face acest lucru."
+SAMP.CmdRet()
+
+:nupoti
+0AD3: var_preview1 = format "/nre Nu poti face acest lucru."
+SAMP.CmdRet()
+
+:nudetinem
+0AD3: var_preview1 = format "/nre Nu detinem aceasta informatie."
+SAMP.CmdRet()
+
+:nuexista
+0AD3: var_preview1 = format "/nre Nu exista un astfel de sistem pe server."
+SAMP.CmdRet()
+
+:bug
+0AD3: var_preview1 = format "/nre Daca consideri ca ai descoperit un bug il poti raporta pe [/panel] printr-un ticket."
+SAMP.CmdRet()
+
+:post
+0AD3: var_preview1 = format "/nre Daca consideri ca acel jucator nu a procedat corect, il poti reclama pe [/panel] daca ai dovezile necesare."
+SAMP.CmdRet()
+
+:afla
+0AD3: var_preview1 = format "/nre Poti afla chiar tu facand acest lucru."
+SAMP.CmdRet()
+
+:net
+0AD3: var_preview1 = format "/nre Poti cauta pe internet aceasta locatie sau informatie pentru detalii."
+SAMP.CmdRet()
+
+:mrp
+say "/myraport"
+SAMP.CmdRet()
+
+:chk
+say "/checkhelp"
+SAMP.CmdRet()
+
+:ajut
+if 0B35: samp var_param = get_last_command_params
+then
+    var_msg_req = MSG_REQ_AJUT
+    say "/joinchat %s" var_param
+else
+    chatmsg "{bfbfbf}Syntax: {ffffff}/ajut <id>" -1
+end   
+SAMP.CmdRet()
+
+:sv
+say "/solved"
+SAMP.CmdRet()
+
+//Altele----------------------------------------------------------------------------------------------------------------------
+
+:populara
+0AD3: var_preview1 = format "/nre Cea mai populara frecventa este '1234', tasteaza [/setfreq 1234] pentru a intra pe frecventa."
+SAMP.CmdRet()
+
+:pretarme
+0AD3: var_preview1 = format "/nre Deagle, AK47, M4A4 si Rifle se pot crafta cu: 1500, 2300, 2450 si 5000 materiale."
+SAMP.CmdRet()
+
+:inalta
+0AD3: var_preview1 = format "/nre Cea mai inalta cladire este 'Maze Bank', aceasta este situata in orasul Los Santos."
+SAMP.CmdRet()
+
+:vending
+0AD3: var_preview1 = format "/nre Poti gasi unul in interiorul unui business '24/7', apasand tasta 'F' pentru a-l folosi."
+SAMP.CmdRet()
+
+:amenzi
+0AD3: var_preview1 = format "/nre Amenzile pentru NOS, Casca si Lumini sunt: $50.000, $30.000 si $30.000."
+SAMP.CmdRet()
+
+:conturi
+0AD3: var_preview1 = format "/nre Te poti conecta cu 2 conturi simultan."
+SAMP.CmdRet()
+
+:taxi
+0AD3: var_preview1 = format "/nre Poti chema chiar tu un taximetrist prin [/service - Taxi] pentru a te transporta acolo sau poti cauta locatia pe internet."
+SAMP.CmdRet()
+
+:culori
+0AD3: var_preview1 = format "/nre Tasteaza comanda [/colors] pentru a vedea culorile disponibile."
+SAMP.CmdRet()
+
+:flevel
+if 0B35: samp var_param = get_last_command_params
+then
+    0AD3: var_preview1 = format "/nre Ai nevoie de minimum 15 ore jucate, nivel %s si o aplicatie pe [/panel]." var_param
+else
+    chatmsg "{bfbfbf}Syntax: {ffffff}/flevel <level>" -1
+end
+SAMP.CmdRet()
+
+:dutepanel
+0AD3: var_preview1 = format "/nre Poti verifica chiar tu acest lucru pe [/panel] la sectiunea 'Shop' apasand pe butonul 'Descriere produs'."
+SAMP.CmdRet()
+
+:duteds
+0AD3: var_preview1 = format "/nre Poti vizita chiar tu 'Dealership-ul' prin comanda [/gps - Important Locations - Dealership] pentru a vedea acest lucru."
+SAMP.CmdRet()
+
+:vezireg
+0AD3: var_preview1 = format "/nre Poti verifica chiar tu acest lucru pe [/panel] la sectiunea 'Regulamente'."
+SAMP.CmdRet()
+
+:calcula
+0AD3: var_preview1 = format "/nre Poti calcula chiar tu acest lucru avand in vedere ca este deschis din data de 15.08.2025 la ora 20:00."
+SAMP.CmdRet()
+
+:deschis
+0AD3: var_preview1 = format "/nre Serverul a fost deschis pe data de 15.08.2025 la ora 20:00."
+SAMP.CmdRet()
+
+:update
+0AD3: var_preview1 = format "/nre Poti afla chiar tu acest lucru de pe [/panel] la sectiunea 'Updates' sau pe [/discord] la 'anno'."
+SAMP.CmdRet()
+
+:anunturi
+0AD3: var_preview1 = format "/nre Poti afla astfel de informatii pe [/discord] la sectiunea 'anno'."
+SAMP.CmdRet()
+
+:anunturifac
+0AD3: var_preview1 = format "/nre Poti vedea cand o factiune deschide aplicatiile pe [/discord] la sectiunea 'Applications-anno'."
+SAMP.CmdRet()
+
+:sbike
+0AD3: var_preview1 = format "/nre Foloseste comanda [/spawnbike] pentru a-ti spawna o bicicleta temporara."
+SAMP.CmdRet()
+
+:fpayday
+0AD3: var_preview1 = format "/nre Poti calcula folosind formula: '$1000 x Nivel + Random $500 + 0.05, 0.04, 0.03 la suta din [...]"
+0AD3: var_preview2 = format "/nre [...] banii din banca pentru cont OG, premium si normal."
+SAMP.CmdRet()
+
+:dobanda
+0AD3: var_preview1 = format "/nre Dobanda maxima pe care o poti primi la payday este de $200.000."
+SAMP.CmdRet()
+
+:taxa
+0AD3: var_preview1 = format "/nre Taxa de withdraw este de 0.5 la suta pentru cont normal/premium si 0.25 pentru cont OG."
+SAMP.CmdRet()
+
+:pretpp
+0AD3: var_preview1 = format "/nre Poti calcula chiar tu acest lucru avand in vedere ca 1 euro iti ofera 10 premium points."
+SAMP.CmdRet()
+
+:canistra
+0AD3: var_preview1 = format "/nre O canistra se poate achizitiona de la un '24/7' si umple la 'Gas Station' prin comanda [/fillgascan]."
+SAMP.CmdRet()
+
+//Sisteme importante----------------------------------------------------------------------------------------------------------
+
+:paintball
+0AD3: var_preview1 = format "/nre Ai nevoie de minim nivel 7, licenta de 'Gun' si 15 ore jucate."
+SAMP.CmdRet()
+
+:racerecord
+0AD3: var_preview1 = format "/nre Daca bati recordul unei harti, vei primi cate $50.000 si 100 'OG Points' pentru fiecare concurent din acea cursa."
+SAMP.CmdRet()
+
+:questuri
+0AD3: var_preview1 = format "/nre Questurile zilnice se vor reseta in fiecare zi la ora 07:00 dimineata."
+SAMP.CmdRet()
+
+:bquest
+0AD3: var_preview1 = format "/nre Completand Daily Quests vei primi: 1 Respect Point si o suma random de OGPoints si bani."
+SAMP.CmdRet()
+
+:cepayday
+0AD3: var_preview1 = format "/nre Un 'Payday' iti ofera 1 'Respect Point', 1 'Rob Point' si o suma de bani."
+SAMP.CmdRet()  
+
+:candpayday
+0AD3: var_preview1 = format "/nre 'Payday' se ofera la fiecare ora fixa a zilei, de exemplu ora 15:00."
+SAMP.CmdRet()
+
+:delay
+0AD3: var_preview1 = format "/nre Acel quest are un delay de 60 de secunde."
+SAMP.CmdRet()
+
+:casinolimit
+0AD3: var_preview1 = format "/nre Poti vedea suma disponibila folosind comanda [/casino]. Aceasta se reseteaza in fiecare zi la ora 07:00."
+SAMP.CmdRet()
+
+:breferal
+0AD3: var_preview1 = format "/nre Daca cineva foloseste referalul tau, pentru fiecare nivel vei primi o suma de bani, iar dupa nivel 7 Respect Points."
+SAMP.CmdRet()
+
+:masinavip
+0AD3: var_preview1 = format "/nre Vei avea acces la Tow vehicle(last known location), o sa ai acces la [/vipmenu] si pretul asigurarii o sa scada la $2/km."
+SAMP.CmdRet()
+
+:realizarie
+0AD3: var_preview1 = format "/nre Pentru o realizare de tip 'Easy' vei fi recompensat cu $750.000, 2 Puncte Premium si 250 OG Points."
+SAMP.CmdRet()
+
+:realizarim
+0AD3: var_preview1 = format "/nre Pentru o realizare de tip 'Medium' vei fi recompensat cu $1.500.000, 3 Puncte Premium si 500 OG Points."
+SAMP.CmdRet()
+
+:realizarih
+0AD3: var_preview1 = format "/nre Pentru o realizare de tip 'Hard' vei fi recompensat cu $2.500.000, 5 Puncte Premium si 1000 OG Points."
+SAMP.CmdRet()
+
+:brealizari
+0AD3: var_preview1 = format "/nre Completarea [/realizari] ofera, in functie de dificultate: OGPoints, Premium Points si o suma de bani."
+SAMP.CmdRet()
+
+:contog
+0AD3: var_preview1 = format "/nre Acesta se va obtine automat la acumularea de 1.500 Premium Points platite, sau la completarea listei [/realizari]."
+SAMP.CmdRet()
+
+:contpremium
+0AD3: var_preview1 = format "/nre Iti poti achizitiona contul prin [/shop -> Normal shop] si 'Premium Account', acesta costa 150 Premium Points."
+SAMP.CmdRet()
+
+:numecolor
+0AD3: var_preview1 = format "/nre Poti face acest lucru tastand comanda [/pcolor], daca detii un cont 'Premium'."
+SAMP.CmdRet()
+
+:sugestie
+0AD3: var_preview1 = format "/nre Poti crea o sugestie pe [/panel] la sectiunea sugestii cand acestea vor fi deschise."
+SAMP.CmdRet()
+
+:goalmare1
+0AD3: var_preview1 = format "/nre Daca ai contribuit cu sub $500.000 la Job Goal Streak 1,  primesti 1 OG Point per $10.000 contribuiti, [...]."
+0AD3: var_preview2 = format "/nre [...] iar daca ai contribut cu peste $500.000, primesti 1 OG Point pentru fiecare $5000, maximum 100 de OG Points."
+SAMP.CmdRet()
+
+:goalmare2
+0AD3: var_preview1 = format "/nre Daca ai contribuit cu sub $500.000 la Job Goal Streak 2, primesti  1 OG Point per $10.000 contribuiti, [...]."
+0AD3: var_preview2 = format "/nre [...] iar daca ai contribuit cu peste $500.000, primesti  1 OG Point pentru fiecare $2.500, maximum 200 de OG Points."
+SAMP.CmdRet()
+
+:goalmare3
+0AD3: var_preview1 = format "/nre Daca ai contribuit cu sub $500.000 la Job Goal Streak 3, primesti 1 OG Point per $10.000 contribuiti, [...]."
+0AD3: var_preview2 = format "/nre [...] iar daca ai contribuit cu peste $500.000, primesti 1 OG Point pentru fiecare $2.000, maximum 250 de OG Points."
+SAMP.CmdRet()
+
+:goalmic1
+0AD3: var_preview1 = format "/nre La completarea a $500.000 vei primi 1 RP (o singura data). La atingerea acestui prag, [...]."
+0AD3: var_preview2 = format "/nre [...] vei fi inscris automat pentru acordarea Goal-ului mare."
+SAMP.CmdRet()
+
+:goalmic2
+0AD3: var_preview1 = format "/nre La completarea a $500.000 vei primi 100.000$ (o singura data). La atingerea acestui prag, [...]."
+0AD3: var_preview2 = format "/nre [...] vei fi inscris automat pentru acordarea Goal-ului mare."
+SAMP.CmdRet()
+
+:goalmic3
+0AD3: var_preview1 = format "/nre La completarea a $500.000 vei primi 1 PP (o singura data). La atingerea acestui prag, [...]."
+0AD3: var_preview2 = format "/nre [...] vei fi inscris automat pentru acordarea Goal-ului mare."
+SAMP.CmdRet()
+
+:suplimentar
+0AD3: var_preview1 = format "/nre Daca participi cu minim $500.000 la fiecare Streak, vei primi 2 puncte premium suplimentare la finalizarea Streak 3."
+SAMP.CmdRet()
+
+:cumgoalmare
+0AD3: var_preview1 = format "/nre Vei fi inscris automat la Job Goal-ul mare, daca vei contribui cu minim $500.000."
+SAMP.CmdRet()
+
+:baragalbena
+0AD3: var_preview1 = format "/nre Bara galbena reprezinta 'Job Goal-ul mic'. La completarea acesteia esti recompensat in functie de 'Streak' [...]."
+0AD3: var_preview2 = format "/nre [...] si esti automat inscris la 'Job Goal-ul mare'."
+SAMP.CmdRet()
+
+:cejobgoal
+0AD3: var_preview1 = format "/nre Toti jucatorii contribuie automat la Job Goal prin veniturile lor de la job. La finalizarea acestuia [...]."
+0AD3: var_preview2 = format "/nre [...] esti recompensat in functie de cat ai contribuit si de 'Streak-ul' curent."
+SAMP.CmdRet()
+
+:bonus
+if 0B35: samp var_param = get_last_command_params
+then
+    if
+        0C14: strcmp string1 var_param string2 "800"
+    then
+        0AD3: var_preview1 = format "/nre La atingerea de 800 jucatori conectati se va acorda 1 'Respect Point' tuturor celor online, AFK sau nu."
+    else
+        if
+        0C14: strcmp string1 var_param string2 "900"
+        then
+            0AD3: var_preview1 = format "/nre La atingerea de 900 jucatori conectati se va acorda suma de '$50.000' tuturor celor online, AFK sau nu."
+        else
+            if
+            0C14: strcmp string1 var_param string2 "1000"
+            then
+                0AD3: var_preview1 = format "/nre La atingerea de 1000 jucatori conectati se va acorda 1 'Premium Point' tuturor celor online, AFK sau nu."
+            else
+                chatmsg "{bfbfbf}Syntax: {ffffff}/bonus <800 | 900 | 1000>" -1
+            end
+        end
+    end
+else
+    chatmsg "{bfbfbf}Syntax: {ffffff}/bonus <800 | 900 | 1000>" -1
+end     
+SAMP.CmdRet()
+
+//Masini----------------------------------------------------------------------------------------------------------------------
+
+:ds
+if 0B35: samp var_param = get_last_command_params
+then
+    var_ds_req = DS_REQ_EXISTING
+    var_ds_rtype = DS_RTYPE_FULL
+    if
+        0C14: strcmp string1 var_param string2 "mtb"
+    then
+        say "/dsprice mountain"
+    else
+        say "/dsprice %s" var_param
+    end
+else
+    chatmsg "{bfbfbf}Syntax: {ffffff}/ds <vehicle>" -1
+end     
+SAMP.CmdRet()
+
+:nods
+0AD3: var_preview1 = format "/nre Acel vehicul nu se regaseste in 'Dealership'."
+SAMP.CmdRet()
+
+:costa
+if 0B35: samp var_param = get_last_command_params
+then
+    var_ds_req = DS_REQ_EXISTING
+    var_ds_rtype = DS_RTYPE_PRICE
+    if
+        0C14: strcmp string1 var_param string2 "mtb"
+    then
+        say "/dsprice mountain"
+    else
+        say "/dsprice %s" var_param
+    end
+else
+    chatmsg "{bfbfbf}Syntax: {ffffff}/costa <masina>" -1
+end   
+SAMP.CmdRet()
+
+:viteza
+if 0B35: samp var_param = get_last_command_params
+then
+    var_ds_req = DS_REQ_EXISTING
+    var_ds_rtype = DS_RTYPE_SPEED
+    if
+        0C14: strcmp string1 var_param string2 "mtb"
+    then
+        say "/dsprice mountain"
+    else
+        say "/dsprice %s" var_param
+    end
+else
+    chatmsg "{bfbfbf}Syntax: {ffffff}/viteza <masina>" -1
+end   
+SAMP.CmdRet()
+
+:km
+if 0B35: samp var_param = get_last_command_params
+then
+    0AD3: var_preview1 = format "/nre Acel vehicul atinge viteza maxima de %skm/h." var_param
+else
+    chatmsg "{bfbfbf}Syntax: {ffffff}/km <viteza>" -1
+end   
+SAMP.CmdRet()
+
+:stock
+if 0B35: samp var_param = get_last_command_params
+then
+    var_ds_req = DS_REQ_EXISTING
+    var_ds_rtype = DS_RTYPE_STOCK
+    if
+        0C14: strcmp string1 var_param string2 "mtb"
+    then
+        say "/dsprice mountain"
+    else
+        say "/dsprice %s" var_param
+    end
+else
+    chatmsg "{bfbfbf}Syntax: {ffffff}/stock <masina>" -1
+end   
+SAMP.CmdRet()
+
+:decis
+0AD3: var_preview1 = format "/nre Pretul este decis de vanzator, nu te putem influenta."
+SAMP.CmdRet()
+
+:masinaieftina
+var_ds_req = DS_REQ_EXISTING
+var_ds_rtype = DS_RTYPE_MASIEFTINA
+say "/dsprice perennial"
+SAMP.CmdRet()
+
+:vehiculieftin
+var_ds_req = DS_REQ_EXISTING
+var_ds_rtype = DS_RTYPE_VEHIEFTIN
+say "/dsprice bike"
+SAMP.CmdRet()
+
+:motorieftin
+var_ds_req = DS_REQ_EXISTING
+var_ds_rtype = DS_RTYPE_MOTORIEFTIN
+say "/dsprice freeway"
+SAMP.CmdRet()
+
+:masinascumpa
+var_ds_req = DS_REQ_EXISTING
+var_ds_rtype = DS_RTYPE_MASSCUMPA
+say "/dsprice infernus"
+SAMP.CmdRet()
+
+//Giftbox---------------------------------------------------------------------------------------------------------------------
+
+:pgift
+0AD3: var_preview1 = format "/nre Din 'Giftbox' ai sansa de a castiga: Bani, Respect Points, Rob Points, Hidden Color, Materiale, Premium Points,[...]"
+0AD3: var_preview2 = format "/nre [...] Kart, BMX, OG Points, Drugs, Slot Vehicul, Clear Warn sau o Casa."
+SAMP.CmdRet()
+
+:cumgift
+0AD3: var_preview1 = format "/nre Poti tasta [/getgift] daca ai 3 ore jucate totale, 3 ore jucate in ultimele 7 zile si minim nivel 3."
+SAMP.CmdRet()
+
+:giftdelay
+0AD3: var_preview1 = format "/nre Pentru a putea utiliza din nou [/getgift], ai nevoie de 2 Paydayuri luate in care te-ai jucat minim 1800 secunde."
+SAMP.CmdRet()
+
+:giftsec
+0AD3: var_preview1 = format "/nre Ai nevoie de minim 1800 secunde jucate la 'Payday' pentru a ti se contoriza o ora jucata de la 'Giftbox'."
+SAMP.CmdRet()
+
+:calendar
+0AD3: var_preview1 = format "/nre Poti gasi evenimentul zilei pe [/panel] la sectiunea 'Calendar de evente'."
+SAMP.CmdRet()
+
+:specialquest
+0AD3: var_preview1 = format "/nre La completarea 'xMas Quest' vei primi $2.500.000, 10 Premium Points, 10 Respect Points, 10 Rob Points, [...]"
+0AD3: var_preview2 = format "/nre [...] 1000 OG Points si un vehicul de tip 'Sandking' temporar, timp de 14 zile."
+SAMP.CmdRet()
+
+:questparty
+0AD3: var_preview1 = format "/nre Facand parte dintr-un 'Quest Party', vei putea sa ii vezi pe ceilalti membri pe harta, precum si obiectele gasite [...]"
+0AD3: var_preview2 = format "/nre [...] de acestia, iar la fiecare 33 de obiecte colectate in minim 3 persoane, ti se va scadea o ora pentru [/getgift]."
+SAMP.CmdRet()
+
+:sidequest
+0AD3: var_preview1 = format "/nre In fiecare zi la ora 07:00 se reseteaza questul. Prin job poti obtine litere, cu care trebuie [...]"
+0AD3: var_preview2 = format "/nre [...] sa formezi cuvantul 'MOS CRACIUN'. Ca premiu vei primi $1.000.000 si o ora scazuta la [/getgift]."
+SAMP.CmdRet()
+
+
+:sanse
+chatmsg "{%x} >> {%x}Sanse de a primi litera, in procente, pentru side quest {%x}<<" -1 __RED __LTB __RED       
+chatmsg "{%x}(Garbage - 50), (Air Rescue - 30), (Farmer, Boat - 20), (Courier - 18), (Pizzaboy - 16)" -1 __LIM
+chatmsg "{%x}(Trucker, Lumberjack - 15), (Fisher - 10), (Forklift - 3), (Bus - 2)" -1 __LIM
+SAMP.CmdRet()
+
+:sansa
+if 0B35: samp var_param = get_last_command_params
+then
+    alloc var_result 260
+    alloc var_extract 260
+    var_auxlen = 0
+    0C13: strcpy destination var_result source ""
+    0C16: var_auxstring = strtok string1 var_param string2 " "
+    while not var_auxstring == #NULL
+        0C13: strcpy destination var_extract source var_auxstring
+        0C16: var_auxstring = strtok string1 #NULL string2 " "       
+        if var_auxstring == #NULL
+        then
+            if var_auxlen > 0
+            then
+                0C17: var_not_used = strlen var_result
+                var_not_used -= 2
+                0C24: strncpy destination var_result source var_result size var_not_used
+                0C15: strcat destination var_result source ", respectiv "
+                0C15: strcat destination var_result source var_extract
+            else
+                0C15: strcat destination var_result source var_extract
+            end
+        else
+            0C15: strcat destination var_result source var_extract
+            0C15: strcat destination var_result source ", "
+        end
+        var_auxlen++ 
+    end
+    if var_auxlen == 1
+    then
+        0AD3: var_preview1 = format "/nre Sansa de a primi litera de la acel job, in procente, este de %s." var_result
+    else
+        0AD3: var_preview1 = format "/nre Sansele de a primi litera la acele joburi sunt, in procente, de %s." var_result
+    end
+    free var_result
+    free var_extract
+else
+    chatmsg "{bfbfbf}Syntax: {ffffff}/sansa <sansa1> <sansa2> ..." -1
+end
+SAMP.CmdRet()
+
+:sansamare
+0AD3: var_preview1 = format "/nre Cele mai mari sanse pentru litera sunt la: Garbage Man-50, Emergency Air Rescue-30, Farmer si Boat Transporter-20."
+SAMP.CmdRet()
+
+0A93: end_custom_thread
