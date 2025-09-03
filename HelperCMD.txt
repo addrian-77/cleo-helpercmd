@@ -61,6 +61,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "cumspray" to_label @cumspray  
 0B34: samp register_client_command "cumskin" to_label @cumskin
 0B34: samp register_client_command "cumparasuta" to_label @cumparasuta
+0B34: samp register_client_command "cumss" to_label @cumss
 0B34: samp register_client_command "anim" to_label @anim
 0B34: samp register_client_command "face" to_label @face
 0B34: samp register_client_command "tasta" to_label @tasta
@@ -188,7 +189,8 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "suplimentar" to_label @suplimentar
 0B34: samp register_client_command "cumgoalmare" to_label @cumgoalmare
 0B34: samp register_client_command "baragalbena" to_label @baragalbena
-0B34: samp register_client_command "cejobgoal" to_label @cejobgoal
+0B34: samp register_client_command "cejobgoal" to_label @cejobgoal      
+0B34: samp register_client_command "calculkk" to_label @calculkk
 0B34: samp register_client_command "bonus" to_label @bonus
 
 //Masini
@@ -677,6 +679,7 @@ hex
 "{98FB98}[/cumspray]{FFFFFF} - intervalul orar pentru spray" A
 "{98FB98}[/cumskin]{FFFFFF} - cum si de unde poti cumpara skin" A
 "{98FB98}[/cumparasuta]{FFFFFF} - de unde poti lua parasuta" A
+"{98FB98}[/cumss]{FFFFFF} - cum face ss si unde se salveaza" A
 "{98FB98}[/anim]{FFFFFF} - Pentru a vedea toate animatiile foloseste comanda [/animlist]" A
 "{98FB98}[/face {87CEEB}<comanda>{98FB98}]{FFFFFF} - Poti face acest lucru tastand comanda [/<comanda>]" A
 "{98FB98}[/tasta {87CEEB}<tasta>{98FB98}]{FFFFFF} - Poti face acest lucru apasand tasta '<tasta>'" 0
@@ -868,6 +871,7 @@ hex
 "{98FB98}[/cumgoalmare]{FFFFFF} - cum se poate inscrie la jobgoal-ul cel mare" A
 "{98FB98}[/baragalbena]{FFFFFF} - ce reprezinta bara galbena de job goal" A
 "{98FB98}[/cejobgoal]{FFFFFF} - informatii despre job goal" A
+"{98FB98}[/calculkk]{FFFFFF} - poate calcula el stiind ca 1k = $1.000" A
 "{98FB98}[/bonus {87CEEB}<800 | 900 | 1000>{98FB98}]{FFFFFF} - ce bonusuri se ofera la 800/900/1000" 0
 end
 
@@ -1165,6 +1169,10 @@ SAMP.CmdRet()
 
 :cumparasuta
 0AD3: var_preview1 = format "/nre Aceasta o vei primi automat cand vei urca intr-o aeronava la o inaltime mare."
+SAMP.CmdRet()
+
+:cumss
+0AD3: var_preview1 = format "/nre Foloseste tasta 'F8' pentru a face acest lucru. Se salveaza in [Documents - GTA SA User Files - SAMP - Screens]."
 SAMP.CmdRet()
 
 :anim       
@@ -1680,6 +1688,10 @@ SAMP.CmdRet()
 :cejobgoal
 0AD3: var_preview1 = format "/nre Toti jucatorii contribuie automat la Job Goal prin veniturile lor de la job. La finalizarea acestuia [...]."
 0AD3: var_preview2 = format "/nre [...] esti recompensat in functie de cat ai contribuit si de 'Streak-ul' curent."
+SAMP.CmdRet()
+
+:calculkk
+0AD3: var_preview1 = format "/nre Poti calcula chiar tu acest lucru stiind ca un 'K' reprezinta un grup de 3 de 0 (000), exemplu 1k = $1.000."
 SAMP.CmdRet()
 
 :bonus
