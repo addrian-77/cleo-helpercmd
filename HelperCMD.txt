@@ -155,6 +155,9 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "taxa" to_label @taxa
 0B34: samp register_client_command "pretpp" to_label @pretpp
 0B34: samp register_client_command "lag" to_label @lag
+0B34: samp register_client_command "snormal" to_label @snormal
+0B34: samp register_client_command "spremium" to_label @spremium
+0B34: samp register_client_command "sog" to_label @sog
 0B34: samp register_client_command "canistra" to_label @canistra
 
 //Sisteme importante
@@ -821,6 +824,9 @@ hex
 "{98FB98}[/taxa]{FFFFFF} - Taxa este de 0.5, respectiv 0.25 pt premium/OG" A
 "{98FB98}[/pretpp]{FFFFFF} - cu 1 euro poti cumpara 10pp, calculeaza si tu" A
 "{98FB98}[/lag]{FFFFFF} - spune pe [/nd] solutii pentru a rezolva lag" A
+"{98FB98}[/snormal]{FFFFFF} - spune ce ID au skinurile de tip 'Normal'" A
+"{98FB98}[/spremium]{FFFFFF} - spune ce ID au skinurile de tip 'Premium'" A
+"{98FB98}[/sog]{FFFFFF} - spune ce ID au skinurile de tip 'OG'" A
 "{98FB98}[/canistra]{FFFFFF} - Poti cumpara de la 24/7, [/fillgascan]" 0
 end
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1158,7 +1164,7 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 
 :cumparasuta
-0AD3: var_preview1 = format "/nre Aceasta o vei primi automat cand vei urca intr-o aeronava."
+0AD3: var_preview1 = format "/nre Aceasta o vei primi automat cand vei urca intr-o aeronava la o inaltime mare."
 SAMP.CmdRet()
 
 :anim       
@@ -1194,7 +1200,7 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 
 :cerob
-0AD3: var_preview1 = format "/nre Pentru a putea jefui o afacere ai nevoie de nivel 5, 10 rob points sau 8 daca ai cont OG."
+0AD3: var_preview1 = format "/nre Pentru a putea jefui o afacere ai nevoie de nivel 5, licenta 'Gun' si 10 rob points sau 8 daca ai cont OG."
 SAMP.CmdRet()
 
 :cemats
@@ -1534,6 +1540,20 @@ SAMP.CmdRet()
 
 :lag
 0AD3: var_preview1 = format "/nd Momentan serverul se misca bine, verifica conexiunea la internet, un relog sau probabil ai probleme la modpack."
+SAMP.CmdRet()
+
+:snormal
+0AD3: var_preview1 = format "/nre ID-ul Skinurilor 'Normal' sunt: 250, 32, 77, 79, 132, 137, 162, 200, 212, 10, 130, 160, 183, 239, 1, 4, 5, [...]"
+0AD3: var_preview2 = format "/nre [...] 36, 182, 230, 66, 94, 95, 129, 2, 6, 14, 24, 34, 44, 67, 128, 170, 201, 142, 210, 37, 56, 65, 143 si 226."
+SAMP.CmdRet()
+
+:spremium
+0AD3: var_preview1 = format "/nre ID-ul Skinurilor 'Premium' sunt: 27, 29, 80, 81, 18, 21, 22, 41, 55, 7, 3, 82, 13, 16, 19, 97, 206, 30, [...]"
+0AD3: var_preview2 = format "/nre [...] 180, 20, 152, 233, 87, 138, 139, 140, 154, 101, 167 si 204."
+SAMP.CmdRet()
+
+:sog
+0AD3: var_preview1 = format "/nre ID-ul Skinurilor 'OG' sunt: 73, 297, 28, 298, 214, 0, 119, 299, 241, 249, 23, 83, 86, 91 si 289."
 SAMP.CmdRet()
 
 :canistra
