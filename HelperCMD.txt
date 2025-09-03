@@ -154,6 +154,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "dobanda" to_label @dobanda
 0B34: samp register_client_command "taxa" to_label @taxa
 0B34: samp register_client_command "pretpp" to_label @pretpp
+0B34: samp register_client_command "lag" to_label @lag
 0B34: samp register_client_command "canistra" to_label @canistra
 
 //Sisteme importante
@@ -819,6 +820,7 @@ hex
 "{98FB98}[/dobanda]{FFFFFF} - Dobanda maxima este 200k." A
 "{98FB98}[/taxa]{FFFFFF} - Taxa este de 0.5, respectiv 0.25 pt premium/OG" A
 "{98FB98}[/pretpp]{FFFFFF} - cu 1 euro poti cumpara 10pp, calculeaza si tu" A
+"{98FB98}[/lag]{FFFFFF} - spune pe [/nd] solutii pentru a rezolva lag" A
 "{98FB98}[/canistra]{FFFFFF} - Poti cumpara de la 24/7, [/fillgascan]" 0
 end
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1055,15 +1057,16 @@ return
 
 // GIFTBOX 
 :cumogp
-0AD3: var_preview1 = format "/nre Poti obtine 'OG Points' din: Level up, Daily Quests, Skill Up, Giftbox si din [/realizari]."
+0AD3: var_preview1 = format "/nre Poti obtine 'OG Points' din: Level up, Daily Quests, Skill Up, Giftbox, Job Goal si din [/realizari]."
 SAMP.CmdRet()
 // GIFTBOX
 :cumpp
-0AD3: var_preview1 = format "/nre Poti obtine Premium Points din: plati pe [/panel], [/buylevel] peste nivel 10, bonus 1000 on, Giftbox sau [/realizari]."
+0AD3: var_preview1 = format "/nre Poti obtine Premium Points din: plati pe [/panel], [/buylevel] peste nivel 10, bonus 1000 on, [...]"
+0AD3: var_preview2 = format "/nre [...] Giftbox, Job Goal si [/realizari]."
 SAMP.CmdRet()
 // GIFTBOX
 :cumrp
-0AD3: var_preview1 = format "/nre Poti obtine Respect Points din: Payday, Referral, bonus 800 on, Giftbox si Daily Quests."
+0AD3: var_preview1 = format "/nre Poti obtine Respect Points din: Payday, Referral, bonus 800 on, Giftbox, Job Goal si Daily Quests."
 SAMP.CmdRet()
 // GIFTBOX
 :cumrbp
@@ -1183,7 +1186,7 @@ SAMP.CmdRet()
 //Ce fac cu?------------------------------------------------------------------------------------------------------------------
 
 :ceogp
-0AD3: var_preview1 = format "/nre Cu 'OG Points' iti poti tuna masina la 'Tuning' sau poti achizitiona skinuri din 'Clothing Store' daca ai un cont OG."
+0AD3: var_preview1 = format "/nre Cu 'OG Points' iti poti tuna masina la 'Tuning', [/ogshop] sau poti achizitiona skinuri daca ai un cont OG."
 SAMP.CmdRet()
 
 :cepp
@@ -1527,6 +1530,10 @@ SAMP.CmdRet()
 
 :pretpp
 0AD3: var_preview1 = format "/nre Poti calcula chiar tu acest lucru avand in vedere ca 1 euro iti ofera 10 premium points."
+SAMP.CmdRet()
+
+:lag
+0AD3: var_preview1 = format "/nd Momentan serverul se misca bine, verifica conexiunea la internet, un relog sau probabil ai probleme la modpack."
 SAMP.CmdRet()
 
 :canistra
