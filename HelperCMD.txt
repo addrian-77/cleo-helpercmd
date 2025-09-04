@@ -191,6 +191,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "baragalbena" to_label @baragalbena
 0B34: samp register_client_command "cejobgoal" to_label @cejobgoal      
 0B34: samp register_client_command "calculkk" to_label @calculkk
+0B34: samp register_client_command "cetuning" to_label @cetuning
 0B34: samp register_client_command "bonus" to_label @bonus
 
 //Masini
@@ -872,6 +873,7 @@ hex
 "{98FB98}[/baragalbena]{FFFFFF} - ce reprezinta bara galbena de job goal" A
 "{98FB98}[/cejobgoal]{FFFFFF} - informatii despre job goal" A
 "{98FB98}[/calculkk]{FFFFFF} - poate calcula el stiind ca 1k = $1.000" A
+"{98FB98}[/cetuning]{FFFFFF} - care tuning ofera boost top speed" A
 "{98FB98}[/bonus {87CEEB}<800 | 900 | 1000>{98FB98}]{FFFFFF} - ce bonusuri se ofera la 800/900/1000" 0
 end
 
@@ -1067,7 +1069,7 @@ return
 
 // GIFTBOX 
 :cumogp
-0AD3: var_preview1 = format "/nre Poti obtine 'OG Points' din: Level up, Daily Quests, Skill Up, Giftbox, Job Goal si din [/realizari]."
+0AD3: var_preview1 = format "/nre Poti obtine 'OG Points' din: Payday, Level up, Daily Quests, Skill Up, Giftbox, Job Goal si din [/realizari]."
 SAMP.CmdRet()
 // GIFTBOX
 :cumpp
@@ -1692,6 +1694,10 @@ SAMP.CmdRet()
 
 :calculkk
 0AD3: var_preview1 = format "/nre Poti calcula chiar tu acest lucru stiind ca un 'K' reprezinta un grup de 3 de 0 (000), exemplu 1k = $1.000."
+SAMP.CmdRet()
+
+:cetuning
+0AD3: var_preview1 = format "/nre Sunt 2 tunings care ofera viteza: Spoiler +5 km/h si Exhaust +5 km/h. Ele influenteaza doar top speed."
 SAMP.CmdRet()
 
 :bonus
