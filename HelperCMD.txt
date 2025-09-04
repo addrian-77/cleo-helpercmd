@@ -159,6 +159,8 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "snormal" to_label @snormal
 0B34: samp register_client_command "spremium" to_label @spremium
 0B34: samp register_client_command "sog" to_label @sog
+0B34: samp register_client_command "undebarca" to_label @undebarca
+0B34: samp register_client_command "undeavion" to_label @undeavion
 0B34: samp register_client_command "canistra" to_label @canistra
 
 //Sisteme importante
@@ -831,6 +833,8 @@ hex
 "{98FB98}[/snormal]{FFFFFF} - spune ce ID au skinurile de tip 'Normal'" A
 "{98FB98}[/spremium]{FFFFFF} - spune ce ID au skinurile de tip 'Premium'" A
 "{98FB98}[/sog]{FFFFFF} - spune ce ID au skinurile de tip 'OG'" A
+"{98FB98}[/undebarca]{FFFFFF} - unde se pot gasi barci" A
+"{98FB98}[/undeavion]{FFFFFF} - unde se pot gasi aeronave" A
 "{98FB98}[/canistra]{FFFFFF} - Poti cumpara de la 24/7, [/fillgascan]" 0
 end
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1565,6 +1569,14 @@ SAMP.CmdRet()
 :sog
 0AD3: var_preview1 = format "/nre ID-ul Skinurilor 'OG' sunt: 73, 297, 28, 298, 214, 0, 119, 299, 241, 249, 23, 83, 86, 91 si 289."
 SAMP.CmdRet()
+
+:undebarca
+0AD3: var_preview1 = format "/nre Poti gasi o barca pe malul orasului Las Venturas, aproape de podul 'LS-LV'."
+SAMP.CmdRet()
+
+:undeavion
+0AD3: var_preview1 = format "/nre Poti gasi o aeronava pe aeroportul din 'Las Venturas'."
+SAMP.CmdRet()    
 
 :canistra
 0AD3: var_preview1 = format "/nre O canistra se poate achizitiona de la un '24/7' si umple la 'Gas Station' prin comanda [/fillgascan]."
