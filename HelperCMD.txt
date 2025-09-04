@@ -1338,7 +1338,8 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 
 :sbus
-0AD3: var_preview1 = format "/nre Pentru skill 2 ai nevoie de 765 ture, skill 3: 1530 ture, skill 4: 3825 ture, skill 5: 6885 ture, skill 6: 9180 ture."
+0AD3: var_preview1 = format "/nre Pentru skill 2 ai nevoie de 765 checkpoints, skill 3: 1530 checkpoints, skill 4: 3825 checkpoints, [...]"
+0AD3: var_preview2 = format "/nre [...] skill 5: 6885 checkpoints si skill 6: 9180 checkpoints."
 SAMP.CmdRet()
 
 :sfish
