@@ -161,6 +161,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "sog" to_label @sog
 0B34: samp register_client_command "undebarca" to_label @undebarca
 0B34: samp register_client_command "undeavion" to_label @undeavion
+0B34: samp register_client_command "pdon" to_label @pdon
 0B34: samp register_client_command "canistra" to_label @canistra
 
 //Sisteme importante
@@ -835,6 +836,7 @@ hex
 "{98FB98}[/sog]{FFFFFF} - spune ce ID au skinurile de tip 'OG'" A
 "{98FB98}[/undebarca]{FFFFFF} - unde se pot gasi barci" A
 "{98FB98}[/undeavion]{FFFFFF} - unde se pot gasi aeronave" A
+"{98FB98}[/pdon]{FFFFFF} - cum poate vedea politistii on" A
 "{98FB98}[/canistra]{FFFFFF} - Poti cumpara de la 24/7, [/fillgascan]" 0
 end
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1577,6 +1579,10 @@ SAMP.CmdRet()
 :undeavion
 0AD3: var_preview1 = format "/nre Poti gasi o aeronava pe aeroportul din 'Las Venturas'."
 SAMP.CmdRet()    
+
+:pdon
+0AD3: var_preview1 = format "/nre Pentru a face acest lucru tasteaza comanda [/factions], respectiv 'TAB' si cauti jucatorii cu numele albastru."
+SAMP.CmdRet() 
 
 :canistra
 0AD3: var_preview1 = format "/nre O canistra se poate achizitiona de la un '24/7' si umple la 'Gas Station' prin comanda [/fillgascan]."
