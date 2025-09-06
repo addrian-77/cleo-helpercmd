@@ -209,6 +209,7 @@ chatmsg "{%x}Foloseste {%x}[/helpercmd] {%x}sau {%x}[/hcmd]{%x} pentru a deschid
 0B34: samp register_client_command "vehiculieftin" to_label @vehiculieftin
 0B34: samp register_client_command "motorieftin" to_label @motorieftin
 0B34: samp register_client_command "masinascumpa" to_label @masinascumpa
+0B34: samp register_client_command "masinarapida" to_label @masinarapida
 0BE3: raknet setup_incoming_rpc_hook @ds_message 
 
 //Giftbox
@@ -275,10 +276,11 @@ const
     DS_RTYPE_VEHIEFTIN      = -12 
     DS_RTYPE_MASIEFTINA     = -13
     DS_RTYPE_MASSCUMPA      = -14
-    DS_RTYPE_MOTORIEFTIN    = -15
+    DS_RTYPE_MOTORIEFTIN    = -15       
+    DS_RTYPE_MASRAPIDA      = -16      
     DIALOG_HIDDEN           = -18
-    DIALOG_VISIBLE          = -19
-end
+    DIALOG_VISIBLE          = -19        
+end                                     
 
 const 
     MSG_REQ_AJUT            = -20
@@ -499,6 +501,18 @@ while true
             var_ds_rtype = 0
         end
         
+        if var_ds_rtype == DS_RTYPE_MOTORIEFTIN
+        then
+            if
+            0C14: strcmp string1 var_vstock string2 "0"
+            then
+                0AD3: var_preview1 = format "/nre %seste cel mai ieftin motor, costa%s in 'Dealership', atinge viteza maxima de %skm/h si nu se mai afla in stock." var_vname var_vprice var_vspeed
+            else
+                0AD3: var_preview1 = format "/nre %seste cel mai ieftin motor, costa%s in 'Dealership', atinge viteza maxima de %skm/h si mai sunt %s in stock." var_vname var_vprice var_vspeed var_vstock
+            end
+            var_ds_rtype = 0
+        end
+        
         if var_ds_rtype == DS_RTYPE_MASIEFTINA
         then
             if
@@ -522,15 +536,15 @@ while true
             end
             var_ds_rtype = 0
         end
-
-        if var_ds_rtype == DS_RTYPE_MOTORIEFTIN
+        
+        if var_ds_rtype == DS_RTYPE_MASRAPIDA
         then
             if
             0C14: strcmp string1 var_vstock string2 "0"
             then
-                0AD3: var_preview1 = format "/nre %seste cel mai ieftin motor, costa%s in 'Dealership', atinge viteza maxima de %skm/h si nu se mai afla in stock." var_vname var_vprice var_vspeed
+                0AD3: var_preview1 = format "/nre %seste cea mai rapida, costa%s in 'Dealership', atinge viteza maxima de %skm/h si nu se mai afla in stock." var_vname var_vprice var_vspeed
             else
-                0AD3: var_preview1 = format "/nre %seste cel mai ieftin motor, costa%s in 'Dealership', atinge viteza maxima de %skm/h si mai sunt %s in stock." var_vname var_vprice var_vspeed var_vstock
+                0AD3: var_preview1 = format "/nre %seste cea mai rapida, costa%s in 'Dealership', atinge viteza maxima de %skm/h si mai sunt %s in stock." var_vname var_vprice var_vspeed var_vstock
             end
             var_ds_rtype = 0
         end
@@ -904,7 +918,8 @@ hex
 "{98FB98}[/masinaieftina]{FFFFFF} - Detalii Perennial" A
 "{98FB98}[/vehiculieftin]{FFFFFF} - Detalii Bike" A
 "{98FB98}[/motorieftin]{FFFFFF} - Detalii Freeway" A
-"{98FB98}[/masinascumpa]{FFFFFF} - Detalii Infernus" 0
+"{98FB98}[/masinascumpa]{FFFFFF} - Detalii Infernus" A
+"{98FB98}[/masinarapida]{FFFFFF} - Detalii Infernus" 0
 end
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1854,6 +1869,12 @@ SAMP.CmdRet()
 :masinascumpa
 var_ds_req = DS_REQ_EXISTING
 var_ds_rtype = DS_RTYPE_MASSCUMPA
+say "/dsprice infernus"
+SAMP.CmdRet()
+
+:masinarapida
+var_ds_req = DS_REQ_EXISTING
+var_ds_rtype = DS_RTYPE_MASRAPIDA
 say "/dsprice infernus"
 SAMP.CmdRet()
 
