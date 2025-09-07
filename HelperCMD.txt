@@ -1127,11 +1127,11 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 
 :cummasina
-0AD3: var_preview1 = format "/nre Poti achizitiona o masina din Dealership, din [/shop] sau de la playeri prin [/trade]."
+0AD3: var_preview1 = format "/nre Poti achizitiona o masina din Dealership, [/shop], [/ogshop] sau de la playeri prin [/trade]."
 SAMP.CmdRet()
 
 :cumfill
-0AD3: var_preview1 = format "/nre Poti alimenta vehiculul prin [/fill] la un business 'Gas Station' si prin [/usegascan] daca ai o canistra."
+0AD3: var_preview1 = format "/nre Poti alimenta vehiculul prin [/fill] la un 'Gas Station', Mecanic si prin [/usegascan] daca ai canistra."
 SAMP.CmdRet()
 
 :cumlights
@@ -1147,7 +1147,7 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 // GIFTBOX
 :cumhidd
-0AD3: var_preview1 = format "/nre Poti obtine 'Hidden' de la jucatori prin [/trade] si din [/shop]."
+0AD3: var_preview1 = format "/nre Poti obtine 'Hidden' de la jucatori prin [/trade], [/ogshop] si din [/shop]."
 SAMP.CmdRet()
 
 :cumlevel
@@ -1155,7 +1155,7 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 
 :cumviata
-0AD3: var_preview1 = format "/nre Iti poti reface viata la un business de tip 'Food', de la un Paramedic si la un vending machine."
+0AD3: var_preview1 = format "/nre Iti poti reface viata la un business de tip 'Food', de la un Paramedici si vending machine."
 SAMP.CmdRet()
 
 :cumchat
