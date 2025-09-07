@@ -1103,7 +1103,7 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 // GIFTBOX
 :cumrbp
-0AD3: var_preview1 = format "/nre Poti obtine Rob Points din: Payday."
+0AD3: var_preview1 = format "/nre Poti obtine Rob Points din: Payday, OG Shop si Giftbox."
 SAMP.CmdRet()
 
 :cumrob
@@ -1111,7 +1111,7 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 // GIFTBOX
 :cumbani
-0AD3: var_preview1 = format "/nre Poti obtine bani din: job, [/realizari], Daily Quests, Rob, Referral, bonus 900 on si Payday."
+0AD3: var_preview1 = format "/nre Poti obtine bani din: job, jobgoal, [/realizari], Daily Quests, Rob, Referral, bonus 900 on, giftbox si Payday."
 SAMP.CmdRet()
 // GIFTBOX
 :cummats
@@ -1155,7 +1155,7 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 
 :cumviata
-0AD3: var_preview1 = format "/nre Iti poti reface viata la un business de tip 'Food' si la un vending machine."
+0AD3: var_preview1 = format "/nre Iti poti reface viata la un business de tip 'Food', de la un Paramedic si la un vending machine."
 SAMP.CmdRet()
 
 :cumchat
