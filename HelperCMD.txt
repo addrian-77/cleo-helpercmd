@@ -1095,7 +1095,7 @@ SAMP.CmdRet()
 // GIFTBOX
 :cumpp
 0AD3: var_preview1 = format "/nre Poti obtine Premium Points din: plati pe [/panel], [/buylevel] peste nivel 10, bonus 1000 on, [...]"
-0AD3: var_preview2 = format "/nre [...] Giftbox, Job Goal si [/realizari]."
+0AD3: var_preview2 = format "/nre [...] Giftbox, Job Goal, [/ogshop] si [/realizari]."
 SAMP.CmdRet()
 // GIFTBOX
 :cumrp
@@ -1902,8 +1902,8 @@ SAMP.CmdRet()
 SAMP.CmdRet()
 
 :specialquest
-0AD3: var_preview1 = format "/nre La completarea 'xMas Quest' vei primi $2.500.000, 10 Premium Points, 10 Respect Points, 10 Rob Points, [...]"
-0AD3: var_preview2 = format "/nre [...] 1000 OG Points si un vehicul de tip 'Sandking' temporar, timp de 14 zile."
+0AD3: var_preview1 = format "/nre La completarea questului, vei primi: $5.000.000, 25 rob points sau free points pentru politisti, [...]"
+0AD3: var_preview2 = format "/nre [...] 1000 OG Points si un vehicul de tip 'Banshee' temporar, timp de 3 zile."
 SAMP.CmdRet()
 
 :questparty
